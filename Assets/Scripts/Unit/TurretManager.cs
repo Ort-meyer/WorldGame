@@ -65,7 +65,7 @@ public class TurretManager : MonoBehaviour
     public void M_SetTarget(Transform target)
     {
         m_target = target;
-        GetComponentInChildren<BarrelManager>().M_SetTarget(target);
+        GetComponentInChildren<BasicCannon>().M_SetTarget(target);
     }
 
     public void M_ClearTarget()
