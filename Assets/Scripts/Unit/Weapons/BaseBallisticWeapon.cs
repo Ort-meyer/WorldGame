@@ -16,13 +16,13 @@ public class BaseBallisticWeapon : BaseWeapon
     public GameObject m_projectilePrefab;
 
     // Use this for initialization
-    virtual protected void Start()
+    protected override void Start()
     {
         base.Start();
     }
 
     // Update is called once per frame
-    virtual protected void Update()
+    protected override void Update()
     {
         base.Update();
 
@@ -60,20 +60,6 @@ public class BaseBallisticWeapon : BaseWeapon
             }
             transform.Rotate(rotateAngle, 0, 0, Space.Self);
             m_currentElevation += rotateAngle;
-        }
-    }
-
-    protected override void FireWeapon()
-    {
-        base.FireWeapon();
-        GameObject newBullet = Instantiate(m_projectilePrefab);
-        newBullet.transform.rotation = transform.rotation;
-        newBullet.transform.position = transform.position;
-        newBullet.GetComponent<Rigidbody>().velocity = transform.forward.normalized * m_exitVelocity;
-        Collider[] ownTankColliders = m_ownTank.GetComponentsInChildren<Collider>();
-        foreach (Collider collider in ownTankColliders)
-        {
-            Physics.IgnoreCollision(newBullet.GetComponent<Collider>(), collider);
         }
     }
 

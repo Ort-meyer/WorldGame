@@ -30,6 +30,20 @@ public class BasicCannon : BaseBallisticWeapon
         }
     }
 
+    protected override void FireWeapon()
+    {
+        base.FireWeapon();
+        GameObject newBullet = Instantiate(m_projectilePrefab);
+        newBullet.transform.rotation = transform.rotation;
+        newBullet.transform.position = transform.position;
+        newBullet.GetComponent<Rigidbody>().velocity = transform.forward.normalized * m_exitVelocity;
+        Collider[] ownTankColliders = m_ownTank.GetComponentsInChildren<Collider>();
+        foreach (Collider collider in ownTankColliders)
+        {
+            Physics.IgnoreCollision(newBullet.GetComponent<Collider>(), collider);
+        }
+    }
+
 
 
 }
