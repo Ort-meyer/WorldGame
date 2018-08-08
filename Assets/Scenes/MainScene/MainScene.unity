@@ -161,7 +161,7 @@ Prefab:
     - target: {fileID: 114194004976991832, guid: 3627a2fcf15f5694b8b23b73e02af4c5,
         type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3627a2fcf15f5694b8b23b73e02af4c5, type: 2}
@@ -859,6 +859,7 @@ GameObject:
   - component: {fileID: 2073067306}
   - component: {fileID: 2073067307}
   - component: {fileID: 2073067309}
+  - component: {fileID: 2073067310}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -872,7 +873,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2073067305}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e54402ba8e79f0f4a9a5a6b2246c1402, type: 3}
   m_Name: 
@@ -930,3 +931,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2073067310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2073067305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e0852bbbf661a4499ebed2bcd6dd384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_stopDistance: 5
+  DEBUG_target: {fileID: 1930223267}
