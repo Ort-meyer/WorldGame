@@ -23,7 +23,7 @@ public class NavigationManager : MonoBehaviour {
             M_Stop();
         }
         // Order turret
-        GetComponentInChildren<TurretManager>().M_SetTarget(DEBUG_target);
+        GetComponentInChildren<BasicTurret>().M_SetTarget(DEBUG_target);
     }
 
     public void M_SetDestination(Vector3 target)
