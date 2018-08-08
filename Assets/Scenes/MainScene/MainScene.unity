@@ -571,6 +571,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1566414829}
   - component: {fileID: 1566414830}
+  - component: {fileID: 1566414831}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -599,9 +600,21 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1566414828}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9bc6d378812870a47a6a812515a652dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_maxRotationSpeed: 20
+--- !u!114 &1566414831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1566414828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00f81f785d9eb9444883bbcf0a5e6aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_maxRotationSpeed: 20
@@ -614,6 +627,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1798299972}
   - component: {fileID: 1798299973}
+  - component: {fileID: 1798299974}
   m_Layer: 0
   m_Name: Barrel
   m_TagString: Untagged
@@ -641,7 +655,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1798299971}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5627799df59058346a3fce3c30b2473f, type: 3}
   m_Name: 
@@ -651,6 +665,27 @@ MonoBehaviour:
   m_projectilePrefab: {fileID: 1194630780970282, guid: 3627a2fcf15f5694b8b23b73e02af4c5,
     type: 2}
   m_fireCooldown: 3
+  m_maxElevation: 0
+  m_minElevation: 0
+  m_elevationSpeed: 30
+  m_maxTraverse: 0
+  m_traverseSpeed: 0
+--- !u!114 &1798299974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1798299971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306da81223de03d4db7b59e538137b91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_fireCooldown: 3
+  m_ownTank: {fileID: 2073067305}
+  m_exitVelocity: 10
+  m_projectilePrefab: {fileID: 1194630780970282, guid: 3627a2fcf15f5694b8b23b73e02af4c5,
+    type: 2}
   m_maxElevation: 0
   m_minElevation: 0
   m_elevationSpeed: 30
