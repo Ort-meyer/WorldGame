@@ -26,7 +26,7 @@ public class PickingHandler : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 Vector3 positionHit = hit.point;
-                agent.GetComponent<NavigationManager>().M_SetDestination(positionHit);
+                agent.GetComponent<BasicTank>().M_SetDestination(positionHit);
             }
         }
     }
