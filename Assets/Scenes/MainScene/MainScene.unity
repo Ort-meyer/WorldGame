@@ -596,11 +596,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 862246186}
   m_LocalRotation: {x: 0.13786134, y: -0, z: -0, w: 0.9904515}
-  m_LocalPosition: {x: 1.7737174, y: 1.3878366, z: 5.771207}
+  m_LocalPosition: {x: 1.77, y: 0.65999997, z: 7.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1114728428}
-  m_RootOrder: 2
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 15.848001, y: 0, z: 0}
 --- !u!1 &945210029
 GameObject:
@@ -781,9 +781,8 @@ Transform:
   m_Children:
   - {fileID: 520240288}
   - {fileID: 105288370}
-  - {fileID: 862246190}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1114728429
 MonoBehaviour:
@@ -797,6 +796,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_target: {fileID: 862246190}
+  m_engagementDistance: 4
+  m_disengageDistance: 3
+  m_chaseDistance: 5
+  m_engagementPointMargin: 1
+  inEngagementZone: 0
 --- !u!195 &1114728430
 NavMeshAgent:
   m_ObjectHideFlags: 0
