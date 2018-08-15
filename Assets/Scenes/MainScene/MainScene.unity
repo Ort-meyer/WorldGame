@@ -369,10 +369,10 @@ MonoBehaviour:
   m_minElevation: 0
   m_elevationSpeed: 10
   m_ownTank: {fileID: 1114728427}
-  m_exitVelocity: 20
+  m_exitVelocity: 15
   m_projectilePrefab: {fileID: 1435815570138578, guid: 1d4c80b5f23cc174f8e356ac86ca0d0b,
     type: 2}
-  m_maxSpread: 20
+  m_maxSpread: 1
 --- !u!1 &520240287
 GameObject:
   m_ObjectHideFlags: 0
