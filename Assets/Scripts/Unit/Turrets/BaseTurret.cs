@@ -29,7 +29,7 @@ public class BaseTurret : MonoBehaviour
 
     private void RotateTurret()
     {
-        float diffAngle = GetDiffAngle();
+        float diffAngle = Helpers.GetDiffAngle2D(transform.forward, m_target.position - transform.position);
         // If we're not looing at the target, turn the turret
         if (Mathf.Abs(diffAngle) > 0)
         {
@@ -42,25 +42,6 @@ public class BaseTurret : MonoBehaviour
             }
             transform.Rotate(0, rotateAngle, 0, Space.World); // What happens if the tank tilts? Should be Space.World?
         }
-    }
-
-    private float GetDiffAngle()
-    {
-        // Where the turret is currently facing
-        Vector2 currentDirection = new Vector2(transform.forward.x, transform.forward.z).normalized;
-        // Where the turret wants to face (towards the target)
-        Vector3 targetTurretVector = m_target.position - transform.position;
-        Vector2 targetDirection = new Vector2(targetTurretVector.x, targetTurretVector.z).normalized;
-
-        float diffAngle = Vector2.Angle(currentDirection, targetDirection);
-
-        // For some reason, this angle is absolute. Do some algebra magic to get negative angle
-        Vector3 cross = Vector3.Cross(transform.forward, targetTurretVector);
-        if (cross.y < 0)
-        {
-            diffAngle *= -1;
-        }
-        return diffAngle;
     }
 
     virtual public void M_SetTarget(Transform target)

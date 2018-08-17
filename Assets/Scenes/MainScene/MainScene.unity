@@ -831,15 +831,15 @@ Prefab:
       propertyPath: DEBUG_target
       value: 
       objectReference: {fileID: 1930223267}
-    - target: {fileID: 114396541523062324, guid: 62d18e9b5b0d55249aeb9cdf392a3449,
+    - target: {fileID: 114475240720962630, guid: 62d18e9b5b0d55249aeb9cdf392a3449,
         type: 2}
-      propertyPath: m_rotateSpeed
-      value: 77
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114396541523062324, guid: 62d18e9b5b0d55249aeb9cdf392a3449,
         type: 2}
-      propertyPath: m_directionMargin
-      value: 20
+      propertyPath: m_cornerIncrementDistance
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 62d18e9b5b0d55249aeb9cdf392a3449, type: 2}
