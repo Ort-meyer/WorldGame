@@ -5,9 +5,10 @@ using UnityEngine.AI;
 
 public class BasicTank : MonoBehaviour
 {
-    public float m_stopDistance;
-    public float m_directionMargin;
     public float m_moveSpeed;
+    public float m_rotateSpeed;
+    public float m_directionMargin;
+    public float m_cornerIncrementDistance;
 
     public Transform DEBUG_target;
 
@@ -35,24 +36,32 @@ public class BasicTank : MonoBehaviour
             return;
         }
 
-        // Debug: just movve towards the next corner and check if we're close enough
-        transform.position += nextToCurrent.normalized * m_moveSpeed * Time.deltaTime;
-
-        if(nextToCurrent.magnitude < 0.5f)
+        if (nextToCurrent.magnitude < m_cornerIncrementDistance)
         {
             m_pathManager.M_CornerReached();
         }
 
         // Rotate so we're facing the target
+        float angle = Helpers.GetDiffAngle2D(transform.forward, nextToCurrent);
+        // If we're not looing at the target, turn the turret
+        if (Mathf.Abs(angle) > 0)
+        {
+            float rotateAngle = Mathf.Sign(angle) * m_rotateSpeed * Time.deltaTime;
+
+            // If we overshoot, set rotate to diff for perfect rotate
+            if (Mathf.Abs(rotateAngle) > Mathf.Abs(angle))
+            {
+                rotateAngle = angle;
+            }
+            transform.Rotate(0, rotateAngle, 0, Space.World); // What happens if the tank tilts? Should be Space.World?
+        }
 
         // If the rotation is enough, move forward
+        if(Mathf.Abs(angle) < m_directionMargin)
+        {
+            transform.position += transform.forward * m_moveSpeed * Time.deltaTime;
+        }
 
-        //float dot = Vector3.Dot(nextToCurrent, transform.forward);
-        //if (dot < m_directionMargin && (agent.destination - transform.position).magnitude < m_stopDistance)
-        //{
-        //    //agent.Move(transform.forward.normalized * m_moveSpeed); evidently moves the agent, not the actual gameobject
-        //    transform.position += transform.forward.normalized * m_moveSpeed * Time.deltaTime;
-        //}
     }
     
     // This is debuggy. Used directly from camera for debugging purposes. Should have internal management somehow
@@ -61,6 +70,3 @@ public class BasicTank : MonoBehaviour
         m_pathManager.M_SetDestination(destination);
     }
 }
-
-
-

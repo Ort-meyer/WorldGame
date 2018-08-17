@@ -361,9 +361,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e0852bbbf661a4499ebed2bcd6dd384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_stopDistance: 5
-  m_directionMargin: 0
   m_moveSpeed: 3
+  m_rotateSpeed: 77
+  m_directionMargin: 20
+  m_cornerIncrementDistance: 0
   DEBUG_target: {fileID: 0}
 --- !u!114 &114419276384478878
 MonoBehaviour:
