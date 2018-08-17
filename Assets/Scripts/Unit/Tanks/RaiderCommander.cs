@@ -9,7 +9,6 @@ public class RaiderCommander : MonoBehaviour
     // Use this for initialization
     public Transform m_target;
 
-
     // Distances: chaseDistance > engagementDistance > disengageDistance
     // The optimum distance at which the tank wants to engage
     public float m_engagementDistance;
