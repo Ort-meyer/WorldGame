@@ -355,7 +355,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 282840810}
   m_LocalRotation: {x: 0.27264056, y: -0.6524318, z: 0.27264056, w: 0.6524318}
-  m_LocalPosition: {x: 12.6, y: 9.8, z: 7.2}
+  m_LocalPosition: {x: 26.03, y: 9.8, z: 7.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -840,6 +840,16 @@ Prefab:
         type: 2}
       propertyPath: m_cornerIncrementDistance
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114396541523062324, guid: 62d18e9b5b0d55249aeb9cdf392a3449,
+        type: 2}
+      propertyPath: m_stoppingDistance
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114917866552018654, guid: 62d18e9b5b0d55249aeb9cdf392a3449,
+        type: 2}
+      propertyPath: m_finalDestinationDistance
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 62d18e9b5b0d55249aeb9cdf392a3449, type: 2}

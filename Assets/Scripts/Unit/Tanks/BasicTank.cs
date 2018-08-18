@@ -9,6 +9,7 @@ public class BasicTank : MonoBehaviour
     public float m_rotateSpeed;
     public float m_directionMargin;
     public float m_cornerIncrementDistance;
+    public float m_stoppingDistance;
 
     public Transform DEBUG_target;
 
@@ -25,20 +26,21 @@ public class BasicTank : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //// Order turret
+        // Order turret
         GetComponentInChildren<BasicTurret>().M_SetTarget(DEBUG_target);
 
-        
+        // Get next corner
         Vector3 nextCorner = m_pathManager.M_GetNextCorner();
-        Vector3 nextToCurrent = nextCorner - transform.position;
-        if (nextToCurrent == Vector3.zero)
+        if (nextCorner == transform.position)
         {
             return;
         }
-
+        Vector3 nextToCurrent = nextCorner - transform.position;
+        // If distance is short enough, move to next corner
         if (nextToCurrent.magnitude < m_cornerIncrementDistance)
         {
             m_pathManager.M_CornerReached();
+            //nextToCurrent = m_pathManager.M_GetNextCorner();
         }
 
         // Rotate so we're facing the target
@@ -57,13 +59,13 @@ public class BasicTank : MonoBehaviour
         }
 
         // If the rotation is enough, move forward
-        if(Mathf.Abs(angle) < m_directionMargin)
+        if (Mathf.Abs(angle) < m_directionMargin)
         {
             transform.position += transform.forward * m_moveSpeed * Time.deltaTime;
         }
 
     }
-    
+
     // This is debuggy. Used directly from camera for debugging purposes. Should have internal management somehow
     public void M_SetDestination(Vector3 destination)
     {
