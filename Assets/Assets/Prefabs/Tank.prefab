@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 23328613381424306}
   - component: {fileID: 33804711451197034}
   - component: {fileID: 65317277411583440}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 4061125620178482}
   - component: {fileID: 23673799247282294}
   - component: {fileID: 33959961088065014}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TurretBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4867753351486766}
   - component: {fileID: 114475240720962630}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 4668784727782812}
   - component: {fileID: 23014732632595146}
   - component: {fileID: 33622070021066282}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BarrelBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4345904744575556}
   - component: {fileID: 114419276384478878}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,8 @@ GameObject:
   - component: {fileID: 54313384520926630}
   - component: {fileID: 114396541523062324}
   - component: {fileID: 114917866552018654}
-  m_Layer: 0
+  - component: {fileID: 114227503089378538}
+  m_Layer: 9
   m_Name: Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,6 +351,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 0.99999994}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114227503089378538
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1922860438023700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ca07474dcbbf12459e6108495dd3c84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_onScreen: 0
+  m_selectionHighlightPrefab: {fileID: 1108698107108286, guid: caf910057654ddf42bbb28e026dc92ac,
+    type: 2}
+  m_selectedHoverDistance: 2
 --- !u!114 &114396541523062324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -364,7 +380,8 @@ MonoBehaviour:
   m_moveSpeed: 3
   m_rotateSpeed: 77
   m_directionMargin: 20
-  m_cornerIncrementDistance: 0
+  m_cornerIncrementDistance: 1
+  m_stoppingDistance: 0.4
   DEBUG_target: {fileID: 0}
 --- !u!114 &114419276384478878
 MonoBehaviour:
@@ -393,7 +410,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1580732032965280}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00f81f785d9eb9444883bbcf0a5e6aa9, type: 3}
   m_Name: 
@@ -411,6 +428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_pathUpdateFrequency: 1
+  m_finalDestinationDistance: 2
 --- !u!195 &195228060683856588
 NavMeshAgent:
   m_ObjectHideFlags: 1

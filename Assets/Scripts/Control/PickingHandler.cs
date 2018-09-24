@@ -10,10 +10,9 @@ public class PickingHandler : MonoBehaviour
     public Texture2D m_selectionEdgeTexture;
     public float m_edgeThickness;
 
-    private static Vector3 mouseDownPoint;
-    private static Vector3 mouseUpPoint;
+    private static Vector3 m_mouseDownPoint;
 
-    private bool isDragging = false;
+    private bool m_isDragging = false;
 
     public GameObject agent;
     // Use this for initialization
@@ -27,22 +26,35 @@ public class PickingHandler : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            isDragging = true;
-            mouseDownPoint = Input.mousePosition;
+            m_isDragging = true;
+            m_mouseDownPoint = Input.mousePosition;
         }
 
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
-            isDragging = false;
-        }
+            m_isDragging = false;
+            Object[] objs = FindObjectsOfType(typeof(PlayerControlledEntity));
+            for (int i = 0; i < objs.Length; i++)
+            {
+                PlayerControlledEntity obj = objs[i] as PlayerControlledEntity;
+                if (IsWithinSelectionBounds(obj.gameObject))
+                {
+                    obj.Select();
+                }
+                else
+                {
+                    obj.DeSelect();
+                }
+            }
 
+        }
     }
 
     private void OnGUI()
     {
-        if (isDragging)
+        if (m_isDragging)
         {
-            Rect rect = GetScreenRect(mouseDownPoint, Input.mousePosition);
+            Rect rect = GetScreenRect(m_mouseDownPoint, Input.mousePosition);
             DrawSelectionBox(rect);
         }
     }
@@ -71,5 +83,25 @@ public class PickingHandler : MonoBehaviour
         GUI.DrawTexture(new Rect(rect.xMax - m_edgeThickness, rect.yMin, m_edgeThickness, rect.height), m_selectionEdgeTexture);
         // Bottom
         GUI.DrawTexture(new Rect(rect.xMin, rect.yMax - m_edgeThickness, rect.width, m_edgeThickness), m_selectionEdgeTexture);
+    }
+
+    private Bounds GetViewportBounds(Vector3 screenPosition1, Vector3 screenPosition2)
+    {
+        var v1 = Camera.main.ScreenToViewportPoint(screenPosition1);
+        var v2 = Camera.main.ScreenToViewportPoint(screenPosition2);
+        var min = Vector3.Min(v1, v2);
+        var max = Vector3.Max(v1, v2);
+        min.z = Camera.main.nearClipPlane;
+        max.z = Camera.main.farClipPlane;
+
+        var bounds = new Bounds();
+        bounds.SetMinMax(min, max);
+        return bounds;
+    }
+
+    public bool IsWithinSelectionBounds(GameObject gameObject)
+    {
+        var viewportBounds = GetViewportBounds( m_mouseDownPoint, Input.mousePosition);
+        return viewportBounds.Contains(Camera.main.WorldToViewportPoint(gameObject.transform.position));
     }
 }

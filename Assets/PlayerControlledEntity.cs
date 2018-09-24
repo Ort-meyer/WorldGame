@@ -6,7 +6,7 @@ public class PlayerControlledEntity : MonoBehaviour
 {
     public bool m_onScreen;
     public GameObject m_selectionHighlightPrefab;
-    public GameObject m_projector;
+    private GameObject m_projector;
     public float m_selectedHoverDistance;
     private bool m_selected = false;
     // Use this for initialization
@@ -23,9 +23,13 @@ public class PlayerControlledEntity : MonoBehaviour
 
     public void Select()
     {
-        m_selected = true;
-        // Add unit selected projector
-        Instantiate(m_selectionHighlightPrefab, transform.position + new Vector3(0, m_selectedHoverDistance, 0), transform.rotation, transform);
+        // If we weren't arleady selected, become selected
+        if (!m_selected)
+        {
+            m_projector = Instantiate(m_selectionHighlightPrefab, transform.position + new Vector3(0, m_selectedHoverDistance, 0), Quaternion.Euler(90, 0, 0), transform);
+            m_selected = true;
+        }
+
     }
 
     public void DeSelect()

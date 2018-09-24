@@ -909,58 +909,6 @@ Prefab:
       propertyPath: DEBUG_target
       value: 
       objectReference: {fileID: 1930223267}
-    - target: {fileID: 114475240720962630, guid: 62d18e9b5b0d55249aeb9cdf392a3449,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114396541523062324, guid: 62d18e9b5b0d55249aeb9cdf392a3449,
-        type: 2}
-      propertyPath: m_cornerIncrementDistance
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114396541523062324, guid: 62d18e9b5b0d55249aeb9cdf392a3449,
-        type: 2}
-      propertyPath: m_stoppingDistance
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114917866552018654, guid: 62d18e9b5b0d55249aeb9cdf392a3449,
-        type: 2}
-      propertyPath: m_finalDestinationDistance
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1922860438023700, guid: 62d18e9b5b0d55249aeb9cdf392a3449, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1092222755521156, guid: 62d18e9b5b0d55249aeb9cdf392a3449, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1580732032965280, guid: 62d18e9b5b0d55249aeb9cdf392a3449, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1511202141166086, guid: 62d18e9b5b0d55249aeb9cdf392a3449, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1823567594324282, guid: 62d18e9b5b0d55249aeb9cdf392a3449, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1769214260284052, guid: 62d18e9b5b0d55249aeb9cdf392a3449, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4488710646212596, guid: 62d18e9b5b0d55249aeb9cdf392a3449, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4867753351486766, guid: 62d18e9b5b0d55249aeb9cdf392a3449, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 62d18e9b5b0d55249aeb9cdf392a3449, type: 2}
   m_IsPrefabParent: 0
@@ -1103,72 +1051,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac448b78ce99ef0498c9f7efabb376cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &1605395384
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 2073067310}
-    m_Modifications:
-    - target: {fileID: 400002, guid: 21543d2b66928224f8a9536ff3811682, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 21543d2b66928224f8a9536ff3811682, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 2.67
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 21543d2b66928224f8a9536ff3811682, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 21543d2b66928224f8a9536ff3811682, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 21543d2b66928224f8a9536ff3811682, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 21543d2b66928224f8a9536ff3811682, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 21543d2b66928224f8a9536ff3811682, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 21543d2b66928224f8a9536ff3811682, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11900000, guid: 21543d2b66928224f8a9536ff3811682, type: 2}
-      propertyPath: m_IgnoreLayers.m_Bits
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 21543d2b66928224f8a9536ff3811682, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 21543d2b66928224f8a9536ff3811682, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11900000, guid: 21543d2b66928224f8a9536ff3811682, type: 2}
-      propertyPath: m_FieldOfView
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 21543d2b66928224f8a9536ff3811682, type: 2}
-      propertyPath: m_Name
-      value: UnitSelectedProjector
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: 21543d2b66928224f8a9536ff3811682, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 21543d2b66928224f8a9536ff3811682, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1635847929
 GameObject:
   m_ObjectHideFlags: 0
@@ -1446,23 +1328,3 @@ GameObject:
   m_PrefabParentObject: {fileID: 1922860438023700, guid: 62d18e9b5b0d55249aeb9cdf392a3449,
     type: 2}
   m_PrefabInternal: {fileID: 992069990}
---- !u!4 &2073067310 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4140384122181722, guid: 62d18e9b5b0d55249aeb9cdf392a3449,
-    type: 2}
-  m_PrefabInternal: {fileID: 992069990}
---- !u!114 &2073067311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2073067305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ca07474dcbbf12459e6108495dd3c84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_onScreen: 0
-  m_selectionHighlightPrefab: {fileID: 0}
-  m_projector: {fileID: 0}
-  m_selectedHoverDistance: 0
