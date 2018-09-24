@@ -6,11 +6,12 @@ public class PickingHandler : MonoBehaviour
 {
 
     public static ArrayList m_currentlySelectedUnits = new ArrayList();
-    public GUIStyle m_mouseDragSkin;
+    public Texture2D m_selectionTexture;
+    public Texture2D m_selectionEdgeTexture;
+    public float m_edgeThickness;
 
     private static Vector3 mouseDownPoint;
     private static Vector3 mouseUpPoint;
-    private static Vector3 currentMousePoint;
 
     private bool isDragging = false;
 
@@ -24,52 +25,51 @@ public class PickingHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HandlePick();
-    }
-
-    private void HandlePick()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            currentMousePoint = hit.point;
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                isDragging = true;
-                mouseDownPoint = hit.point;
-                {
-                    agent.GetComponent<BasicTank>().M_SetDestination(currentMousePoint);
-                }
-            }
+            isDragging = true;
+            mouseDownPoint = Input.mousePosition;
+        }
 
-            if(Input.GetKeyUp(KeyCode.Mouse0))
-            {
-                isDragging = false;
-                mouseUpPoint = Input.mousePosition;
-            }
-        } // end world hit
-        else // Didn't hit world, count as release (this should probably be handled somehow
+        if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             isDragging = false;
         }
+
     }
 
     private void OnGUI()
     {
         if (isDragging)
         {
-            float boxWidth = Camera.main.WorldToScreenPoint(mouseDownPoint).x - Camera.main.WorldToScreenPoint(currentMousePoint).x;
-            float boxHeight = Camera.main.WorldToScreenPoint(mouseDownPoint).y - Camera.main.WorldToScreenPoint(currentMousePoint).y;
-
-            float boxLeft = Input.mousePosition.x;
-            float boxTop = (Screen.height - Input.mousePosition.y) - boxHeight;
-
-            // Box width, height, top left corner
-            Vector2 boxPosition = new Vector2(boxLeft, boxTop);
-            Vector2 size = new Vector2(boxWidth, boxHeight);
-            GUI.Box(new Rect(boxPosition, size), "", m_mouseDragSkin);
+            Rect rect = GetScreenRect(mouseDownPoint, Input.mousePosition);
+            DrawSelectionBox(rect);
         }
+    }
+
+    private Rect GetScreenRect(Vector3 screenPosition1, Vector3 screenPosition2)
+    {
+        // Move origin from bottom left to top left
+        screenPosition1.y = Screen.height - screenPosition1.y;
+        screenPosition2.y = Screen.height - screenPosition2.y;
+        // Calculate corners
+        var topLeft = Vector3.Min(screenPosition1, screenPosition2);
+        var bottomRight = Vector3.Max(screenPosition1, screenPosition2);
+        // Create Rect
+        return Rect.MinMaxRect(topLeft.x, topLeft.y, bottomRight.x, bottomRight.y);
+    }
+
+    private void DrawSelectionBox(Rect rect)
+    {
+        // Draw the inner box
+        GUI.DrawTexture(rect, m_selectionTexture);
+        // Draw the edges
+        GUI.DrawTexture(new Rect(rect.xMin, rect.yMin, rect.width, m_edgeThickness), m_selectionEdgeTexture);
+        // Left
+        GUI.DrawTexture(new Rect(rect.xMin, rect.yMin, m_edgeThickness, rect.height), m_selectionEdgeTexture);
+        // Right
+        GUI.DrawTexture(new Rect(rect.xMax - m_edgeThickness, rect.yMin, m_edgeThickness, rect.height), m_selectionEdgeTexture);
+        // Bottom
+        GUI.DrawTexture(new Rect(rect.xMin, rect.yMax - m_edgeThickness, rect.width, m_edgeThickness), m_selectionEdgeTexture);
     }
 }
