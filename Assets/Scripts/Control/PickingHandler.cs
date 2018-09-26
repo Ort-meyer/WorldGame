@@ -14,11 +14,15 @@ public class PickingHandler : MonoBehaviour
 
     private bool m_isDragging = false;
 
+
+    public Dictionary<int, GameObject> m_selectedUnits;
+
+
     public GameObject agent;
     // Use this for initialization
     void Start()
     {
-
+        m_selectedUnits = new Dictionary<int, GameObject>();
     }
 
     // Update is called once per frame
@@ -36,17 +40,37 @@ public class PickingHandler : MonoBehaviour
             Object[] objs = FindObjectsOfType(typeof(PlayerControlledEntity));
             for (int i = 0; i < objs.Length; i++)
             {
-                PlayerControlledEntity obj = objs[i] as PlayerControlledEntity;
-                if (IsWithinSelectionBounds(obj.gameObject))
+                GameObject obj = (objs[i] as PlayerControlledEntity).gameObject;
+                if (IsWithinSelectionBounds(obj))
                 {
-                    obj.Select();
+                    obj.GetComponent<PlayerControlledEntity>().Select();
+                    m_selectedUnits[obj.GetInstanceID()] = obj;
                 }
                 else
                 {
-                    obj.DeSelect();
+                    m_selectedUnits[obj.GetInstanceID()] = null;
+                    obj.GetComponent<PlayerControlledEntity>().DeSelect();
                 }
             }
+        }
 
+        // Right mouse button - move order (really bad idea to have it here)
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit))
+            {
+                foreach (KeyValuePair<int, GameObject> pair in m_selectedUnits)
+                {
+                    if (pair.Value == null)
+                        continue;
+                    GameObject obj = pair.Value;
+                    BasicTank derp = obj.GetComponent<BasicTank>();
+                    derp.M_SetDestination(hit.point);
+                    obj.GetComponent<BasicTank>().M_SetDestination(hit.point);
+                }
+            }
         }
     }
 
@@ -101,7 +125,7 @@ public class PickingHandler : MonoBehaviour
 
     public bool IsWithinSelectionBounds(GameObject gameObject)
     {
-        var viewportBounds = GetViewportBounds( m_mouseDownPoint, Input.mousePosition);
+        var viewportBounds = GetViewportBounds(m_mouseDownPoint, Input.mousePosition);
         return viewportBounds.Contains(Camera.main.WorldToViewportPoint(gameObject.transform.position));
     }
 }
