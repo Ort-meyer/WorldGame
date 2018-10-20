@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_maxRotationSpeed: 360
+  m_rotationAccuracy: 0
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,6 +406,8 @@ MonoBehaviour:
   m_maxElevation: 0
   m_minElevation: 0
   m_elevationSpeed: 10
+  m_maxTraverse: 0
+  m_traverseSpeed: 0
   m_ownTank: {fileID: 1114728427}
   m_exitVelocity: 15
   m_projectilePrefab: {fileID: 1435815570138578, guid: 1d4c80b5f23cc174f8e356ac86ca0d0b,

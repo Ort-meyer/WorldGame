@@ -8,9 +8,10 @@ public class BaseWeapon : MonoBehaviour
     public float m_fireCooldown;
 
     protected Transform m_target = null;
-    protected bool m_fireAtWill = false;
     protected float m_currentCooldown = 0.0f;
     protected bool m_canFire = true;
+
+    private bool m_allowFire = false;
 
     // Use this for initialization
     protected virtual void Start()
@@ -27,7 +28,7 @@ public class BaseWeapon : MonoBehaviour
     private void UpdateCooldown()
     {
         m_currentCooldown -= Time.deltaTime;
-        if (m_currentCooldown <= 0)
+        if (m_currentCooldown <= 0 && m_allowFire)
         {
             m_canFire = true;
         }
@@ -40,9 +41,14 @@ public class BaseWeapon : MonoBehaviour
     }
 
     // Sets whether the weapon should fire or not
-    public void M_ToggleFire(bool fire)
+    public void M_AllowFire()
     {
-        m_fireAtWill = fire;
+        m_allowFire = true;
+    }
+
+    public void M_HoldFire()
+    {
+        m_allowFire = false;
     }
 
     // Sets the target for this weapon

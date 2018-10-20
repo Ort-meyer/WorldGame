@@ -10,6 +10,7 @@ public class BaseTurret : MonoBehaviour
     protected float m_currentRotationSpeed = 0;
 
     protected Transform m_target = null;
+    protected float m_diffAngle = 0;
 
     // Use this for initialization
     protected virtual void Start()
@@ -29,16 +30,16 @@ public class BaseTurret : MonoBehaviour
 
     private void RotateTurret()
     {
-        float diffAngle = Helpers.GetDiffAngle2D(transform.forward, m_target.position - transform.position);
+        m_diffAngle = Helpers.GetDiffAngle2D(transform.forward, m_target.position - transform.position);
         // If we're not looing at the target, turn the turret
-        if (Mathf.Abs(diffAngle) > 0)
+        if (Mathf.Abs(m_diffAngle) > 0)
         {
-            float rotateAngle = Mathf.Sign(diffAngle) * m_currentRotationSpeed * Time.deltaTime;
+            float rotateAngle = Mathf.Sign(m_diffAngle) * m_currentRotationSpeed * Time.deltaTime;
 
             // If we overshoot, set rotate to diff for perfect rotate
-            if (Mathf.Abs(rotateAngle) > Mathf.Abs(diffAngle))
+            if (Mathf.Abs(rotateAngle) > Mathf.Abs(m_diffAngle))
             {
-                rotateAngle = diffAngle;
+                rotateAngle = m_diffAngle;
             }
             transform.Rotate(0, rotateAngle, 0, Space.World); // What happens if the tank tilts? Should be Space.World?
         }

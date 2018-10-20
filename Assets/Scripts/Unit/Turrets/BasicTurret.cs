@@ -5,7 +5,7 @@ using UnityEngine;
 public class BasicTurret : BaseTurret
 {
 
-
+    public float m_rotationAccuracy;
 
     // Use this for initialization
     protected override void Start()
@@ -18,6 +18,21 @@ public class BasicTurret : BaseTurret
     {
         base.Update();
         m_currentRotationSpeed = m_maxRotationSpeed;
+        // Let all weapons on this turret know that they can fire
+        bool allTurretsFire = Mathf.Abs(m_diffAngle) < m_rotationAccuracy;
+        {
+            foreach(BaseWeapon weapon in GetComponentsInChildren<BaseWeapon>())
+            {
+                if(allTurretsFire)
+                {
+                    weapon.M_AllowFire();
+                }
+                else
+                {
+                    weapon.M_HoldFire();
+                }
+            }
+        }
     }
 
     public override void M_SetTarget(Transform target)
