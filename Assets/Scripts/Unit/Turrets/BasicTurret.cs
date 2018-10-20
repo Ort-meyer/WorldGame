@@ -23,7 +23,7 @@ public class BasicTurret : BaseTurret
         {
             foreach(BaseWeapon weapon in GetComponentsInChildren<BaseWeapon>())
             {
-                if(allTurretsFire)
+                if(allTurretsFire && m_target != null)
                 {
                     weapon.M_AllowFire();
                 }
