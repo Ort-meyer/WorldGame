@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class BasicCannon : BaseTraverseWeapon
 {
-
-
-    // Traverse (not yet implemented)
-    public float m_maxTraverse;
-    public float m_traverseSpeed;
-
+    // The margin within the elevation has to be to fire (in degrees)
+    public float m_elevationAccuracy;
     // Use this for initialization
     protected override void Start()
     {
@@ -17,14 +13,14 @@ public class BasicCannon : BaseTraverseWeapon
         
     }
 
-
     // Update is called once per frame
     protected override void Update()
     {
         base.Update();
 
         // Fire
-        if (m_canFire)
+        if (m_canFire &&
+            Mathf.Abs(m_currentElevation - m_targetElevation) < m_elevationAccuracy)
         {
             FireWeapon();
         }

@@ -8,7 +8,12 @@ public class BaseTraverseWeapon : BaseWeapon
     public float m_maxElevation;
     public float m_minElevation;
     public float m_elevationSpeed;
-    private float m_currentElevation = 0;
+    protected float m_currentElevation = 0;
+    protected float m_targetElevation = 0;
+
+    // Traverse (not yet implemented)
+    public float m_maxTraverse;
+    public float m_traverseSpeed;
 
     public GameObject m_ownTank;
     // Fire variables
@@ -35,11 +40,11 @@ public class BaseTraverseWeapon : BaseWeapon
     }
     private void UpdateElevation()
     {
-        float targetElevation = 0;
+        m_targetElevation = 0;
 
         Vector3 vectorToTarget = (m_target.transform.position - transform.position);
         {
-            targetElevation = GetAngle(vectorToTarget.magnitude, vectorToTarget.y) * Mathf.Rad2Deg * -1;
+            m_targetElevation = GetAngle(vectorToTarget.magnitude, vectorToTarget.y) * Mathf.Rad2Deg * -1;
         }
 
         // Calculate target angle
@@ -47,7 +52,7 @@ public class BaseTraverseWeapon : BaseWeapon
 
         //float targetElevation = Mathf.Atan((4.91f * vectorToTarget.magnitude) / m_exitVelocity) * Mathf.Rad2Deg * -1;
 
-        float diffAngle = targetElevation - m_currentElevation;
+        float diffAngle = m_targetElevation - m_currentElevation;
 
         if (Mathf.Abs(diffAngle) > 0)
         {
