@@ -14,6 +14,8 @@ public class PickingHandler : MonoBehaviour
 
     private bool m_isDragging = false;
 
+    private RaycastHit m_hit;
+
 
     public Dictionary<int, GameObject> m_selectedUnits;
 
@@ -28,6 +30,41 @@ public class PickingHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Do raycast every frame, and let other methods use the results as they want
+        DoRaycast();
+        RightClick();
+        LeftClick();
+    }
+
+    // Simply does a raycast and stores the hit data in private member
+    private void DoRaycast()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Physics.Raycast(ray, out m_hit);
+    }
+
+    private void RightClick()
+    {
+        // Right mouse button - move order (really bad idea to have it here)
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            if (m_hit.transform != null) // Is this the right way to check if we hit anything?
+            {
+                foreach (KeyValuePair<int, GameObject> pair in m_selectedUnits)
+                {
+                    if (pair.Value == null)
+                        continue;
+                    GameObject obj = pair.Value;
+                    BasicTank derp = obj.GetComponent<BasicTank>();
+                    derp.M_SetDestination(m_hit.point);
+                    obj.GetComponent<BasicTank>().M_SetDestination(m_hit.point);
+                }
+            }
+        }
+    }
+
+    private void LeftClick()
+    {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             m_isDragging = true;
@@ -37,41 +74,67 @@ public class PickingHandler : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             m_isDragging = false;
-            Object[] objs = FindObjectsOfType(typeof(PlayerControlledEntity));
-            for (int i = 0; i < objs.Length; i++)
+            // Check if selection was just a click (kinda ugly but should be stable)
+            // Click (both where we started dragging and where we release are basically the same points)
+            if ((Input.mousePosition - m_mouseDownPoint).magnitude < 4) // Value is virtually pixels in screenspace
             {
-                GameObject obj = (objs[i] as PlayerControlledEntity).gameObject;
-                if (IsWithinSelectionBounds(obj))
+                // Deselect everything if we just click
+                foreach (KeyValuePair<int, GameObject> kvp in m_selectedUnits)
                 {
-                    obj.GetComponent<PlayerControlledEntity>().Select();
-                    m_selectedUnits[obj.GetInstanceID()] = obj;
+                    kvp.Value.GetComponent<PlayerControlledEntity>().DeSelect();
                 }
-                else
+                m_selectedUnits.Clear();
+
+                // If we hit something, and if that is a player unit, select it 
+                if (m_hit.transform != null)
                 {
-                    m_selectedUnits[obj.GetInstanceID()] = null;
-                    obj.GetComponent<PlayerControlledEntity>().DeSelect();
+                    // See if we select something new
+                    if (m_hit.transform.GetComponent<PlayerControlledEntity>())
+                    {
+                        SetSelected(m_hit.transform.gameObject, true);
+                    }
                 }
+            }
+            // Drag (selection box)
+            else
+            {
+                Object[] objs = FindObjectsOfType(typeof(PlayerControlledEntity));
+                for (int i = 0; i < objs.Length; i++)
+                {
+                    GameObject obj = (objs[i] as PlayerControlledEntity).gameObject;
+                    if (IsWithinSelectionBounds(obj))
+                    {
+                        SetSelected(obj, true);
+                    }
+                    else
+                    {
+                        SetSelected(obj, false);
+                    }
+                }
+            }
+        }
+    }
+
+    private void SetSelected(GameObject obj, bool selected)
+    {
+        int objId = obj.GetInstanceID();
+        if (selected)
+        {
+            obj.GetComponent<PlayerControlledEntity>().Select();
+            if (!m_selectedUnits.ContainsKey(objId))
+            {
+                m_selectedUnits.Add(objId, obj);
+            }
+        }
+        else
+        {
+            obj.GetComponent<PlayerControlledEntity>().DeSelect();
+            if (m_selectedUnits.ContainsKey(objId))
+            {
+                m_selectedUnits.Remove(objId);
             }
         }
 
-        // Right mouse button - move order (really bad idea to have it here)
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit))
-            {
-                foreach (KeyValuePair<int, GameObject> pair in m_selectedUnits)
-                {
-                    if (pair.Value == null)
-                        continue;
-                    GameObject obj = pair.Value;
-                    BasicTank derp = obj.GetComponent<BasicTank>();
-                    derp.M_SetDestination(hit.point);
-                    obj.GetComponent<BasicTank>().M_SetDestination(hit.point);
-                }
-            }
-        }
     }
 
     private void OnGUI()
