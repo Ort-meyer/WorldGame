@@ -874,7 +874,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4140384122181722, guid: 62d18e9b5b0d55249aeb9cdf392a3449, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 16.2
+      value: 18.358
       objectReference: {fileID: 0}
     - target: {fileID: 4140384122181722, guid: 62d18e9b5b0d55249aeb9cdf392a3449, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1162,6 +1162,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114396541523062324, guid: 62d18e9b5b0d55249aeb9cdf392a3449,
+        type: 2}
+      propertyPath: DEBUG_target
+      value: 
+      objectReference: {fileID: 1930223267}
     - target: {fileID: 1922860438023700, guid: 62d18e9b5b0d55249aeb9cdf392a3449, type: 2}
       propertyPath: m_Name
       value: Tank (1)

@@ -103,7 +103,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4140384122181722}
-  - component: {fileID: 195228060683856588}
   - component: {fileID: 54313384520926630}
   - component: {fileID: 114396541523062324}
   - component: {fileID: 114917866552018654}
@@ -135,7 +134,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1922860438023700}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.2, y: 0, z: 9.46}
+  m_LocalPosition: {x: 16.2, y: 0, z: -6.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4488710646212596}
@@ -389,7 +388,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1823567594324282}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 306da81223de03d4db7b59e538137b91, type: 3}
   m_Name: 
@@ -399,7 +398,7 @@ MonoBehaviour:
   m_minElevation: 0
   m_elevationSpeed: 30
   m_ownTank: {fileID: 1922860438023700}
-  m_exitVelocity: 10
+  m_exitVelocity: 35
   m_projectilePrefab: {fileID: 1194630780970282, guid: 3627a2fcf15f5694b8b23b73e02af4c5,
     type: 2}
   m_maxTraverse: 0
@@ -429,24 +428,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_pathUpdateFrequency: 1
   m_finalDestinationDistance: 2
---- !u!195 &195228060683856588
-NavMeshAgent:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1922860438023700}
-  m_Enabled: 0
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
