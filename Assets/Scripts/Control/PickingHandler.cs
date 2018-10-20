@@ -78,13 +78,16 @@ public class PickingHandler : MonoBehaviour
             // Click (both where we started dragging and where we release are basically the same points)
             if ((Input.mousePosition - m_mouseDownPoint).magnitude < 4) // Value is virtually pixels in screenspace
             {
-                // Deselect everything if we just click
-                foreach (KeyValuePair<int, GameObject> kvp in m_selectedUnits)
+                // If we're holding shift, we want to select move stuff
+                if (!Input.GetKey(KeyCode.LeftShift))
                 {
-                    kvp.Value.GetComponent<PlayerControlledEntity>().DeSelect();
+                    // Deselect everything if we just click
+                    foreach (KeyValuePair<int, GameObject> kvp in m_selectedUnits)
+                    {
+                        kvp.Value.GetComponent<PlayerControlledEntity>().DeSelect();
+                    }
+                    m_selectedUnits.Clear();
                 }
-                m_selectedUnits.Clear();
-
                 // If we hit something, and if that is a player unit, select it 
                 if (m_hit.transform != null)
                 {
@@ -106,7 +109,8 @@ public class PickingHandler : MonoBehaviour
                     {
                         SetSelected(obj, true);
                     }
-                    else
+                    // If we're holding shift, we want to select move stuff
+                    else if (!Input.GetKey(KeyCode.LeftShift))
                     {
                         SetSelected(obj, false);
                     }
