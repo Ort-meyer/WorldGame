@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseBallisticWeapon : BaseWeapon
+public class BaseTraverseWeapon : BaseWeapon
 {
     // Elevation
     public float m_maxElevation;

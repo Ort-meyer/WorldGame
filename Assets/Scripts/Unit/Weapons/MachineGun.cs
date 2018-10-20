@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MachineGun : BaseBallisticWeapon
+public class MachineGun : BaseTraverseWeapon
 {
     public float m_maxSpread; 
 

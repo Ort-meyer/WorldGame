@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicCannon : BaseBallisticWeapon
+public class BasicCannon : BaseTraverseWeapon
 {
 
 
