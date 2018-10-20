@@ -50,16 +50,22 @@ public class PickingHandler : MonoBehaviour
         {
             if (m_hit.transform != null) // Is this the right way to check if we hit anything?
             {
-                foreach (KeyValuePair<int, GameObject> pair in m_selectedUnits)
-                {
-                    if (pair.Value == null)
-                        continue;
-                    GameObject obj = pair.Value;
-                    BasicTank derp = obj.GetComponent<BasicTank>();
-                    derp.M_SetDestination(m_hit.point);
-                    obj.GetComponent<BasicTank>().M_SetDestination(m_hit.point);
-                }
+                MoveUnits();
             }
+        }
+    }
+
+    private void MoveUnits()
+    {
+        foreach (KeyValuePair<int, GameObject> pair in m_selectedUnits)
+        {
+            if (pair.Value == null)
+                continue;
+            GameObject obj = pair.Value;
+            // Pretty hard coded for now. Have to be able to order multiple units
+            BasicTank thisUnit = obj.GetComponent<BasicTank>();
+            thisUnit.M_SetDestination(m_hit.point);
+            obj.GetComponent<BasicTank>().M_SetDestination(m_hit.point);
         }
     }
 
