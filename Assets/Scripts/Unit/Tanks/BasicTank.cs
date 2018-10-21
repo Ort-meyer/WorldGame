@@ -11,7 +11,7 @@ public class BasicTank : MonoBehaviour
     public float m_cornerIncrementDistance;
     public float m_stoppingDistance;
 
-    public Transform DEBUG_target;
+    protected GameObject m_target;
 
     NavPathManager m_pathManager;
     //NavMeshAgent agent;
@@ -27,7 +27,10 @@ public class BasicTank : MonoBehaviour
     void Update()
     {
         // Order turret
-        GetComponentInChildren<BasicTurret>().M_SetTarget(DEBUG_target);
+        if (m_target)
+        {
+            GetComponentInChildren<BasicTurret>().M_SetTarget(m_target.transform);
+        }
 
         // Get next corner
         Vector3 nextCorner = m_pathManager.M_GetNextCorner();
@@ -70,5 +73,10 @@ public class BasicTank : MonoBehaviour
     public void M_SetDestination(Vector3 destination)
     {
         m_pathManager.M_SetDestination(destination);
+    }
+
+    public void M_SetFireTarget(GameObject target)
+    {
+        m_target = target;
     }
 }

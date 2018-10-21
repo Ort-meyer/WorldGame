@@ -48,9 +48,45 @@ public class PickingHandler : MonoBehaviour
         // Right mouse button - move order (really bad idea to have it here)
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            if (m_hit.transform != null) // Is this the right way to check if we hit anything?
+            if (m_hit.transform != null)
             {
-                MoveUnits();
+                // See if we clicked an enemy
+                if (m_hit.transform.gameObject.GetComponent<EnemyEntity>())
+                {
+                    OrderEngage(new GameObject[] { m_hit.transform.gameObject });
+                }
+                else if (m_hit.transform != null) // Is this the right way to check if we hit anything?
+                {
+                    MoveUnits();
+                }
+            }
+        }
+    }
+
+    private void OrderEngage(GameObject[] targets)
+    {
+        foreach (KeyValuePair<int, GameObject> pair in m_selectedUnits)
+        {
+            if (pair.Value == null)
+                continue;
+            GameObject obj = pair.Value;
+            BasicTank thisUnit = obj.GetComponent<BasicTank>();
+
+            // Engage closes of potential targets
+            float min = 10000;
+            GameObject target = null;
+            foreach(GameObject potentialTarget in targets)
+            {
+                float distToTarget = (pair.Value.transform.position - potentialTarget.transform.position).magnitude;
+                if (distToTarget < min)
+                {
+                    target = potentialTarget;
+                    min = distToTarget;
+                }
+            }
+            if(target)
+            {
+                thisUnit.M_SetFireTarget(target);
             }
         }
     }
@@ -107,18 +143,37 @@ public class PickingHandler : MonoBehaviour
             // Drag (selection box)
             else
             {
-                Object[] objs = FindObjectsOfType(typeof(PlayerControlledEntity));
-                for (int i = 0; i < objs.Length; i++)
+                // Group engage
+                if (Input.GetKey(KeyCode.LeftControl))
                 {
-                    GameObject obj = (objs[i] as PlayerControlledEntity).gameObject;
-                    if (IsWithinSelectionBounds(obj))
+                    Object[] objs = FindObjectsOfType(typeof(EnemyEntity));
+                    List<GameObject> targets = new List<GameObject>();
+                    for (int i = 0; i < objs.Length; i++)
                     {
-                        SetSelected(obj, true);
+                        GameObject obj = (objs[i] as EnemyEntity).gameObject;
+                        if (IsWithinSelectionBounds(obj))
+                        {
+                            targets.Add(obj);
+                        }
                     }
-                    // If we're holding shift, we want to select move stuff
-                    else if (!Input.GetKey(KeyCode.LeftShift))
+                    OrderEngage(targets.ToArray());
+                }
+                // Group select
+                else
+                {
+                    Object[] objs = FindObjectsOfType(typeof(PlayerControlledEntity));
+                    for (int i = 0; i < objs.Length; i++)
                     {
-                        SetSelected(obj, false);
+                        GameObject obj = (objs[i] as PlayerControlledEntity).gameObject;
+                        if (IsWithinSelectionBounds(obj))
+                        {
+                            SetSelected(obj, true);
+                        }
+                        // If we're holding shift, we want to select move stuff
+                        else if (!Input.GetKey(KeyCode.LeftShift))
+                        {
+                            SetSelected(obj, false);
+                        }
                     }
                 }
             }
