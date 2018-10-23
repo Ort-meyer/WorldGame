@@ -107,6 +107,8 @@ GameObject:
   - component: {fileID: 114396541523062324}
   - component: {fileID: 114917866552018654}
   - component: {fileID: 114227503089378538}
+  - component: {fileID: 114968530958410484}
+  - component: {fileID: 114108640421059906}
   m_Layer: 9
   m_Name: Tank
   m_TagString: Untagged
@@ -350,6 +352,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 0.99999994}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114108640421059906
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1922860438023700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d20444226e5e2fb42ac7ecb78d2ca2ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_moveSpeed: 5
+  m_rotateSpeed: 100
+  m_directionMargin: 4
+  m_cornerIncrementDistance: 0
+  m_stoppingDistance: 0
 --- !u!114 &114227503089378538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -376,12 +394,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e0852bbbf661a4499ebed2bcd6dd384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_moveSpeed: 3
-  m_rotateSpeed: 77
-  m_directionMargin: 20
-  m_cornerIncrementDistance: 1
-  m_stoppingDistance: 0.4
-  DEBUG_target: {fileID: 0}
 --- !u!114 &114419276384478878
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -430,3 +442,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_pathUpdateFrequency: 1
   m_finalDestinationDistance: 2
+--- !u!114 &114968530958410484
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1922860438023700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b4d9d92efef7ab4eb18d182cb00f9ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

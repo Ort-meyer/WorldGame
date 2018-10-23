@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class BasicTank : MonoBehaviour
+public class TankMovement : BaseMovement
 {
     public float m_moveSpeed;
     public float m_rotateSpeed;
@@ -11,27 +10,16 @@ public class BasicTank : MonoBehaviour
     public float m_cornerIncrementDistance;
     public float m_stoppingDistance;
 
-    protected GameObject m_target;
-
     NavPathManager m_pathManager;
-    //NavMeshAgent agent;
-
     // Use this for initialization
     void Start()
     {
-
         m_pathManager = GetComponent<NavPathManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Order turret
-        if (m_target)
-        {
-            GetComponentInChildren<BasicTurret>().M_SetTarget(m_target.transform);
-        }
-
         // Get next corner
         Vector3 nextCorner = m_pathManager.M_GetNextCorner();
         if (nextCorner == transform.position)
@@ -66,17 +54,16 @@ public class BasicTank : MonoBehaviour
         {
             transform.position += transform.forward * m_moveSpeed * Time.deltaTime;
         }
-
     }
 
-    // This is debuggy. Used directly from camera for debugging purposes. Should have internal management somehow
-    public void M_SetDestination(Vector3 destination)
+
+    public override void M_MoveOrder(Vector3 destination)
     {
         m_pathManager.M_SetDestination(destination);
     }
 
-    public void M_SetFireTarget(GameObject target)
+    public override void M_StopOrder()
     {
-        m_target = target;
+        m_pathManager.M_ClearDestination();
     }
 }

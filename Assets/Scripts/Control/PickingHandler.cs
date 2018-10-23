@@ -53,7 +53,7 @@ public class PickingHandler : MonoBehaviour
                 // See if we clicked an enemy
                 if (m_hit.transform.gameObject.GetComponent<EnemyEntity>())
                 {
-                    OrderEngage(new GameObject[] { m_hit.transform.gameObject });
+                    OrderEngage(new List<GameObject> { m_hit.transform.gameObject });
                 }
                 else if (m_hit.transform != null) // Is this the right way to check if we hit anything?
                 {
@@ -63,30 +63,17 @@ public class PickingHandler : MonoBehaviour
         }
     }
 
-    private void OrderEngage(GameObject[] targets)
+    private void OrderEngage(List<GameObject> targets)
     {
         foreach (KeyValuePair<int, GameObject> pair in m_selectedUnits)
         {
             if (pair.Value == null)
                 continue;
             GameObject obj = pair.Value;
-            BasicTank thisUnit = obj.GetComponent<BasicTank>();
-
-            // Engage closes of potential targets
-            float min = 10000;
-            GameObject target = null;
-            foreach(GameObject potentialTarget in targets)
+            BaseUnit thisUnit = obj.GetComponent<BaseUnit>();
+            if(thisUnit)
             {
-                float distToTarget = (pair.Value.transform.position - potentialTarget.transform.position).magnitude;
-                if (distToTarget < min)
-                {
-                    target = potentialTarget;
-                    min = distToTarget;
-                }
-            }
-            if(target)
-            {
-                thisUnit.M_SetFireTarget(target);
+                thisUnit.M_AttackOrder(targets);
             }
         }
     }
@@ -99,9 +86,8 @@ public class PickingHandler : MonoBehaviour
                 continue;
             GameObject obj = pair.Value;
             // Pretty hard coded for now. Have to be able to order multiple units
-            BasicTank thisUnit = obj.GetComponent<BasicTank>();
-            thisUnit.M_SetDestination(m_hit.point);
-            obj.GetComponent<BasicTank>().M_SetDestination(m_hit.point);
+            BaseUnit thisUnit = obj.GetComponent<BaseUnit>();
+            thisUnit.M_MoveOrder(m_hit.point);
         }
     }
 
@@ -156,7 +142,7 @@ public class PickingHandler : MonoBehaviour
                             targets.Add(obj);
                         }
                     }
-                    OrderEngage(targets.ToArray());
+                    OrderEngage(targets);
                 }
                 // Group select
                 else
