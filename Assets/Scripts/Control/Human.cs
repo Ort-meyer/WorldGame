@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickingHandler : MonoBehaviour
+public class Human : MonoBehaviour
 {
-
-    public static ArrayList m_currentlySelectedUnits = new ArrayList();
     public Texture2D m_selectionTexture;
     public Texture2D m_selectionEdgeTexture;
     public float m_edgeThickness;
@@ -16,15 +14,14 @@ public class PickingHandler : MonoBehaviour
 
     private RaycastHit m_hit;
 
+    private Player m_player;
 
-    public Dictionary<int, GameObject> m_selectedUnits;
 
 
-    public GameObject agent;
     // Use this for initialization
     void Start()
     {
-        m_selectedUnits = new Dictionary<int, GameObject>();
+        m_player = GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -53,41 +50,13 @@ public class PickingHandler : MonoBehaviour
                 // See if we clicked an enemy
                 if (m_hit.transform.gameObject.GetComponent<EnemyEntity>())
                 {
-                    OrderEngage(new List<GameObject> { m_hit.transform.gameObject });
+                    m_player.M_EngageWithSelectedUnits(new List<GameObject> { m_hit.transform.gameObject });
                 }
                 else if (m_hit.transform != null) // Is this the right way to check if we hit anything?
                 {
-                    MoveUnits();
+                    m_player.M_MoveSelectedUnits(m_hit.point);
                 }
             }
-        }
-    }
-
-    private void OrderEngage(List<GameObject> targets)
-    {
-        foreach (KeyValuePair<int, GameObject> pair in m_selectedUnits)
-        {
-            if (pair.Value == null)
-                continue;
-            GameObject obj = pair.Value;
-            BaseUnit thisUnit = obj.GetComponent<BaseUnit>();
-            if(thisUnit)
-            {
-                thisUnit.M_AttackOrder(targets);
-            }
-        }
-    }
-
-    private void MoveUnits()
-    {
-        foreach (KeyValuePair<int, GameObject> pair in m_selectedUnits)
-        {
-            if (pair.Value == null)
-                continue;
-            GameObject obj = pair.Value;
-            // Pretty hard coded for now. Have to be able to order multiple units
-            BaseUnit thisUnit = obj.GetComponent<BaseUnit>();
-            thisUnit.M_MoveOrder(m_hit.point);
         }
     }
 
@@ -101,28 +70,28 @@ public class PickingHandler : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
+            if (!Input.GetKey(KeyCode.LeftShift))
+            {
+                m_player.M_ClearSelectedUnits();
+            }
+            List<GameObject> selected = new List<GameObject>();
+
             m_isDragging = false;
             // Check if selection was just a click (kinda ugly but should be stable)
             // Click (both where we started dragging and where we release are basically the same points)
             if ((Input.mousePosition - m_mouseDownPoint).magnitude < 4) // Value is virtually pixels in screenspace
             {
-                // If we're holding shift, we want to select move stuff
-                if (!Input.GetKey(KeyCode.LeftShift))
-                {
-                    // Deselect everything if we just click
-                    foreach (KeyValuePair<int, GameObject> kvp in m_selectedUnits)
-                    {
-                        kvp.Value.GetComponent<PlayerControlledEntity>().DeSelect();
-                    }
-                    m_selectedUnits.Clear();
-                }
                 // If we hit something, and if that is a player unit, select it 
                 if (m_hit.transform != null)
                 {
                     // See if we select something new
-                    if (m_hit.transform.GetComponent<PlayerControlledEntity>())
+                    BaseUnit hitUnit = m_hit.transform.GetComponent<BaseUnit>();
+                    if(hitUnit)
                     {
-                        SetSelected(m_hit.transform.gameObject, true);
+                        if (hitUnit.m_alignment == m_player.m_alignment)
+                        {
+                            selected.Add(m_hit.transform.gameObject);
+                        }
                     }
                 }
             }
@@ -142,51 +111,30 @@ public class PickingHandler : MonoBehaviour
                             targets.Add(obj);
                         }
                     }
-                    OrderEngage(targets);
+                    m_player.M_EngageWithSelectedUnits(targets);
                 }
                 // Group select
                 else
                 {
-                    Object[] objs = FindObjectsOfType(typeof(PlayerControlledEntity));
+                    Object[] objs = FindObjectsOfType(typeof(BaseUnit));
                     for (int i = 0; i < objs.Length; i++)
                     {
-                        GameObject obj = (objs[i] as PlayerControlledEntity).gameObject;
-                        if (IsWithinSelectionBounds(obj))
+                        GameObject obj = (objs[i] as BaseUnit).gameObject;
+                        BaseUnit unit = obj.GetComponent<BaseUnit>();
+                        if (unit.m_alignment == m_player.m_alignment)
                         {
-                            SetSelected(obj, true);
-                        }
-                        // If we're holding shift, we want to select move stuff
-                        else if (!Input.GetKey(KeyCode.LeftShift))
-                        {
-                            SetSelected(obj, false);
+                            if (IsWithinSelectionBounds(obj))
+                            {
+                                selected.Add(obj);
+                            }
                         }
                     }
                 }
             }
+            m_player.M_SelectUnits(selected);
         }
     }
 
-    private void SetSelected(GameObject obj, bool selected)
-    {
-        int objId = obj.GetInstanceID();
-        if (selected)
-        {
-            obj.GetComponent<PlayerControlledEntity>().Select();
-            if (!m_selectedUnits.ContainsKey(objId))
-            {
-                m_selectedUnits.Add(objId, obj);
-            }
-        }
-        else
-        {
-            obj.GetComponent<PlayerControlledEntity>().DeSelect();
-            if (m_selectedUnits.ContainsKey(objId))
-            {
-                m_selectedUnits.Remove(objId);
-            }
-        }
-
-    }
 
     private void OnGUI()
     {
