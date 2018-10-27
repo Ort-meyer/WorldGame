@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class BaseUnit : MonoBehaviour
 {
-    
+    public int m_alignment;
+    public float m_hp;
+
     // Use this for initialization
     void Start()
     {
@@ -40,5 +42,14 @@ public class BaseUnit : MonoBehaviour
     public virtual void M_StopOrder()
     {
 
+    }
+
+    public virtual void M_InflictDamage(float damage)
+    {
+        m_hp -=damage;
+        if(m_hp <= 0)
+        {
+            Destroy(this.gameObject);   
+        }
     }
 }

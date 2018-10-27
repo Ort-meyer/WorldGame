@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23168738752649396}
   - component: {fileID: 65286413761071014}
   - component: {fileID: 114457597969771780}
+  - component: {fileID: 114071166556891040}
   m_Layer: 0
   m_Name: DEBUGEnemy
   m_TagString: Untagged
@@ -37,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1836808262392904}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.07, y: 2.06, z: 3.77}
+  m_LocalPosition: {x: 2.17, y: 2.06, z: 0.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -97,6 +98,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114071166556891040
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1836808262392904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c233fee7ba1794546b577e7f76067f2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_alignment: 0
+  m_hp: 3
 --- !u!114 &114457597969771780
 MonoBehaviour:
   m_ObjectHideFlags: 1

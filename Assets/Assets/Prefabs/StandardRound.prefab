@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 136394740914072942}
   - component: {fileID: 54988614392405552}
   - component: {fileID: 114194004976991832}
+  - component: {fileID: 114734256738414778}
   m_Layer: 0
   m_Name: StandardRound
   m_TagString: Untagged
@@ -112,6 +113,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52d43a84944044847a208fe54294947f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114734256738414778
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1194630780970282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a7df8efc3d4a0440b09fd08259430b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_damage: 1
 --- !u!136 &136394740914072942
 CapsuleCollider:
   m_ObjectHideFlags: 1

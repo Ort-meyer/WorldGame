@@ -24,11 +24,6 @@ public class StandardRound : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Invoke("DeleteSelf", 1);   
-    }
-
-    private void DeleteSelf()
-    {
         Destroy(this.gameObject);
     }
 }

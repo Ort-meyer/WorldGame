@@ -18,6 +18,11 @@ public class TankTargeting : BaseTargeting
         float closest = 10000;
         foreach (GameObject obj in m_targets)
         {
+            // If object has been destroyed, don't try to hit it
+            if(!obj)
+            {
+                continue;
+            }
             float distanceToTarget = (obj.transform.position - transform.position).magnitude;
             if(distanceToTarget < closest)
             {
