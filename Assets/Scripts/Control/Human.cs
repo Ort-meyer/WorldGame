@@ -56,7 +56,7 @@ public class Human : MonoBehaviour
                         m_player.M_EngageWithSelectedUnits(new List<GameObject> { m_hit.transform.gameObject });
                     }
                 }
-                else if (m_hit.transform != null) // Is this the right way to check if we hit anything?
+                else
                 {
                     m_player.M_MoveSelectedUnits(m_hit.point);
                 }
