@@ -48,9 +48,13 @@ public class Human : MonoBehaviour
             if (m_hit.transform != null)
             {
                 // See if we clicked an enemy
-                if (m_hit.transform.gameObject.GetComponent<EnemyEntity>())
+                BaseUnit unit = m_hit.transform.GetComponent<BaseUnit>();
+                if (unit)
                 {
-                    m_player.M_EngageWithSelectedUnits(new List<GameObject> { m_hit.transform.gameObject });
+                    if (unit.m_alignment != m_player.m_alignment)
+                    {
+                        m_player.M_EngageWithSelectedUnits(new List<GameObject> { m_hit.transform.gameObject });
+                    }
                 }
                 else if (m_hit.transform != null) // Is this the right way to check if we hit anything?
                 {
