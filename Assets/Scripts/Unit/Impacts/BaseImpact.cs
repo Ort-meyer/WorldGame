@@ -27,5 +27,6 @@ public class BaseImpact : MonoBehaviour
         {
             hitUnit.M_InflictDamage(m_damage);
         }
+        Destroy(this.gameObject);
     }
 }

@@ -847,20 +847,6 @@ Prefab:
       propertyPath: m_Name
       value: HumanTank (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 114396541523062324, guid: 62d18e9b5b0d55249aeb9cdf392a3449,
-        type: 2}
-      propertyPath: DEBUG_target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4140384122181722, guid: 62d18e9b5b0d55249aeb9cdf392a3449, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -88.94601
-      objectReference: {fileID: 0}
-    - target: {fileID: 114396541523062324, guid: 62d18e9b5b0d55249aeb9cdf392a3449,
-        type: 2}
-      propertyPath: m_alignment
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 62d18e9b5b0d55249aeb9cdf392a3449, type: 2}
   m_IsPrefabParent: 0

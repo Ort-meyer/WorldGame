@@ -135,15 +135,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1922860438023700}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.358, y: 0, z: 9.46}
+  m_LocalRotation: {x: -0, y: -0.7005715, z: -0, w: 0.7135823}
+  m_LocalPosition: {x: 31.6, y: 0, z: -18.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4488710646212596}
   - {fileID: 4867753351486766}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -88.94601, z: 0}
 --- !u!4 &4345904744575556
 Transform:
   m_ObjectHideFlags: 1
@@ -394,7 +394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e0852bbbf661a4499ebed2bcd6dd384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_alignment: -1
+  m_alignment: 0
   m_hp: 100
 --- !u!114 &114419276384478878
 MonoBehaviour:
@@ -415,7 +415,7 @@ MonoBehaviour:
   m_traverseSpeed: 0
   m_ownTank: {fileID: 1922860438023700}
   m_exitVelocity: 35
-  m_projectilePrefab: {fileID: 1194630780970282, guid: 3627a2fcf15f5694b8b23b73e02af4c5,
+  m_projectilePrefab: {fileID: 1274750179745994, guid: d42b83193e7e1bb45b790f1aa46ecc23,
     type: 2}
   m_elevationAccuracy: 2
 --- !u!114 &114475240720962630
