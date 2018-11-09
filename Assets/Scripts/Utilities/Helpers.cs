@@ -19,4 +19,10 @@ public static class Helpers
         }
         return diffAngle;
     }
+
+    public static void DrawDebugLine(Vector3 from, Vector3 to)
+    {
+        Color color = new Color(0, 0, 1.0f);
+        Debug.DrawLine(from, to, color);
+    }
 }
