@@ -12,6 +12,8 @@ public class NavPathManager : MonoBehaviour
     public float m_pathUpdateFrequency;
     public float m_finalDestinationDistance;
 
+    public float m_cornerIncrementDistance;
+
     private int m_nextCornerIndex = 0;
     // Use this for initialization
     void Start()
@@ -23,6 +25,14 @@ public class NavPathManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Automatically increment when close to next corner (still not sure that this is best way to do it)
+        if (m_path.corners.Length > 0)
+        {
+            if ((transform.position - m_path.corners[m_path.corners.Length - 1]).magnitude < m_cornerIncrementDistance)
+            {
+                m_nextCornerIndex++;
+            }
+        }
         // Don't do anything unless we have a destination
         if (!m_active)
         {
@@ -85,10 +95,15 @@ public class NavPathManager : MonoBehaviour
     public float M_GetDistanceToDestination()
     {
         float distance = 0;
-        if(m_path.corners.Length > 0)
+        if (m_path.corners.Length > 0)
         {
-            distance = (m_path.corners[m_path.corners.Length-1] - transform.position).magnitude;
+            distance = (m_path.corners[m_path.corners.Length - 1] - transform.position).magnitude;
         }
         return distance;
+    }
+
+    public bool M_DestinationReached()
+    {
+        return m_nextCornerIndex == m_path.corners.Length;
     }
 }

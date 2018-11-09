@@ -22,6 +22,7 @@ public class CarMovement : BaseMovement
     private GameObject m_parent;
 
     private float m_currentMoveSpeed = 0;
+    private float m_currentAngle = 0;
     // Use this for initialization
     void Start()
     {
@@ -29,59 +30,56 @@ public class CarMovement : BaseMovement
         m_parent = GetComponentInParent<BaseUnit>().gameObject;
     }
 
-    private float DEBUGTimer = 0;
-
     // Update is called once per frame
     void Update()
     {
-        // Get next corner
-        Vector3 nextCorner = m_pathManager.M_GetNextCorner();
-        Vector3 nextToCurrent = nextCorner - transform.position;
 
-        if (nextCorner == transform.position || m_pathManager.M_GetDistanceToDestination() <= m_breakDistance)
+        if (!m_pathManager.M_DestinationReached())
         {
-            Break();
+            // Get next corner
+            Vector3 nextCorner = m_pathManager.M_GetNextCorner();
+            Vector3 nextToCurrent = nextCorner - transform.position;
+
+            // Start breaking if we're approaching the destination
+            if (m_pathManager.M_GetDistanceToDestination() <= m_breakDistance)
+            {
+                Break();
+            }
+            else
+            {
+                TurnWheels(nextToCurrent);
+                Accelerate();
+                // Rotate car depending on wheel angle
+                Vector3 pivotPoint = transform.position; // Should be rear wheels, I reckon
+                m_parent.transform.RotateAround(pivotPoint, m_parent.transform.up, m_currentAngle * m_turnTime * Time.deltaTime);
+            }
+            // Move car
+            Vector3 movement = transform.forward * m_currentMoveSpeed * Time.deltaTime;
+            m_parent.transform.position += movement;
         }
-        else
+        else // Hard stop
         {
-            Accelerate();
-            MeshRenderer rend = GetComponentInChildren<MeshRenderer>();
-            rend.material.shader = Shader.Find("_Color");
-            rend.material.SetColor("_Color", Color.green);
-        }
-        if (m_currentMoveSpeed > 0)
-        {
-            MoveCar(nextToCurrent);
+            m_currentMoveSpeed = 0;
         }
     }
 
 
-
-    private void MoveCar(Vector3 direction)
+    private void TurnWheels(Vector3 direction)
     {
-        float angle = Helpers.GetDiffAngle2D(transform.forward, direction);
+        m_currentAngle = Helpers.GetDiffAngle2D(transform.forward, direction);
         // Limit wheel angle (wheels are instant atm)
-        if (Mathf.Abs(angle) > m_maxWheelAngle)
+        if (Mathf.Abs(m_currentAngle) > m_maxWheelAngle)
         {
-            angle = Mathf.Sign(angle) * m_maxWheelAngle;
+            m_currentAngle = Mathf.Sign(m_currentAngle) * m_maxWheelAngle;
         }
 
         // Face the wheels correctly
         Vector3 wheelForward = new Vector3(0, 0, 0);
         foreach (GameObject obj in frontWheels)
         {
-            obj.transform.localRotation = Quaternion.Euler(0, angle, 0);
+            obj.transform.localRotation = Quaternion.Euler(0, m_currentAngle, 0);
             wheelForward = obj.transform.forward;
         }
-
-        // Move car
-        Vector3 movement = transform.forward * m_currentMoveSpeed * Time.deltaTime;
-        m_parent.transform.position += movement;
-
-        // Rotate car depending on wheel angle
-        Vector3 pivotPoint = transform.position; // Should be rear wheels, I reckon
-        m_parent.transform.RotateAround(pivotPoint, m_parent.transform.up, angle * m_turnTime * Time.deltaTime);
-
     }
 
     private void Accelerate()
