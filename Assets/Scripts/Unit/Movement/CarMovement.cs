@@ -8,6 +8,9 @@ public class CarMovement : BaseMovement
     public float m_acceleration;
     public float m_turnTime;
 
+    public float m_breakDistance;
+    public float m_breakPower;
+
     public GameObject[] frontWheels;
     public GameObject[] rearWheels;
 
@@ -33,35 +36,28 @@ public class CarMovement : BaseMovement
     {
         // Get next corner
         Vector3 nextCorner = m_pathManager.M_GetNextCorner();
-        if (nextCorner == transform.position)
-        {
-            return;
-        }
-
         Vector3 nextToCurrent = nextCorner - transform.position;
-        // If distance is short enough, move to next corner
-        //if (nextToCurrent.magnitude < m_turnDistance)
-        //{
-        //    m_pathManager.M_CornerReached();
-        //}
-        // Just test to drive forward for a few seconds, then break;
-        DEBUGTimer += Time.deltaTime;
-        if (true || DEBUGTimer < 3)
+
+        if (nextCorner == transform.position || m_pathManager.M_GetDistanceToDestination() <= m_breakDistance)
         {
-            DriveForward(nextToCurrent);
+            Break();
         }
         else
         {
-            Break();
+            Accelerate();
             MeshRenderer rend = GetComponentInChildren<MeshRenderer>();
             rend.material.shader = Shader.Find("_Color");
-            rend.material.SetColor("_Color", Color.red);
+            rend.material.SetColor("_Color", Color.green);
+        }
+        if (m_currentMoveSpeed > 0)
+        {
+            MoveCar(nextToCurrent);
         }
     }
 
 
 
-    private void DriveForward(Vector3 direction)
+    private void MoveCar(Vector3 direction)
     {
         float angle = Helpers.GetDiffAngle2D(transform.forward, direction);
         // Limit wheel angle (wheels are instant atm)
@@ -71,15 +67,14 @@ public class CarMovement : BaseMovement
         }
 
         // Face the wheels correctly
-        Vector3 wheelForward = new Vector3(0,0,0);
-        foreach(GameObject obj in frontWheels)
+        Vector3 wheelForward = new Vector3(0, 0, 0);
+        foreach (GameObject obj in frontWheels)
         {
             obj.transform.localRotation = Quaternion.Euler(0, angle, 0);
             wheelForward = obj.transform.forward;
         }
 
-        // Move car forward
-        Acceleration();
+        // Move car
         Vector3 movement = transform.forward * m_currentMoveSpeed * Time.deltaTime;
         m_parent.transform.position += movement;
 
@@ -89,7 +84,7 @@ public class CarMovement : BaseMovement
 
     }
 
-    private void Acceleration()
+    private void Accelerate()
     {
         // Todo: accelerate according to animation curve (quick in start, slow at end)
         m_currentMoveSpeed += m_acceleration * Time.deltaTime;
@@ -101,15 +96,11 @@ public class CarMovement : BaseMovement
 
     private void Break()
     {
-        // Break is that it just stops, for now
-        //if (m_rigidbody.velocity.magnitude < m_fullStopSpeed)
-        //{
-        //    m_rigidbody.velocity = new Vector3();
-        //}
-        //else
-        //{
-        //    m_rigidbody.AddForce(-1 * transform.forward.normalized * m_breakForce * Time.deltaTime);
-        //}
+        m_currentMoveSpeed -= m_breakPower * Time.deltaTime;
+        if (m_currentMoveSpeed < 0)
+        {
+            m_currentMoveSpeed = 0;
+        }
     }
 
     public override void M_MoveOrder(Vector3 destination)

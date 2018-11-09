@@ -81,4 +81,14 @@ public class NavPathManager : MonoBehaviour
 
         return nextCorner;
     }
+
+    public float M_GetDistanceToDestination()
+    {
+        float distance = 0;
+        if(m_path.corners.Length > 0)
+        {
+            distance = (m_path.corners[m_path.corners.Length-1] - transform.position).magnitude;
+        }
+        return distance;
+    }
 }
