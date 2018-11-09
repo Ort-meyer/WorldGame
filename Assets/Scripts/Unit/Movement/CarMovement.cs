@@ -4,31 +4,26 @@ using UnityEngine;
 
 public class CarMovement : BaseMovement
 {
+    public float m_maxMoveSpeed;
+    public float m_acceleration;
+    public float m_turnTime;
 
-    public float m_forwardForce;
-    public float m_friction;
-
-    public float m_turnDistance;
-
-    public float m_breakForce;
-
-    // The speed at which the car just stops
-    public float m_fullStopSpeed;
+    public GameObject[] frontWheels;
+    public GameObject[] rearWheels;
 
     // The maximum angle of the wheels
     public float m_maxWheelAngle = 45;
-    // How far forward the wheels are relative to centre of car (this can be done better via transforms in editor, for instance)
-    public float m_wheelDistance = 1;
-
-    private float m_wheelAngle = 0;
 
     private NavPathManager m_pathManager;
-    private Rigidbody m_rigidbody;
+
+    private GameObject m_parent;
+
+    private float m_currentMoveSpeed = 0;
     // Use this for initialization
     void Start()
     {
         m_pathManager = GetComponent<NavPathManager>();
-        m_rigidbody = GetComponent<Rigidbody>();
+        m_parent = GetComponentInParent<BaseUnit>().gameObject;
     }
 
     private float DEBUGTimer = 0;
@@ -51,7 +46,7 @@ public class CarMovement : BaseMovement
         //}
         // Just test to drive forward for a few seconds, then break;
         DEBUGTimer += Time.deltaTime;
-        if (DEBUGTimer < 3)
+        if (true || DEBUGTimer < 3)
         {
             DriveForward(nextToCurrent);
         }
@@ -64,47 +59,57 @@ public class CarMovement : BaseMovement
         }
     }
 
+
+
     private void DriveForward(Vector3 direction)
     {
+        float angle = Helpers.GetDiffAngle2D(transform.forward, direction);
+        // Limit wheel angle (wheels are instant atm)
+        if (Mathf.Abs(angle) > m_maxWheelAngle)
+        {
+            angle = Mathf.Sign(angle) * m_maxWheelAngle;
+        }
 
-        Quaternion forceRotation = transform.rotation;
-        Vector3 forceForward = forceRotation * transform.forward;
-        Vector3 forcePosition = transform.position + transform.forward.normalized * m_wheelDistance;
+        // Face the wheels correctly
+        Vector3 wheelForward = new Vector3(0,0,0);
+        foreach(GameObject obj in frontWheels)
+        {
+            obj.transform.localRotation = Quaternion.Euler(0, angle, 0);
+            wheelForward = obj.transform.forward;
+        }
 
-        // Now apply force
-        Vector3 force = forceForward * m_forwardForce * Time.deltaTime;
-        Helpers.DrawDebugLine(forcePosition, forcePosition + force);
-        m_rigidbody.AddForceAtPosition(forceForward * m_forwardForce * Time.deltaTime, forcePosition);
+        // Move car forward
+        Acceleration();
+        Vector3 movement = transform.forward * m_currentMoveSpeed * Time.deltaTime;
+        m_parent.transform.position += movement;
 
-        //float angle = Helpers.GetDiffAngle2D(transform.forward, direction);
-        //// Limit wheel angle (wheels are instant atm)
-        //if (Mathf.Abs(angle) > m_maxWheelAngle)
-        //{
-        //    angle = Mathf.Sign(angle) * m_maxWheelAngle;
-        //}
+        // Rotate car depending on wheel angle
+        Vector3 pivotPoint = transform.position; // Should be rear wheels, I reckon
+        m_parent.transform.RotateAround(pivotPoint, m_parent.transform.up, angle * m_turnTime * Time.deltaTime);
 
-        //// The transform that will be used to apply force to the car
-        //Quaternion forceRotation = transform.rotation * Quaternion.Euler(transform.up * angle);
-        //Vector3 forceForward = forceRotation * transform.forward;
-        //Vector3 forcePosition = transform.position + transform.forward.normalized * m_wheelDistance;
+    }
 
-        //// Now apply force
-        //Vector3 force = forceForward * m_forwardForce * Time.deltaTime;
-        //Helpers.DrawDebugLine(forcePosition, forcePosition + force);
-        //m_rigidbody.AddForceAtPosition(forceForward * m_forwardForce * Time.deltaTime, forcePosition);
+    private void Acceleration()
+    {
+        // Todo: accelerate according to animation curve (quick in start, slow at end)
+        m_currentMoveSpeed += m_acceleration * Time.deltaTime;
+        if (m_currentMoveSpeed > m_maxMoveSpeed)
+        {
+            m_currentMoveSpeed = m_maxMoveSpeed;
+        }
     }
 
     private void Break()
     {
         // Break is that it just stops, for now
-        if (m_rigidbody.velocity.magnitude < m_fullStopSpeed)
-        {
-            m_rigidbody.velocity = new Vector3();
-        }
-        else
-        {
-            m_rigidbody.AddForce(-1 * transform.forward.normalized * m_breakForce * Time.deltaTime);
-        }
+        //if (m_rigidbody.velocity.magnitude < m_fullStopSpeed)
+        //{
+        //    m_rigidbody.velocity = new Vector3();
+        //}
+        //else
+        //{
+        //    m_rigidbody.AddForce(-1 * transform.forward.normalized * m_breakForce * Time.deltaTime);
+        //}
     }
 
     public override void M_MoveOrder(Vector3 destination)
