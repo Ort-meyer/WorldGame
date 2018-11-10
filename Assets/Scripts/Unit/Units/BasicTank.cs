@@ -25,7 +25,7 @@ public class BasicTank : BaseUnit
 
     public override void M_MoveOrder(Vector3 destination)
     {
-        BaseMovement movement = GetComponent<BaseMovement>();
+        BaseMovement movement = GetComponentInChildren<BaseMovement>();
         if (movement)
         {
             movement.M_MoveOrder(destination);

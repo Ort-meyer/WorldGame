@@ -10,11 +10,14 @@ public class NavPathManager : MonoBehaviour
 
     private bool m_active = false;
     public float m_pathUpdateFrequency;
-    public float m_finalDestinationDistance;
+    //public float m_finalDestinationDistance;
 
     public float m_cornerIncrementDistance;
 
     private int m_nextCornerIndex = 0;
+    private bool m_destinationReached = true;
+
+    //public GameObject DEBUGPathNodePrefab;// Use to visualize path
     // Use this for initialization
     void Start()
     {
@@ -26,11 +29,17 @@ public class NavPathManager : MonoBehaviour
     void Update()
     {
         // Automatically increment when close to next corner (still not sure that this is best way to do it)
-        if (m_path.corners.Length > 0)
+        if (m_active)
         {
-            if ((transform.position - m_path.corners[m_path.corners.Length - 1]).magnitude < m_cornerIncrementDistance)
+            if ((transform.position - m_path.corners[m_nextCornerIndex]).magnitude < m_cornerIncrementDistance)
             {
                 m_nextCornerIndex++;
+                // If we've reached the end, deactivate the component
+                if (m_nextCornerIndex == m_path.corners.Length)
+                {
+                    m_active = false;
+                    m_destinationReached = true;
+                }
             }
         }
         // Don't do anything unless we have a destination
@@ -45,35 +54,28 @@ public class NavPathManager : MonoBehaviour
 
     private void UpdatePath()
     {
-        // If the destination is reached, set path to null to make entire component inactive
-        if ((transform.position - m_destination).magnitude < m_finalDestinationDistance)
-        {
-            m_active = false;
-        }
-        else
-        {
-            NavMesh.CalculatePath(transform.position, m_destination, NavMesh.AllAreas, m_path);
-            m_nextCornerIndex = 0;
-        }
+        NavMesh.CalculatePath(transform.position, m_destination, NavMesh.AllAreas, m_path);
+        m_nextCornerIndex = 1;
+        // Visualize path
+        //foreach (Vector3 nodePos in m_path.corners)
+        //{
+        //    GameObject.Instantiate(DEBUGPathNodePrefab, nodePos, new Quaternion());
+        //}
 
     }
 
     public void M_SetDestination(Vector3 destination)
     {
         m_active = true;
+        m_destinationReached = false;
         m_destination = destination;
         UpdatePath();
 
     }
 
-    public void M_CornerReached()
-    {
-        m_nextCornerIndex++;
-    }
-
     public void M_ClearDestination()
     {
-        m_active = true;
+        m_active = true; // This seems wrong... Will notice when implementing stop feature
     }
 
     public Vector3 M_GetNextCorner()
@@ -84,9 +86,9 @@ public class NavPathManager : MonoBehaviour
             return nextCorner;
         }
         // If we haven't reached the end. Should need this but just to make sure
-        if (m_nextCornerIndex + 1 < m_path.corners.Length)
+        if (m_nextCornerIndex < m_path.corners.Length)
         {
-            nextCorner = m_path.corners[m_nextCornerIndex + 1];
+            nextCorner = m_path.corners[m_nextCornerIndex];
         }
 
         return nextCorner;
@@ -104,6 +106,6 @@ public class NavPathManager : MonoBehaviour
 
     public bool M_DestinationReached()
     {
-        return m_nextCornerIndex == m_path.corners.Length;
+        return m_destinationReached;
     }
 }
