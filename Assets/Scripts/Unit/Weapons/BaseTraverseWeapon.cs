@@ -15,7 +15,6 @@ public class BaseTraverseWeapon : BaseWeapon
     public float m_maxTraverse;
     public float m_traverseSpeed;
 
-    public GameObject m_ownTank;
     // Fire variables
     public float m_exitVelocity;
     public GameObject m_projectilePrefab;

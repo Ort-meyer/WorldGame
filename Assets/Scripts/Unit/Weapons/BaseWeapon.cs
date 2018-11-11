@@ -13,6 +13,8 @@ public class BaseWeapon : MonoBehaviour
 
     private bool m_allowFire = false;
 
+    public GameObject m_ownTank;
+
     // Use this for initialization
     protected virtual void Start()
     {
@@ -41,18 +43,18 @@ public class BaseWeapon : MonoBehaviour
     }
 
     // Sets whether the weapon should fire or not
-    public void M_AllowFire()
+    public virtual void M_AllowFire()
     {
         m_allowFire = true;
     }
 
-    public void M_HoldFire()
+    public virtual void M_HoldFire()
     {
         m_allowFire = false;
     }
 
     // Sets the target for this weapon
-    public void M_SetTarget(Transform target)
+    public virtual void M_SetTarget(Transform target)
     {
         m_target = target;
     }
@@ -61,5 +63,10 @@ public class BaseWeapon : MonoBehaviour
     public void M_ClearTarget()
     {
         m_target = null;
+    }
+
+    public Transform M_GetTarget()
+    {
+        return m_target;
     }
 }
