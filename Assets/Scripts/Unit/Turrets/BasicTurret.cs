@@ -38,6 +38,9 @@ public class BasicTurret : BaseTurret
     public override void M_SetTarget(Transform target)
     {
         base.M_SetTarget(target);
-        GetComponentInChildren<BaseWeapon>().M_SetTarget(target);
+        foreach(BaseWeapon weapon in GetComponentsInChildren<BaseWeapon>())
+        {
+            weapon.M_SetTarget(target);
+        }
     }
 }
