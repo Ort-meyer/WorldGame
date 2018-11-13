@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 114032639570340456}
   - component: {fileID: 114114340325706166}
   m_Layer: 0
-  m_Name: Atgm
+  m_Name: OldAtgm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

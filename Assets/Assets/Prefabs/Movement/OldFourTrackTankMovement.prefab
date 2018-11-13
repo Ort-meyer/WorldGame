@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 114306645977848292}
   - component: {fileID: 114223787462137604}
   m_Layer: 0
-  m_Name: FourTrackTankMovement
+  m_Name: OldFourTrackTankMovement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

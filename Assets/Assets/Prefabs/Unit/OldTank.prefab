@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 114992018291617840}
   - component: {fileID: 114176641122057168}
   m_Layer: 9
-  m_Name: Tank
+  m_Name: OldTank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -643,12 +643,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_fireCooldown: 3
+  m_ownTank: {fileID: 1414005716739738}
   m_maxElevation: 0
   m_minElevation: 0
   m_elevationSpeed: 5
   m_maxTraverse: 0
   m_traverseSpeed: 0
-  m_ownTank: {fileID: 1414005716739738}
   m_exitVelocity: 35
   m_projectilePrefab: {fileID: 1274750179745994, guid: d42b83193e7e1bb45b790f1aa46ecc23,
     type: 2}

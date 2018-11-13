@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 136219323672436534}
   - component: {fileID: 114980534351431702}
   m_Layer: 0
-  m_Name: StandardCannonRound
+  m_Name: OldStandardCannonRound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
