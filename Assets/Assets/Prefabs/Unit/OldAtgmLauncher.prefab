@@ -470,8 +470,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1047173764173326}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 21.716, y: 0.003, z: -4.74}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 8.404665, y: -2.0159843, z: 0.11412811}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4422658534263034}
@@ -1064,7 +1064,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_fireCooldown: 3
   m_ownTank: {fileID: 1047173764173326}
-  m_projectilePrefab: {fileID: 1765821046525324, guid: ccdab4f8889b58949881f22f029f6188,
+  m_projectilePrefab: {fileID: 1209592790840262, guid: 76e849b7d4909dc4c821210574259439,
     type: 2}
   m_lockonTime: 2
   m_launchPositions:

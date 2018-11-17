@@ -65,8 +65,10 @@ public class AtgmLauncher : BaseWeapon
         GameObject newRocket = Instantiate(m_projectilePrefab);
         newRocket.transform.position = m_launchPositions[m_currentLaunchPosition].position;
         newRocket.transform.rotation = m_launchPositions[m_currentLaunchPosition].rotation;
-        newRocket.GetComponent<BaseProjectile>().M_ProjectileFired(this.gameObject);
-        
+        foreach (BaseProjectile projectileScript in newRocket.GetComponents<BaseProjectile>())
+        {
+            projectileScript.M_ProjectileFired(this.gameObject);
+        }
 
         // Todo: move to specific projectile
         Collider[] ownTankColliders = m_ownTank.GetComponentsInChildren<Collider>();

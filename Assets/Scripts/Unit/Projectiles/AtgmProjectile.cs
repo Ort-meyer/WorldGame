@@ -43,6 +43,5 @@ public class AtgmProjectile : BaseProjectile
     {
         base.M_ProjectileFired(firingWeapon);
         m_target = m_firingWeapon.GetComponent<BaseWeapon>().M_GetTarget();
-
     }
 }
