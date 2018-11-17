@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BaseProjectile : MonoBehaviour
 {
+    public enum ProjectileType { smallDumb, lightDumb, mediumDumb, mediumSelfPropelled, lightSelfPropelled};
+
+    public ProjectileType m_projectileType;
     protected GameObject m_firingWeapon;
     // Use this for initialization
     void Start()
