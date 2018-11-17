@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BaseWeapon : MonoBehaviour
 {
-
+    public enum WeaponType { smallCannon, lightCannon, mediumCanon, LightLauncher, MediumLauncher};
+    public WeaponType m_weaponType;
     public float m_fireCooldown;
 
     protected Transform m_target = null;
@@ -13,12 +14,12 @@ public class BaseWeapon : MonoBehaviour
 
     private bool m_allowFire = false;
 
-    public GameObject m_ownTank;
+    protected GameObject m_ownUnit;
 
     // Use this for initialization
     protected virtual void Start()
     {
-
+        m_ownUnit = GetComponentInParent<BaseUnit>().gameObject;
     }
 
     // Update is called once per frame

@@ -33,8 +33,8 @@ public class BasicCannon : BaseTraverseWeapon
         newBullet.transform.rotation = transform.rotation;
         newBullet.transform.position = transform.position;
         newBullet.GetComponent<Rigidbody>().velocity = transform.forward.normalized * m_exitVelocity;
-        Collider[] ownTankColliders = m_ownTank.GetComponentsInChildren<Collider>();
-        foreach (Collider collider in ownTankColliders)
+        Collider[] ownUnitColliders = m_ownUnit.GetComponentsInChildren<Collider>();
+        foreach (Collider collider in ownUnitColliders)
         {
             Physics.IgnoreCollision(newBullet.GetComponent<Collider>(), collider);
         }

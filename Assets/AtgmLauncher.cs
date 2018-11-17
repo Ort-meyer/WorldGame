@@ -71,8 +71,8 @@ public class AtgmLauncher : BaseWeapon
         }
 
         // Todo: move to specific projectile
-        Collider[] ownTankColliders = m_ownTank.GetComponentsInChildren<Collider>();
-        foreach (Collider collider in ownTankColliders)
+        Collider[] ownUnitColliders = m_ownUnit.GetComponentsInChildren<Collider>();
+        foreach (Collider collider in ownUnitColliders)
         {
             Physics.IgnoreCollision(newRocket.GetComponent<Collider>(), collider);
         }

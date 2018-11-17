@@ -38,7 +38,7 @@ public class MachineGun : BaseTraverseWeapon
         float spready = Random.Range(-m_maxSpread, m_maxSpread);
         newBullet.transform.Rotate(spreadx, spready, 0, Space.Self);
         newBullet.GetComponent<Rigidbody>().velocity = newBullet.transform.forward.normalized * m_exitVelocity;
-        Collider[] ownTankColliders = m_ownTank.GetComponentsInChildren<Collider>();
+        Collider[] ownTankColliders = m_ownUnit.GetComponentsInChildren<Collider>();
         foreach (Collider collider in ownTankColliders)
         {
             Physics.IgnoreCollision(newBullet.GetComponent<Collider>(), collider);
