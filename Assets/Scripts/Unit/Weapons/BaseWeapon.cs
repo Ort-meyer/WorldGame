@@ -10,7 +10,7 @@ public class BaseWeapon : MonoBehaviour
 
     protected Transform m_target = null;
     protected float m_currentCooldown = 0.0f;
-    protected bool m_canFire = true;
+    protected bool m_canFire = false;
 
     private bool m_allowFire = false;
 
