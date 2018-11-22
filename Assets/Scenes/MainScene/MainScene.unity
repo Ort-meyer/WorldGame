@@ -1168,6 +1168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 406236976}
   - component: {fileID: 406236977}
+  - component: {fileID: 406236978}
   m_Layer: 9
   m_Name: BasicCanonTurret
   m_TagString: Untagged
@@ -1198,13 +1199,24 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 406236975}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00f81f785d9eb9444883bbcf0a5e6aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maxRotationSpeed: 0
   m_rotationAccuracy: 180
+--- !u!114 &406236978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 406236975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351da94befe965a498d2a0e82ddda39a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_rotationSpeed: 5
 --- !u!4 &431936562 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4603015980487816, guid: 4ae6c32af3bdfc048b2eaaa2a49863c1,
@@ -2805,7 +2817,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00f81f785d9eb9444883bbcf0a5e6aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maxRotationSpeed: 20
   m_rotationAccuracy: 3
 --- !u!1 &2087657420
 GameObject:

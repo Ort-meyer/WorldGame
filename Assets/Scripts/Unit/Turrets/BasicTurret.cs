@@ -16,23 +16,23 @@ public class BasicTurret : BaseTurret
     // Update is called once per frame
     protected override void Update()
     {
-        base.Update();
-        m_currentRotationSpeed = m_maxRotationSpeed;
-        // Let all weapons on this turret know that they can fire
-        bool allTurretsFire = Mathf.Abs(m_diffAngle) < m_rotationAccuracy;
-        {
-            foreach(BaseWeapon weapon in GetComponentsInChildren<BaseWeapon>())
-            {
-                if(allTurretsFire && m_target != null)
-                {
-                    weapon.M_AllowFire();
-                }
-                else
-                {
-                    weapon.M_HoldFire();
-                }
-            }
-        }
+        //base.Update();
+        //m_currentRotationSpeed = m_maxRotationSpeed;
+        //// Let all weapons on this turret know that they can fire
+        //bool allTurretsFire = Mathf.Abs(m_diffAngle) < m_rotationAccuracy;
+        //{
+        //    foreach(BaseWeapon weapon in GetComponentsInChildren<BaseWeapon>())
+        //    {
+        //        if(allTurretsFire && m_target != null)
+        //        {
+        //            weapon.M_AllowFire();
+        //        }
+        //        else
+        //        {
+        //            weapon.M_HoldFire();
+        //        }
+        //    }
+        //}
     }
 
     public override void M_SetTarget(Transform target)
