@@ -6,6 +6,7 @@ public class BaseUnit : MonoBehaviour
 {
     public int m_alignment;
     public float m_hp;
+    public MetaHull m_metaHull;
 
     // Use this for initialization
     void Start()

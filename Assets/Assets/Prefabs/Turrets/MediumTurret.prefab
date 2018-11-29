@@ -85,6 +85,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4664178929152910}
+  - component: {fileID: 114018294983793894}
   m_Layer: 9
   m_Name: AuxWeaponHardpoint
   m_TagString: Untagged
@@ -100,6 +101,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4771941084800570}
+  - component: {fileID: 114379229432808888}
   m_Layer: 9
   m_Name: MainWeaponHardpoint
   m_TagString: Untagged
@@ -430,6 +432,32 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114018294983793894
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1647614237293530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6439c712a38a0ab42a123da20e0c7e9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_hardPointIndex: 1
+  m_hardPointType: 1
+--- !u!114 &114379229432808888
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1688034180806684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6439c712a38a0ab42a123da20e0c7e9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_hardPointIndex: 0
+  m_hardPointType: 1
 --- !u!114 &114973785374629836
 MonoBehaviour:
   m_ObjectHideFlags: 1
