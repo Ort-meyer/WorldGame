@@ -5,7 +5,7 @@ using UnityEngine;
 public class ModuleHardpoint : MonoBehaviour
 {
     public int m_hardPointIndex;
-    public enum HardPointType { Turret, Weapon }
+    public enum HardPointType { AttachesTo, Turret, Weapon }
     public HardPointType m_hardPointType;
     // Use this for initialization
     void Start()

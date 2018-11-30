@@ -15,6 +15,8 @@ public class UnitBuilder : MonoBehaviour // Singleton<UnitBuilder> TODO make sin
 
     public Transform DEBUGspawnPosition;
     public MetaHull DEBUGmetaHull;
+    public MetaHull DEBUGmetaHull1;
+    public MetaHull DEBUGmetaHull2;
 
     public GameObject[] m_hullPrefabs = new GameObject[System.Enum.GetNames(typeof(HullVariant)).Length];
     public GameObject[] m_weaponPrefabs = new GameObject[System.Enum.GetNames(typeof(WeaponVariant)).Length];
@@ -34,6 +36,14 @@ public class UnitBuilder : MonoBehaviour // Singleton<UnitBuilder> TODO make sin
         {
             M_BuildHull(DEBUGmetaHull, DEBUGspawnPosition);
         }
+        if (Input.GetKeyUp(KeyCode.G))
+        {
+            M_BuildHull(DEBUGmetaHull2, DEBUGspawnPosition);
+        }
+        if (Input.GetKeyUp(KeyCode.F))
+        {
+            M_BuildHull(DEBUGmetaHull1, DEBUGspawnPosition);
+        }
     }
 
     public GameObject M_BuildHull(MetaHull hullData, Transform spawnTransform)
@@ -41,6 +51,7 @@ public class UnitBuilder : MonoBehaviour // Singleton<UnitBuilder> TODO make sin
         GameObject newHull = Instantiate(m_hullPrefabs[(int)hullData.m_hullVariant]);
         newHull.transform.position = spawnTransform.position;
         newHull.transform.rotation = spawnTransform.rotation;
+        
 
         hullData.M_BuildFromMeta(newHull);
 
@@ -50,8 +61,7 @@ public class UnitBuilder : MonoBehaviour // Singleton<UnitBuilder> TODO make sin
     public GameObject M_BuildTurret(MetaTurret turretData, Transform hardPoint)
     {
         GameObject newTurret = Instantiate(m_turretPrefabs[(int)turretData.m_turretVariant], hardPoint);
-        newTurret.transform.position = hardPoint.position;
-        newTurret.transform.rotation = hardPoint.transform.rotation;
+        SetModuleTransform(ref newTurret, hardPoint);
 
         turretData.M_BuildFromMeta(newTurret);
 
@@ -61,9 +71,22 @@ public class UnitBuilder : MonoBehaviour // Singleton<UnitBuilder> TODO make sin
     public GameObject M_BuildWeapon(MetaWeapon weaponData, Transform hardPoint)
     {
         GameObject newWeapon = Instantiate(m_weaponPrefabs[(int)weaponData.m_weaponVariant], hardPoint);
-        newWeapon.transform.position = hardPoint.position;
-        newWeapon.transform.rotation = hardPoint.transform.rotation;
+        SetModuleTransform(ref newWeapon, hardPoint);
 
         return newWeapon;
+    }
+
+    public void SetModuleTransform(ref GameObject turret, Transform attachesTo)
+    {
+        ModuleHardpoint[] hardpoints = turret.GetComponentsInChildren<ModuleHardpoint>();
+        foreach(ModuleHardpoint hardpoint in hardpoints)
+        {
+            if(hardpoint.m_hardPointType == ModuleHardpoint.HardPointType.AttachesTo)
+            {
+                turret.transform.position = attachesTo.position - hardpoint.transform.localPosition;
+                turret.transform.rotation = attachesTo.rotation;
+                return;
+            }
+        }
     }
 }
