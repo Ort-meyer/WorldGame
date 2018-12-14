@@ -16,6 +16,7 @@ public class BuildRoom : MonoBehaviour
     void Update()
     {
         DoRaycast();
+        LeftClick();
     }
 
     private void DoRaycast()
@@ -30,7 +31,7 @@ public class BuildRoom : MonoBehaviour
             ModuleHardpoint hardpointSelected = m_hit.collider.GetComponentInParent<ModuleHardpoint>();
             if (hardpointSelected)
             {
-
+                GetComponent<ShowroomManager>().M_HardpointSelected(hardpointSelected);
             }
         }
     }

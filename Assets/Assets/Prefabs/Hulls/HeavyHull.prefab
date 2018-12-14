@@ -86,6 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4012791415886086}
   - component: {fileID: 114559279893105500}
+  - component: {fileID: 135276680013852264}
   m_Layer: 0
   m_Name: Connector
   m_TagString: Untagged
@@ -344,7 +345,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1278870774422256}
   m_LocalRotation: {x: -0, y: -0.698423, z: -0, w: 0.7156852}
-  m_LocalPosition: {x: 21.3696, y: -0.877, z: -3.8613}
+  m_LocalPosition: {x: -0.5293311, y: 0.5, z: 0.39569664}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4614002021959988}
@@ -695,6 +696,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_hardPointIndex: 0
   m_hardPointType: 1
+  m_availableTurrets: 030000000000000004000000
+  m_availableWeapons: []
 --- !u!114 &114658923121371714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -734,3 +737,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4d9d92efef7ab4eb18d182cb00f9ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &135276680013852264
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1275744164883422}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.4
+  m_Center: {x: 0, y: 0, z: 0}

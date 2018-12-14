@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using MetaUnits;
 public class ShowroomManager : MonoBehaviour
 {
     public Dropdown m_hullDropDown;
+    public Dropdown m_moduleDropdown;
     public UnitBuilder m_unitBuilder;
     public Transform m_spawnPosition;
 
@@ -22,18 +24,50 @@ public class ShowroomManager : MonoBehaviour
         m_hullDropDown.ClearOptions();
         m_hullDropDown.AddOptions(options);
         m_hullDropDown.onValueChanged.AddListener(delegate { HullSelected(m_hullDropDown); });
+
+        m_moduleDropdown.ClearOptions();
+        m_moduleDropdown.onValueChanged.AddListener(delegate { ModuleSelected(m_moduleDropdown); });
     }
 
     void HullSelected(Dropdown change)
     {
-        if(m_currentVehicle !=null)
+        if (m_currentVehicle != null)
         {
             Destroy(m_currentVehicle);
         }
-        MetaUnits.HullVariant variant = (MetaUnits.HullVariant)Enum.Parse(typeof(MetaUnits.HullVariant), change.captionText.text);
+        HullVariant variant = (HullVariant)Enum.Parse(typeof(HullVariant), change.captionText.text);
         MetaHull hull = new MetaHull();
         hull.m_hullVariant = variant;
         m_currentVehicle = m_unitBuilder.M_BuildHull(hull, m_spawnPosition);
+    }
+
+    void ModuleSelected(Dropdown change)
+    {
+        if (m_currentVehicle != null)
+        {
+
+        }
+    }
+
+    public void M_HardpointSelected(ModuleHardpoint hardPoint)
+    {
+        m_moduleDropdown.ClearOptions();
+        List<Dropdown.OptionData> options = new List<Dropdown.OptionData>();
+        if (hardPoint.m_hardPointType == ModuleHardpoint.HardPointType.Turret)
+        {
+            foreach(TurretVariant variant in hardPoint.m_availableTurrets)
+            {
+                options.Add(new Dropdown.OptionData(variant.ToString()));
+            }
+        }
+        else if (hardPoint.m_hardPointType == ModuleHardpoint.HardPointType.Turret)
+        {
+            foreach (WeaponVariant variant in hardPoint.m_availableWeapons)
+            {
+                options.Add(new Dropdown.OptionData(variant.ToString()));
+            }
+        }
+        m_moduleDropdown.AddOptions(options);
     }
 
     // Update is called once per frame

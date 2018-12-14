@@ -8,6 +8,9 @@ public class ModuleHardpoint : MonoBehaviour
     public enum HardPointType { AttachesTo, Turret, Weapon }
     public HardPointType m_hardPointType;
 
+    public List<MetaUnits.TurretVariant> m_availableTurrets = new List<MetaUnits.TurretVariant>();
+    public List<MetaUnits.WeaponVariant> m_availableWeapons = new List<MetaUnits.WeaponVariant>();
+
     // Use this for initialization
     void Start()
     {

@@ -7,7 +7,7 @@ namespace MetaUnits
 {
     public enum HullVariant { LightHull, MediumHull, HeavyHull, TruckHull };
     public enum WeaponVariant { HighVelocityCannon, MachineGun, MaDeuce, MediumBarrageLauncher, MediumCannon, MediumLauncher };
-    public enum TurretVariant { HeavyTurret, LightLaunchTurret, LightTurret, MediumTurret };
+    public enum TurretVariant { HeavyTurret, LightLaunchTurret, LightTurret, MediumTurret, MediumLaunchTurret };
     public enum ProjectileVariant { LightRocket, LightSolidShot, MediumAtgm, SmallSolidShot, SolidShot };
 }
 public class UnitBuilder : MonoBehaviour // Singleton<UnitBuilder> TODO make singleton when we don't rely on the inspector anymore
