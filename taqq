@@ -1,0 +1,479 @@
+[33mcommit 76c4b232673d210fbd60616dcdf3bc5f56575160[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: john bergsten <bergsten.john92@gmail.com>
+Date:   Thu Dec 13 20:06:43 2018 +0100
+
+    spawn vehicle from drop down menu
+
+[33mcommit 9cab88616af8e07942393318e323e670cf050c62[m
+Author: john bergsten <bergsten.john92@gmail.com>
+Date:   Thu Dec 13 16:17:47 2018 +0100
+
+    started work on vehicle build room
+
+[33mcommit 7a5c9a287d1c5be4a5a2903f7c986ab059c1157c[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: john bergsten <bergsten.john92@gmail.com>
+Date:   Tue Dec 11 20:44:44 2018 +0100
+
+    started work on hexmap
+
+[33mcommit 17cb02718c8ac468845dfa32e9da52b1514a4ccd[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Fri Nov 30 23:39:04 2018 +0100
+
+    Now attaches modules well
+
+[33mcommit 25ba12dc9cb587d89c65312618a4a58e7694e8ad[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Thu Nov 29 21:16:41 2018 +0100
+
+    made first version of unit building system
+
+[33mcommit c6999bde97202f6e6e740781b4a58c668de9fc4d[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Tue Nov 27 19:43:59 2018 +0100
+
+    added truck hull
+
+[33mcommit 6962cc60076ebf911412d84bd00a083b4f13aa19[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Tue Nov 27 19:39:20 2018 +0100
+
+    added heavy hull
+
+[33mcommit f489785b623fe482e4a2755235b4ab6d24855b52[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Tue Nov 27 19:37:05 2018 +0100
+
+    added medium hull
+
+[33mcommit 813233dfc75c5016db16acd421ecaf00340d94cf[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Tue Nov 27 19:17:00 2018 +0100
+
+    added light hull
+
+[33mcommit 97ec6a08765e341fa7dcfbc8bf0842fa7ae8f99b[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Tue Nov 27 18:56:47 2018 +0100
+
+    added medium launcher
+
+[33mcommit 2b7abf5bfdf1f77edf3f58946dd691d24933fb49[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Tue Nov 27 18:53:05 2018 +0100
+
+    added light launcher turret
+
+[33mcommit 6615c7eb42de993d131e52453cb7c48fb7294245[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Tue Nov 27 18:47:15 2018 +0100
+
+    added heavy turret (somewhat broken. Will be fixed with proper targetting)
+
+[33mcommit 5583669062135acf3b8899ed09eb0ad7ec474489[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Thu Nov 22 20:41:59 2018 +0100
+
+    added medium turret
+
+[33mcommit b13c7a5ec4469390f653fefdcd199d1b39674ef4[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Thu Nov 22 20:37:06 2018 +0100
+
+    added light turret
+
+[33mcommit 196a86b589a1b33b531c8fff2945e49f851a9180[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Thu Nov 22 20:28:38 2018 +0100
+
+    rearranged turrets a little bit. Still wip. Needs cleanup
+
+[33mcommit 7d3577dc8bd7f3e5c8f15fe921a462e9e3cad675[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Nov 17 22:01:17 2018 +0100
+
+    medium atgm launcher
+
+[33mcommit ede0ae570cd82f162a16bcca2769b72edf3ffb15[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Nov 17 21:33:44 2018 +0100
+
+    barrage launcher script. Added barrage launcher prefab
+
+[33mcommit bac9498d7158a43deb29b667e9af0fd10115b0d8[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Nov 17 18:36:59 2018 +0100
+
+    added high velocity cannon
+
+[33mcommit b1eab4370b1e331cac37d15db2cc66b34332585d[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Nov 17 18:35:18 2018 +0100
+
+    added medium cannon
+
+[33mcommit 1c4d4e30a738d9f18a78699e9938e3d331d5f8d8[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Nov 17 18:28:28 2018 +0100
+
+    reworked weapon structure a bit. Very early. Added ma deuce and machinegun
+
+[33mcommit 49caf854082beb166543269206305c334254ccde[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Nov 17 17:20:28 2018 +0100
+
+    cleanup of scene before weapons development
+
+[33mcommit d2d3d194e999a2fac3830176bc27612b93f361e8[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Nov 17 17:15:20 2018 +0100
+
+    added unguided light rocket
+
+[33mcommit a9e5dd30ea53231b9227ed5710108d9bed38a1e8[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Nov 17 17:10:14 2018 +0100
+
+    self propelled projectile. guided projectile. medium atgm propjectile
+
+[33mcommit 27ea3098b28fa2b392a49e7147d6a8a9eb8344ca[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Nov 17 16:42:19 2018 +0100
+
+    added small solid shot projectile
+
+[33mcommit aa7b336b478a39048ba38fb2d40dca53f38e7365[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Nov 17 16:41:13 2018 +0100
+
+    added light solid shot projectile
+
+[33mcommit 7e2ae11f266ea9a7ac3cbfd5bd730e177a6387f4[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Nov 17 16:37:36 2018 +0100
+
+    renamed all old prefabs to old. Remaking content. Made solid shot projectile
+
+[33mcommit 278fa6ed55f1af036ff425a40e984cdf1eab957e[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Tue Nov 13 18:55:39 2018 +0100
+
+    renamed old prefabs with old prefix
+
+[33mcommit 5908b830d5bdc7b68b3cddb59537f17e42e70e6e[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Mon Nov 12 20:52:06 2018 +0100
+
+    added heavy tank unit
+
+[33mcommit 279fa3a9053a644e421553cd59ba1c1eb03c4a45[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sun Nov 11 20:14:23 2018 +0100
+
+    atgm launcher. LOTS of other stuff too, including first build of game
+
+[33mcommit 38a54007cd7b9d855b6f256bab0b881e188c7809[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Nov 10 15:11:26 2018 +0100
+
+    tank turrets and cannon now prefabs
+
+[33mcommit c0f7656feebb2fcc166c26dc5f97bac89a9c15b8[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Nov 10 15:05:37 2018 +0100
+
+    tanks now use movement. Much improved navpathmanager
+
+[33mcommit a6e261b35b22a720e5ebf0e61a8ff1e3ff89bd6b[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Nov 10 00:28:55 2018 +0100
+
+    some editor stuff i forgot to save
+
+[33mcommit 730567124f97ba283867c09819131f6f38019bad[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Nov 10 00:26:18 2018 +0100
+
+    improved navpathmanager and made car move through waypoints well
+
+[33mcommit 8050e6b7fab8f886b9300bf8ddcaa6ff470f9bf4[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Fri Nov 9 23:50:34 2018 +0100
+
+    added simple break to car
+
+[33mcommit e3578032e49e763f82f238346e9c6f647062216e[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Fri Nov 9 23:20:29 2018 +0100
+
+    i hate physics... Car movement with good ol position manipulation
+
+[33mcommit 1dbbb9cba2694597efc0ba58fd5176c61a177297[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Fri Nov 9 17:33:21 2018 +0100
+
+    work on standard car drive. Using forces. It's horrible
+
+[33mcommit ffedd61625bb384a4591c52954a3675a896ba972[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sun Oct 28 19:20:30 2018 +0100
+
+    significantly improved cannon physics
+
+[33mcommit 233b92297f3c3caec8da354526c977f211daf1bf[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Oct 27 22:16:19 2018 +0200
+
+    tanks now weigh alot so they don't fly off. Also set default alignment of tanks
+
+[33mcommit 1ef3c3ed794fe42728eca10889cda03c313f01d9[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Oct 27 21:39:39 2018 +0200
+
+    tanks can move again (forgot to bake navmesh)
+
+[33mcommit 183fad2102a9e45419ff9802f420e50a49973248[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Oct 27 21:32:17 2018 +0200
+
+    added very basic AI that engages all enemies
+
+[33mcommit 853e6d969895dd3fe2762fd1116f8ee432582f13[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Oct 27 21:20:15 2018 +0200
+
+    added multiple player support. AI still does nothing
+
+[33mcommit d91db36bed6e27bf7246c683fe1c03d5c999d5a7[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Oct 27 20:36:43 2018 +0200
+
+    added basic damage logic
+
+[33mcommit 6c7633bd6df39b8b6991178c80c307d3e2411190[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Tue Oct 23 19:56:01 2018 +0200
+
+    major restructuring of units
+
+[33mcommit 44c920103564fd9dc44e5b78c6a2c4e6baabcf85[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sun Oct 21 17:56:45 2018 +0200
+
+    can now target enemies and fire. Needs to be polished alot
+
+[33mcommit 4d6f462f37ec65405908520d2beb939ed62cb0dd[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sun Oct 21 00:10:48 2018 +0200
+
+    moved around unit move order code
+
+[33mcommit 457e523706f88b7e555d0d555140e04da0f8c805[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sun Oct 21 00:08:05 2018 +0200
+
+    basic turrets no longer fire when they dont have a target
+
+[33mcommit 5243c37b35a737c0a7de33751a1d658dcb2270d6[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Oct 20 22:22:17 2018 +0200
+
+    turrets now only allow fire if they're pointing at the target
+
+[33mcommit 36b91eff6fc8b260f819d3bf0c52cbf673860d7f[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Oct 20 20:17:57 2018 +0200
+
+    started work on fire checks. Basic tank now only fires if elevation is within parameters
+
+[33mcommit 64e1132c73992e3ac70df8e6b5271eef17636af8[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Oct 20 20:11:28 2018 +0200
+
+    renamed baseballisticweapon to basetraverseweapon
+
+[33mcommit 3bc4c8b45d8344ab9ea59784cba830543b5bcf39[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Oct 20 19:58:35 2018 +0200
+
+    cleaned up test scene and tank prefab
+
+[33mcommit 4f0c29c2229fc73cfdf4713300433eb6f10a7226[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Oct 20 19:50:53 2018 +0200
+
+    added shift click selection. Can select multiple units in sequence)
+
+[33mcommit 3359b4f19bc1f677b03fc5744f1292aab32a7062[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Oct 20 19:44:14 2018 +0200
+
+    added single click. Also refactored picking a bit
+
+[33mcommit 3c30cdd30350e6c4e3d322bf4b822a397337a696[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Wed Sep 26 22:04:56 2018 +0200
+
+    Can now order multiple units. Very debuggy
+
+[33mcommit fa6c99933497e71725f07ca6cee48c195b50d61b[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Mon Sep 24 22:36:05 2018 +0200
+
+    can now select selectable entities
+
+[33mcommit 1511649691274d2185874fb8bd4d2b3bf8d5b5c6[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Mon Sep 24 22:04:12 2018 +0200
+
+    significantly improved selection box
+
+[33mcommit 6140da550b3437f7d9edce0d3e00c3e42f479cf2[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Mon Sep 24 21:28:00 2018 +0200
+
+    started work on player entityclass moved picking from camera
+
+[33mcommit a132fc7b4ded815f8a3b2fc87549fc731cbb3a34[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Sep 22 19:43:41 2018 +0200
+
+    just a useless commit
+
+[33mcommit f4af932768244cfd8ea04dc816307f741d33636d[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Sep 22 19:35:42 2018 +0200
+
+    fixed light projector for unit selected circle. Needs some manager stuff
+
+[33mcommit b525a74b18a7433c3ec7fb02950f586907d105a0[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Sep 22 19:13:12 2018 +0200
+
+    added welcome text for hink
+
+[33mcommit 2457fb503a53dce84b8199090260a0c586df2249[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Sep 22 18:57:58 2018 +0200
+
+    work in progress. Selection box
+
+[33mcommit f28dc022d0474c4388c51085476578152f47d932[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Aug 18 12:02:53 2018 +0200
+
+    drag select box
+
+[33mcommit 02133238de4f153e716bcd8ea23bc2a35a40fec8[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Sat Aug 18 02:28:38 2018 +0200
+
+    finally made pathing work for tank. Probably some cleaning up to do
+
+[33mcommit 83bb4a8a20a830c84c79cfd30ab179100f84cdf7[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Fri Aug 17 14:55:44 2018 +0200
+
+    baseturrent now uses helper code
+
+[33mcommit e965e50aae81a318e7190df14c8daf74944df49d[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Fri Aug 17 14:51:10 2018 +0200
+
+    added codehelpers static class. Tank now moves tank-like
+
+[33mcommit 02382b832206d118e1a65659cd78158707603acc[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Fri Aug 17 14:28:14 2018 +0200
+
+    custom pathfinding using nav meshes
+
+[33mcommit 0f9d47f502a9059e344ac129798485ea5173e087[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Wed Aug 15 23:57:38 2018 +0200
+
+    raider script. Keeps a safe distance from target
+
+[33mcommit a27556e069bbea923a4e850944fa7ae1a6023818[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Wed Aug 15 19:03:07 2018 +0200
+
+    did some cleanup
+
+[33mcommit 3ddf11112a087827dd69505a646992d31b6ab190[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Wed Aug 15 18:56:59 2018 +0200
+
+    generic remove after delay script. Added to machinegunbullet
+
+[33mcommit 60dbffc8f3c751cd108ce2ed4319c68123be39c9[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Wed Aug 8 23:26:10 2018 +0200
+
+    saved some scene stuff
+
+[33mcommit b95961e2a1c173e64a07b55fb5a9180bec4c2dcb[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Wed Aug 8 23:18:15 2018 +0200
+
+    grass texture. Raider work. Machine gun
+
+[33mcommit 3bb3108c5e035dd040f0aa0b6ff0bb89600c2caa[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Wed Aug 8 22:55:00 2018 +0200
+
+    moved fire of balistic back to specific. Base should only aim
+
+[33mcommit 9c0abee23b19a7db9ff7a83f1daff7a3cfabd78b[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Wed Aug 8 22:52:45 2018 +0200
+
+    started work on raider. Made basebalistic script. Moved basiccanon code there
+
+[33mcommit a46be7b1c0dbf5b65dbc9b7a4665af5f1b4f0207[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Wed Aug 8 22:37:51 2018 +0200
+
+    basicturret now fires any weapon, not just basiccanon
+
+[33mcommit cad9e45356d430458fb036dd7f7534b2b824abd6[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Wed Aug 8 22:10:09 2018 +0200
+
+    renamed standard round script
+
+[33mcommit 3ac7936a59a39ad7e112dfbb3f9001b8723d2d47[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Wed Aug 8 22:08:40 2018 +0200
+
+    added basic tank script.No base class for now. Same as old Nav manager
+
+[33mcommit 20a2d36dfb5a88a0f3715a0318a1ee567331fc33[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Wed Aug 8 21:45:06 2018 +0200
+
+    added projectile script folder
+
+[33mcommit 26d79810311913b47e29c519709455aeb1e3dead[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Wed Aug 8 21:43:05 2018 +0200
+
+    turret design
+
+[33mcommit 902cf44f97439618f629ba7dbe911ed9cfe43c98[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Wed Aug 8 21:10:29 2018 +0200
+
+    created folder structure. turrest and barrel structure with base classes and stuff
+
+[33mcommit efd7efe79f94076eefed0c398fcd78a0f4415391[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Wed Aug 8 20:18:40 2018 +0200
+
+    first commit
+
+[33mcommit 31e97ac2706d7ab8f597beb240c2f0c7a0a821e3[m
+Author: John Bergsten <putte_dt@hotmail.se>
+Date:   Wed Aug 8 19:01:12 2018 +0200
+
+    added gitignore for unity

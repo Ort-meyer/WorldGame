@@ -5,7 +5,7 @@ using MetaUnits;
 
 namespace MetaUnits
 {
-    public enum HullVariant { SmallHull, MediumHull, HeavyHull, TruckHull };
+    public enum HullVariant { LightHull, MediumHull, HeavyHull, TruckHull };
     public enum WeaponVariant { HighVelocityCannon, MachineGun, MaDeuce, MediumBarrageLauncher, MediumCannon, MediumLauncher };
     public enum TurretVariant { HeavyTurret, LightLaunchTurret, LightTurret, MediumTurret };
     public enum ProjectileVariant { LightRocket, LightSolidShot, MediumAtgm, SmallSolidShot, SolidShot };

@@ -799,7 +799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4f1d3afea86a714fb7045082aa3dbe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_dropDown: {fileID: 1162581532}
+  m_hullDropDown: {fileID: 1162581532}
   m_unitBuilder: {fileID: 543324342}
   m_spawnPosition: {fileID: 1015738856}
 --- !u!1 &671839573

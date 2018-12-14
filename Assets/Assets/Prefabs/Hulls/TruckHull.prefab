@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 114492662910637116}
   - component: {fileID: 114533982275016860}
   m_Layer: 0
-  m_Name: Truck
+  m_Name: TruckHull
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

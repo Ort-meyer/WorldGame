@@ -5,9 +5,11 @@ using UnityEngine.UI;
 using System;
 public class ShowroomManager : MonoBehaviour
 {
-    public Dropdown m_dropDown;
+    public Dropdown m_hullDropDown;
     public UnitBuilder m_unitBuilder;
     public Transform m_spawnPosition;
+
+    private GameObject m_currentVehicle;
     // Use this for initialization
     void Start()
     {
@@ -17,20 +19,22 @@ public class ShowroomManager : MonoBehaviour
         {
             options.Add(new Dropdown.OptionData(hullPrefab.name));
         }
-        m_dropDown.ClearOptions();
-        m_dropDown.AddOptions(options);
-        m_dropDown.onValueChanged.AddListener(delegate { OptionSelected(m_dropDown); });
+        m_hullDropDown.ClearOptions();
+        m_hullDropDown.AddOptions(options);
+        m_hullDropDown.onValueChanged.AddListener(delegate { HullSelected(m_hullDropDown); });
     }
 
-    void OptionSelected(Dropdown change)
+    void HullSelected(Dropdown change)
     {
+        if(m_currentVehicle !=null)
+        {
+            Destroy(m_currentVehicle);
+        }
         MetaUnits.HullVariant variant = (MetaUnits.HullVariant)Enum.Parse(typeof(MetaUnits.HullVariant), change.captionText.text);
         MetaHull hull = new MetaHull();
         hull.m_hullVariant = variant;
-        m_unitBuilder.M_BuildHull(hull, m_spawnPosition);
+        m_currentVehicle = m_unitBuilder.M_BuildHull(hull, m_spawnPosition);
     }
-
-
 
     // Update is called once per frame
     void Update()
