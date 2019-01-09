@@ -12,6 +12,7 @@ public class ShowroomManager : MonoBehaviour
     public Transform m_spawnPosition;
 
     private GameObject m_currentVehicle;
+    private ModuleHardpoint m_currentHardpoint;
     // Use this for initialization
     void Start()
     {
@@ -45,12 +46,23 @@ public class ShowroomManager : MonoBehaviour
     {
         if (m_currentVehicle != null)
         {
+            switch(m_currentHardpoint.m_hardPointType)
+            {
+                case ModuleHardpoint.HardPointType.Turret:
+                    MetaTurret newTurretData = new MetaTurret();
+                    newTurretData.m_turretVariant = (TurretVariant)Enum.Parse(typeof(TurretVariant), change.captionText.text);
+                    m_unitBuilder.M_BuildTurret(newTurretData, m_currentHardpoint.transform);
+                    break;
+                case ModuleHardpoint.HardPointType.Weapon:
 
+                    break;
+            }
         }
     }
 
     public void M_HardpointSelected(ModuleHardpoint hardPoint)
     {
+        m_currentHardpoint = hardPoint;
         m_moduleDropdown.ClearOptions();
         List<Dropdown.OptionData> options = new List<Dropdown.OptionData>();
         if (hardPoint.m_hardPointType == ModuleHardpoint.HardPointType.Turret)

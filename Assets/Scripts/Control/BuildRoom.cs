@@ -26,9 +26,13 @@ public class BuildRoom : MonoBehaviour
     }
     private void LeftClick()
     {
+        if (m_hit.transform == null)
+        {
+            return;
+        }
         if(Input.GetKeyUp(KeyCode.Mouse0))
         {
-            ModuleHardpoint hardpointSelected = m_hit.collider.GetComponentInParent<ModuleHardpoint>();
+            ModuleHardpoint hardpointSelected = m_hit.collider.GetComponent<ModuleHardpoint>();
             if (hardpointSelected)
             {
                 GetComponent<ShowroomManager>().M_HardpointSelected(hardpointSelected);
