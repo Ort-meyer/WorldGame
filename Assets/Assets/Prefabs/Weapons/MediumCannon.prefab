@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 4803638720746516}
   - component: {fileID: 114800987144558334}
   - component: {fileID: 114794194770282864}
+  - component: {fileID: 114949327867521234}
   m_Layer: 9
   m_Name: MediumCannon
   m_TagString: Untagged
@@ -173,7 +174,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1593050847324938}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0.399}
+  m_LocalPosition: {x: 0.60220253, y: 0.7, z: 0.31110597}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4518189668797686}
@@ -355,8 +356,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6439c712a38a0ab42a123da20e0c7e9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_hardPointIndex: 0
-  m_hardPointType: 0
+  attachesTo: 1
+  m_availableModules: 
+  m_module: {fileID: 1593050847324938}
 --- !u!114 &114794194770282864
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -389,3 +391,16 @@ MonoBehaviour:
   m_elevationSpeed: 10
   m_maxTraverse: 5
   m_traverseSpeed: 10
+--- !u!114 &114949327867521234
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1593050847324938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d4cca8fe16a46e4f9a582de5738d861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_moduleType: 9
+  m_parentEntity: {fileID: 0}

@@ -4,18 +4,17 @@ using UnityEngine;
 
 public enum UnitBase
 {
-    Light, Medium, Heavy, Truck
+    LightHull, MediumHull, HeavyHull, TruckHull
 };
 
-public class Unit
+public class Unit : MonoBehaviour
 {
-    UnitBase m_base;
+    public UnitBase m_base;
 
-    List<UnitModule> m_modules;
+    //List<UnitModule> m_modules = new List<UnitModule>();
 
-    public Unit(UnitBase unitBase)
+    public void Init(UnitBase unitBase)
     {
         m_base = unitBase;
-        m_modules = new List<UnitModule>();
     }
 }

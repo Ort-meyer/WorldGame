@@ -16,11 +16,11 @@ public class ShowroomManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        List<GameObject> hullPrefabs = new List<GameObject>(m_unitBuilder.m_hullPrefabs);
+        List<UnitBaseMap> unitBasePrebs = new List<UnitBaseMap>(m_unitBuilder.m_unitBasePrefabs);
         List<Dropdown.OptionData> options = new List<Dropdown.OptionData>();
-        foreach (GameObject hullPrefab in hullPrefabs)
+        foreach (UnitBaseMap unitBasePair in unitBasePrebs)
         {
-            options.Add(new Dropdown.OptionData(hullPrefab.name));
+            options.Add(new Dropdown.OptionData(unitBasePair.prefab.name));
         }
         m_hullDropDown.ClearOptions();
         m_hullDropDown.AddOptions(options);
@@ -36,27 +36,24 @@ public class ShowroomManager : MonoBehaviour
         {
             Destroy(m_currentVehicle);
         }
-        HullVariant variant = (HullVariant)Enum.Parse(typeof(HullVariant), change.captionText.text);
-        MetaHull hull = new MetaHull();
-        hull.m_hullVariant = variant;
-        m_currentVehicle = m_unitBuilder.M_BuildHull(hull, m_spawnPosition);
+
+        UnitBase unitBase = (UnitBase)Enum.Parse(typeof(UnitBase), change.captionText.text);
+        m_currentVehicle = m_unitBuilder.M_BuildUnit(unitBase, m_spawnPosition);
     }
 
     void ModuleSelected(Dropdown change)
     {
         if (m_currentVehicle != null)
-        {
-            switch(m_currentHardpoint.m_hardPointType)
+        {            
+            // Remove old, if it exists
+            if(m_currentHardpoint.m_connectedTo)
             {
-                case ModuleHardpoint.HardPointType.Turret:
-                    MetaTurret newTurretData = new MetaTurret();
-                    newTurretData.m_turretVariant = (TurretVariant)Enum.Parse(typeof(TurretVariant), change.captionText.text);
-                    m_unitBuilder.M_BuildTurret(newTurretData, m_currentHardpoint.transform);
-                    break;
-                case ModuleHardpoint.HardPointType.Weapon:
-
-                    break;
+                Destroy(m_currentHardpoint.m_connectedTo);
             }
+
+            // Create new module
+            ModuleType type = (ModuleType)Enum.Parse(typeof(ModuleType), change.captionText.text);
+            m_currentHardpoint.m_connectedTo = m_unitBuilder.M_BuildModule(type, m_currentHardpoint.m_module, m_currentHardpoint.transform);
         }
     }
 
@@ -65,19 +62,9 @@ public class ShowroomManager : MonoBehaviour
         m_currentHardpoint = hardPoint;
         m_moduleDropdown.ClearOptions();
         List<Dropdown.OptionData> options = new List<Dropdown.OptionData>();
-        if (hardPoint.m_hardPointType == ModuleHardpoint.HardPointType.Turret)
+        foreach (ModuleType moduleType in hardPoint.m_availableModules)
         {
-            foreach(TurretVariant variant in hardPoint.m_availableTurrets)
-            {
-                options.Add(new Dropdown.OptionData(variant.ToString()));
-            }
-        }
-        else if (hardPoint.m_hardPointType == ModuleHardpoint.HardPointType.Turret)
-        {
-            foreach (WeaponVariant variant in hardPoint.m_availableWeapons)
-            {
-                options.Add(new Dropdown.OptionData(variant.ToString()));
-            }
+            options.Add(new Dropdown.OptionData(moduleType.ToString()));
         }
         m_moduleDropdown.AddOptions(options);
     }

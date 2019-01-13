@@ -10,19 +10,34 @@ public enum ModuleType
     WeaponHighVelocityCannon, WeaponMachineGun, WeaponMaDeuce, WeaponMediumBarrageLauncher, WeaponMediumCannon, WeaponMediumLauncher
 };
 
-public class UnitModule
+public class UnitModule : MonoBehaviour
 {
-
-    protected GameObject m_entity;
-    protected ModuleType m_moduleType;
+    public ModuleType m_moduleType;
+    public GameObject m_parentEntity;
     
-    public UnitModule(ModuleType moduleType)
+    public void M_Init(ModuleType moduleType, GameObject parentEntity, Transform hardpoint)
     {
         m_moduleType = moduleType;
+        m_parentEntity = parentEntity;
+        M_AttachTo(hardpoint);
     }
 
     public void M_Build(Transform attachTransform)
     {
+    }
+
+    private void M_AttachTo(Transform attachTo)
+    {
+        ModuleHardpoint[] hardpoints = GetComponentsInChildren<ModuleHardpoint>();
+        foreach (ModuleHardpoint hardpoint in hardpoints)
+        {
+            if(hardpoint.attachesTo)
+            {
+                transform.position = attachTo.position - hardpoint.transform.localPosition;
+                transform.rotation = attachTo.rotation;
+                hardpoint.attachesTo = attachTo;
+            }
+        }
     }
 
 }

@@ -7,7 +7,7 @@ using MetaUnits;
 
 public class MetaWeapon
 {
-    public WeaponVariant m_weaponVariant;
+    //public WeaponVariant m_weaponVariant;
     // Use this for initialization
     void Start()
     {

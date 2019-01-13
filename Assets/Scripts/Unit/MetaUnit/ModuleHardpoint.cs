@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class ModuleHardpoint : MonoBehaviour
 {
-    public int m_hardPointIndex;
-    public enum HardPointType { AttachesTo, Turret, Weapon }
-    public HardPointType m_hardPointType;
+    //public int m_hardPointIndex;
+    //public enum HardPointType { AttachesTo, Turret, Weapon }
+    public bool attachesTo;
+    public List<ModuleType> m_availableModules = new List<ModuleType>();
+    public GameObject m_module;
+    public GameObject m_connectedTo;
 
-    public List<MetaUnits.TurretVariant> m_availableTurrets = new List<MetaUnits.TurretVariant>();
-    public List<MetaUnits.WeaponVariant> m_availableWeapons = new List<MetaUnits.WeaponVariant>();
 
     // Use this for initialization
     void Start()
