@@ -33,7 +33,7 @@ public class UnitModule : MonoBehaviour
         {
             if(hardpoint.attachesTo)
             {
-                transform.position = attachTo.position - hardpoint.transform.localPosition;
+                transform.position = attachTo.position + transform.position - hardpoint.transform.position;
                 transform.rotation = attachTo.rotation;
                 hardpoint.attachesTo = attachTo;
             }
