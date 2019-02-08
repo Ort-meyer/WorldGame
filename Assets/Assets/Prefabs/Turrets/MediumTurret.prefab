@@ -252,7 +252,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4417208707154148}
   - component: {fileID: 114973785374629836}
-  - component: {fileID: 114939334055458814}
+  - component: {fileID: 114564864131461432}
   m_Layer: 9
   m_Name: MediumTurret
   m_TagString: Untagged
@@ -756,6 +756,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09f61e336f805014e9a5a4357d26a4cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114564864131461432
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1989651807071530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b9d19449600204ea699e24f76519d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_moduleType: 3
+  m_modules: []
+  m_parentEntity: {fileID: 0}
 --- !u!114 &114580440327124472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -782,6 +796,7 @@ MonoBehaviour:
   m_availableModules: 0600000007000000
   m_module: {fileID: 1647614237293530}
   m_connectedTo: {fileID: 0}
+  m_moduleTopTransform: {fileID: 0}
 --- !u!114 &114657890102480862
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -808,6 +823,7 @@ MonoBehaviour:
   m_availableModules: 0500000009000000
   m_module: {fileID: 1688034180806684}
   m_connectedTo: {fileID: 0}
+  m_moduleTopTransform: {fileID: 0}
 --- !u!114 &114850656599222460
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -823,19 +839,7 @@ MonoBehaviour:
   m_availableModules: 
   m_module: {fileID: 0}
   m_connectedTo: {fileID: 0}
---- !u!114 &114939334055458814
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1989651807071530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d4cca8fe16a46e4f9a582de5738d861, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_moduleType: 3
-  m_parentEntity: {fileID: 0}
+  m_moduleTopTransform: {fileID: 0}
 --- !u!114 &114973785374629836
 MonoBehaviour:
   m_ObjectHideFlags: 1

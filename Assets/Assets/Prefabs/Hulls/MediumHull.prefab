@@ -193,6 +193,7 @@ GameObject:
   - component: {fileID: 114512385784362438}
   - component: {fileID: 114239570368619796}
   - component: {fileID: 114285871183151148}
+  - component: {fileID: 114737499541281018}
   m_Layer: 0
   m_Name: MediumHull
   m_TagString: Untagged
@@ -1245,6 +1246,8 @@ MonoBehaviour:
   attachesTo: 0
   m_availableModules: 0000000003000000
   m_module: {fileID: 1765337191253614}
+  m_connectedTo: {fileID: 0}
+  m_moduleTopTransform: {fileID: 0}
 --- !u!114 &114239570368619796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1267,7 +1270,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14e18d1e38bdab64eba6609ad5960a08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_base: 1
 --- !u!114 &114431603837471640
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1296,6 +1298,19 @@ MonoBehaviour:
   m_selectionHighlightPrefab: {fileID: 1108698107108286, guid: caf910057654ddf42bbb28e026dc92ac,
     type: 2}
   m_selectedHoverDistance: 3
+--- !u!114 &114737499541281018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1623164621846056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d4cca8fe16a46e4f9a582de5738d861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_moduleType: 12
+  m_modules: []
 --- !u!114 &114817071239912960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1321,6 +1336,8 @@ MonoBehaviour:
   attachesTo: 0
   m_availableModules: 0600000007000000
   m_module: {fileID: 0}
+  m_connectedTo: {fileID: 0}
+  m_moduleTopTransform: {fileID: 0}
 --- !u!114 &114997150305190006
 MonoBehaviour:
   m_ObjectHideFlags: 1

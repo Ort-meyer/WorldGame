@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 4803638720746516}
   - component: {fileID: 114800987144558334}
   - component: {fileID: 114794194770282864}
-  - component: {fileID: 114949327867521234}
+  - component: {fileID: 114839769716294000}
   m_Layer: 9
   m_Name: MediumCannon
   m_TagString: Untagged
@@ -359,6 +359,8 @@ MonoBehaviour:
   attachesTo: 1
   m_availableModules: 
   m_module: {fileID: 1593050847324938}
+  m_connectedTo: {fileID: 0}
+  m_moduleTopTransform: {fileID: 0}
 --- !u!114 &114794194770282864
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -391,7 +393,7 @@ MonoBehaviour:
   m_elevationSpeed: 10
   m_maxTraverse: 5
   m_traverseSpeed: 10
---- !u!114 &114949327867521234
+--- !u!114 &114839769716294000
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -399,8 +401,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1593050847324938}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d4cca8fe16a46e4f9a582de5738d861, type: 3}
+  m_Script: {fileID: 11500000, guid: 65b9d19449600204ea699e24f76519d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_moduleType: 9
+  m_modules: []
   m_parentEntity: {fileID: 0}

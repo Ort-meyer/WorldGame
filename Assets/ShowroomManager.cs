@@ -16,11 +16,16 @@ public class ShowroomManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        List<UnitBaseMap> unitBasePrebs = new List<UnitBaseMap>(m_unitBuilder.m_unitBasePrefabs);
+        List<ModuleTypeMap> modulePrefabs = new List<ModuleTypeMap>(m_unitBuilder.m_modulePrefabs);
         List<Dropdown.OptionData> options = new List<Dropdown.OptionData>();
-        foreach (UnitBaseMap unitBasePair in unitBasePrebs)
+        // Add all hulls to menu (this seems possibly silly)
+        foreach (ModuleTypeMap modulePair in modulePrefabs)
         {
-            options.Add(new Dropdown.OptionData(unitBasePair.prefab.name));
+            string moduleName = modulePair.prefab.name;
+            if (moduleName.ToLower().Contains("hull"))
+            {
+                options.Add(new Dropdown.OptionData(moduleName));
+            }
         }
         m_hullDropDown.ClearOptions();
         m_hullDropDown.AddOptions(options);
@@ -37,23 +42,23 @@ public class ShowroomManager : MonoBehaviour
             Destroy(m_currentVehicle);
         }
 
-        UnitBase unitBase = (UnitBase)Enum.Parse(typeof(UnitBase), change.captionText.text);
-        m_currentVehicle = m_unitBuilder.M_BuildUnit(unitBase, m_spawnPosition);
+        ModuleType hullType = (ModuleType)Enum.Parse(typeof(ModuleType), change.captionText.text);
+        m_currentVehicle = m_unitBuilder.M_BuildUnit(hullType, m_spawnPosition);
     }
 
     void ModuleSelected(Dropdown change)
     {
         if (m_currentVehicle != null)
-        {            
+        {
             // Remove old, if it exists
-            if(m_currentHardpoint.m_connectedTo)
+            if (m_currentHardpoint.m_connectedTo)
             {
                 Destroy(m_currentHardpoint.m_connectedTo);
             }
 
             // Create new module
             ModuleType type = (ModuleType)Enum.Parse(typeof(ModuleType), change.captionText.text);
-            m_currentHardpoint.m_connectedTo = m_unitBuilder.M_BuildModule(type, m_currentHardpoint.m_module, m_currentHardpoint.transform);
+            m_currentHardpoint.m_connectedTo = m_unitBuilder.M_BuildModule(type, m_currentHardpoint, m_currentHardpoint.transform);
         }
     }
 

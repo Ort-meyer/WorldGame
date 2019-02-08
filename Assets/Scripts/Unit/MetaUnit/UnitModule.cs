@@ -7,37 +7,13 @@ public enum ModuleType
     // Turrets
     TurretHeavy, TurretLightLaunch, TurretLight, TurretMedium, TurretMediumLaunch,
     // Weapons
-    WeaponHighVelocityCannon, WeaponMachineGun, WeaponMaDeuce, WeaponMediumBarrageLauncher, WeaponMediumCannon, WeaponMediumLauncher
+    WeaponHighVelocityCannon, WeaponMachineGun, WeaponMaDeuce, WeaponMediumBarrageLauncher, WeaponMediumCannon, WeaponMediumLauncher,
+    // Hulls
+    LightHull, MediumHull, HeavyHull, TruckHull // Should change names to HullHeavy etc. Try and see if easy?
 };
 
 public class UnitModule : MonoBehaviour
 {
     public ModuleType m_moduleType;
-    public GameObject m_parentEntity;
-    
-    public void M_Init(ModuleType moduleType, GameObject parentEntity, Transform hardpoint)
-    {
-        m_moduleType = moduleType;
-        m_parentEntity = parentEntity;
-        M_AttachTo(hardpoint);
-    }
-
-    public void M_Build(Transform attachTransform)
-    {
-    }
-
-    private void M_AttachTo(Transform attachTo)
-    {
-        ModuleHardpoint[] hardpoints = GetComponentsInChildren<ModuleHardpoint>();
-        foreach (ModuleHardpoint hardpoint in hardpoints)
-        {
-            if(hardpoint.attachesTo)
-            {
-                transform.position = attachTo.position + transform.position - hardpoint.transform.position;
-                transform.rotation = attachTo.rotation;
-                hardpoint.attachesTo = attachTo;
-            }
-        }
-    }
-
+    public List<UnitModule> m_modules = new List<UnitModule>();
 }

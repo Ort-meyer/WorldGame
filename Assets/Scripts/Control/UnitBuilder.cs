@@ -12,13 +12,6 @@ namespace MetaUnits
 }
 
 [System.Serializable]
-public class UnitBaseMap
-{
-    public UnitBase unitBase;
-    public GameObject prefab;
-}
-
-[System.Serializable]
 public class ModuleTypeMap
 {
     public ModuleType moduleType;
@@ -36,8 +29,7 @@ public class UnitBuilder : MonoBehaviour // Singleton<UnitBuilder> TODO make sin
     
 
 
-
-    public UnitBaseMap[] m_unitBasePrefabs = new UnitBaseMap[System.Enum.GetNames(typeof(UnitBase)).Length];
+        
     public ModuleTypeMap[] m_modulePrefabs = new ModuleTypeMap[System.Enum.GetNames(typeof(ModuleType)).Length];
     //public GameObject[] m_weaponPrefabs = new GameObject[System.Enum.GetNames(typeof(WeaponVariant)).Length];
     //public GameObject[] m_turretPrefabs = new GameObject[System.Enum.GetNames(typeof(TurretVariant)).Length];
@@ -66,34 +58,23 @@ public class UnitBuilder : MonoBehaviour // Singleton<UnitBuilder> TODO make sin
         //}
     }
 
-    public GameObject M_BuildUnit(UnitBase unitBase, Transform spawnPosition)
+    public GameObject M_BuildUnit(ModuleType hullType, Transform spawnPosition)
     {
-        GameObject newUnit = Instantiate(M_FindUnitBasePrefab(unitBase));
+        // Should be some assert that unitHull is actually a hull?
+        GameObject newUnit = Instantiate(M_FindModulePrefab(hullType));
         newUnit.transform.position = spawnPosition.position;
         newUnit.transform.rotation = spawnPosition.rotation;
 
         return newUnit;
     }
 
-    public GameObject M_BuildModule(ModuleType moduleType, GameObject parentModule, Transform hardPoint)
+    public GameObject M_BuildModule(ModuleType moduleType, ModuleHardpoint parentModule, Transform hardPoint)
     {
         GameObject newModule = Instantiate(M_FindModulePrefab(moduleType), parentModule.transform);
-        newModule.GetComponent<UnitModule>().M_Init(moduleType, parentModule, hardPoint);
+        
+        newModule.GetComponent<UnitSubModule>().M_Init(moduleType, parentModule.m_module, hardPoint);
 
         return newModule;
-    }
-
-    private GameObject M_FindUnitBasePrefab(UnitBase unitBase)
-    {
-        foreach(UnitBaseMap pair in m_unitBasePrefabs)
-        {
-            if(pair.unitBase == unitBase)
-            {
-                return pair.prefab;
-            }
-        }
-        Debug.LogError("UnitBasePrefab mapping not found");
-        return null; // Should never happen
     }
 
     private GameObject M_FindModulePrefab(ModuleType moduleType)

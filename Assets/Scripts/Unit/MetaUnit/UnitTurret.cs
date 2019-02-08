@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitTurret : UnitModule
+public class UnitTurret : UnitSubModule
 {
     List<UnitModule> m_submodules = new List<UnitModule>();
 

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4369073215100426}
   - component: {fileID: 114530820568360262}
   - component: {fileID: 114829306702549824}
-  - component: {fileID: 114889117616422752}
+  - component: {fileID: 114772415383083382}
   m_Layer: 9
   m_Name: HighVelocityCannon
   m_TagString: Untagged
@@ -434,6 +434,20 @@ MonoBehaviour:
   m_elevationSpeed: 10
   m_maxTraverse: 5
   m_traverseSpeed: 10
+--- !u!114 &114772415383083382
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1124130171541570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b9d19449600204ea699e24f76519d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_moduleType: 5
+  m_modules: []
+  m_parentEntity: {fileID: 0}
 --- !u!114 &114829306702549824
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -464,16 +478,5 @@ MonoBehaviour:
   attachesTo: 1
   m_availableModules: 
   m_module: {fileID: 1124130171541570}
---- !u!114 &114889117616422752
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1124130171541570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d4cca8fe16a46e4f9a582de5738d861, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_moduleType: 5
-  m_parentEntity: {fileID: 0}
+  m_connectedTo: {fileID: 0}
+  m_moduleTopTransform: {fileID: 0}
