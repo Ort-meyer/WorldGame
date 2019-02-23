@@ -15,5 +15,25 @@ public enum ModuleType
 public class UnitModule : MonoBehaviour
 {
     public ModuleType m_moduleType;
-    public List<UnitModule> m_modules = new List<UnitModule>();
+    public Dictionary<int, UnitModule> m_modules = new Dictionary<int, UnitModule>();
+
+    public void M_Init(ModuleType moduleType)
+    {
+        m_moduleType = moduleType;
+        ModuleHardpoint[] moduleHardpoints = GetComponentsInChildren<ModuleHardpoint>();
+        foreach (ModuleHardpoint hardpoint in moduleHardpoints)
+        {
+            hardpoint.m_moduleTopObject = this.gameObject;
+        }
+    }
+
+    public void M_AddToModuleDict(int id, UnitModule module)
+    {
+        m_modules[id] = module;
+    }
+
+    public void M_RemoveFromModuleDict(int id)
+    {
+        m_modules.Remove(id);
+    }
 }

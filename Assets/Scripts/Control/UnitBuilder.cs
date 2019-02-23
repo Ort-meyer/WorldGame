@@ -64,15 +64,17 @@ public class UnitBuilder : MonoBehaviour // Singleton<UnitBuilder> TODO make sin
         GameObject newUnit = Instantiate(M_FindModulePrefab(hullType));
         newUnit.transform.position = spawnPosition.position;
         newUnit.transform.rotation = spawnPosition.rotation;
+        newUnit.GetComponent<UnitModule>().M_Init(hullType);
 
         return newUnit;
     }
 
-    public GameObject M_BuildModule(ModuleType moduleType, ModuleHardpoint parentModule, Transform hardPoint)
+    public GameObject M_BuildModule(ModuleType moduleType, ModuleHardpoint parentModule)
     {
-        GameObject newModule = Instantiate(M_FindModulePrefab(moduleType), parentModule.transform);
+        GameObject newModule = Instantiate(M_FindModulePrefab(moduleType));
         
-        newModule.GetComponent<UnitSubModule>().M_Init(moduleType, parentModule.m_module, hardPoint);
+        newModule.GetComponent<UnitSubModule>().M_Init(moduleType, parentModule);
+        newModule.transform.parent = parentModule.m_moduleTopObject.transform;
 
         return newModule;
     }

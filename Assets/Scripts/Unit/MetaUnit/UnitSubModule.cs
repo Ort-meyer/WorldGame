@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class UnitSubModule : UnitModule
 {
-    public GameObject m_parentEntity;
+    UnitModule m_attachedTo;
+
     // Use this for initialization
     void Start()
     {
@@ -17,27 +18,35 @@ public class UnitSubModule : UnitModule
 
     }
 
-    public void M_Init(ModuleType moduleType, GameObject parentEntity, Transform hardpoint)
+    private void OnDestroy()
     {
-        m_moduleType = moduleType;
-        m_parentEntity = parentEntity;
-        M_AttachTo(hardpoint);
+        m_attachedTo.M_RemoveFromModuleDict(this.GetInstanceID());
+    }
+
+    public void M_Init(ModuleType moduleType, ModuleHardpoint parentModule)
+    {
+        base.M_Init(moduleType);
+        M_AttachTo(parentModule);
     }
 
     public void M_Build(Transform attachTransform)
     {
     }
 
-    private void M_AttachTo(Transform attachTo)
+    private void M_AttachTo(ModuleHardpoint attachTo)
     {
+        m_attachedTo = attachTo.m_moduleTopObject.GetComponent<UnitModule>();
         ModuleHardpoint[] hardpoints = GetComponentsInChildren<ModuleHardpoint>();
         foreach (ModuleHardpoint hardpoint in hardpoints)
         {
             if (hardpoint.attachesTo)
             {
-                transform.position = attachTo.position + transform.position - hardpoint.transform.position;
-                transform.rotation = attachTo.rotation;
-                hardpoint.attachesTo = attachTo;
+                transform.parent = attachTo.m_moduleTopObject.transform;
+                transform.position = attachTo.transform.position;
+                transform.localPosition -= hardpoint.transform.localPosition;
+                transform.rotation = attachTo.transform.rotation;
+                hardpoint.attachesTo = attachTo; // Why? Remove?
+                attachTo.m_moduleTopObject.GetComponent<UnitModule>().M_AddToModuleDict(this.GetInstanceID(), this);
             }
         }
     }

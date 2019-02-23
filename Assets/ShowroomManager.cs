@@ -58,7 +58,7 @@ public class ShowroomManager : MonoBehaviour
 
             // Create new module
             ModuleType type = (ModuleType)Enum.Parse(typeof(ModuleType), change.captionText.text);
-            m_currentHardpoint.m_connectedTo = m_unitBuilder.M_BuildModule(type, m_currentHardpoint, m_currentHardpoint.transform);
+            m_currentHardpoint.m_connectedTo = m_unitBuilder.M_BuildModule(type, m_currentHardpoint);
         }
     }
 
