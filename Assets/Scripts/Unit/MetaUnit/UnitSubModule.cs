@@ -5,6 +5,7 @@ using UnityEngine;
 public class UnitSubModule : UnitModule
 {
     UnitModule m_attachedTo;
+    public int m_attachedToIndex;
 
     // Use this for initialization
     void Start()
@@ -41,6 +42,7 @@ public class UnitSubModule : UnitModule
         {
             if (hardpoint.attachesTo)
             {
+                m_attachedToIndex = attachTo.m_hardpointIndex;
                 transform.parent = attachTo.m_moduleTopObject.transform;
                 transform.position = attachTo.transform.position;
                 transform.localPosition -= hardpoint.transform.localPosition;

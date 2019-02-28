@@ -12,6 +12,17 @@ public enum ModuleType
     LightHull, MediumHull, HeavyHull, TruckHull // Should change names to HullHeavy etc. Try and see if easy?
 };
 
+// Class to save modules
+[System.Serializable]
+public class Module
+{
+    public string moduleType;
+    public List<Module> modules = new List<Module>();
+    public int attachedToIndex;
+    public Module() { }
+}
+
+
 public class UnitModule : MonoBehaviour
 {
     public ModuleType m_moduleType;
@@ -20,10 +31,14 @@ public class UnitModule : MonoBehaviour
     public void M_Init(ModuleType moduleType)
     {
         m_moduleType = moduleType;
+        int index = 0;
         ModuleHardpoint[] moduleHardpoints = GetComponentsInChildren<ModuleHardpoint>();
         foreach (ModuleHardpoint hardpoint in moduleHardpoints)
         {
             hardpoint.m_moduleTopObject = this.gameObject;
+            // Set index. Hope it's deterministic... (otherwise derive it off of it's localPosition?)
+            hardpoint.m_hardpointIndex = index;
+            index++;
         }
     }
 

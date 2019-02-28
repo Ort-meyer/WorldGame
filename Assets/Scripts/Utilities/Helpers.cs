@@ -25,4 +25,9 @@ public static class Helpers
         Color color = new Color(0, 0, 1.0f);
         Debug.DrawLine(from, to, color);
     }
+
+    public static ModuleType StringToModuleType(string typeString)
+    {
+        return (ModuleType)System.Enum.Parse(typeof(ModuleType), typeString);
+    }
 }

@@ -12,6 +12,7 @@ public class ModuleHardpoint : MonoBehaviour
     public GameObject m_connectedTo;
     // The top level transform of this module
     public GameObject m_moduleTopObject;
+    public int m_hardpointIndex;
 
     // Use this for initialization
     void Start()
