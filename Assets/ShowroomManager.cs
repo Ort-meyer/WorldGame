@@ -83,30 +83,25 @@ public class ShowroomManager : MonoBehaviour
         }
         m_moduleDropdown.AddOptions(options);
     }
-    
+
 
     void SaveToFile()
     {
-        Module unitToSave = CoolRecursiveMethod(m_currentVehicle.GetComponent<UnitModule>());
+        SavedModule unitToSave = CoolRecursiveMethod(m_currentVehicle.GetComponent<UnitModule>());
         string jsonString = JsonUtility.ToJson(unitToSave);
-        File.WriteAllText("Test.unit", jsonString);
+        SaveLoadHandler.SaveToFile("Test.unit", jsonString);
     }
 
     void LoadFromFile()
     {
-        string jsonString;
-        var fileStream = new FileStream("Test.unit", FileMode.Open, FileAccess.Read);
-        using (var streamReader = new StreamReader(fileStream))
-        {
-            jsonString = streamReader.ReadToEnd();
-        }
+        string jsonString = SaveLoadHandler.LoadFromFile("Test.unit");
 
-        Module unitToLoad = JsonUtility.FromJson<Module>(jsonString);
+        SavedModule unitToLoad = JsonUtility.FromJson<SavedModule>(jsonString);
         GameObject newUnit = m_unitBuilder.M_BuildUnit((ModuleType)Enum.Parse(typeof(ModuleType), unitToLoad.moduleType), m_spawnPosition);
         Destroy(m_currentVehicle);
         m_currentVehicle = newUnit;
         m_currentHardpoint = null;
-        foreach(Module newModule in unitToLoad.modules)
+        foreach(SavedModule newModule in unitToLoad.modules)
         {
             CoolRecursiveMethodLoad(newModule, newUnit);
         }
@@ -125,9 +120,9 @@ public class ShowroomManager : MonoBehaviour
         return correctHardpoint;
     }
 
-    Module CoolRecursiveMethod(UnitModule currentModule)
+    SavedModule CoolRecursiveMethod(UnitModule currentModule)
     {
-        Module moduleToSave = new Module();
+        SavedModule moduleToSave = new SavedModule();
         moduleToSave.moduleType = currentModule.m_moduleType.ToString();
         foreach(UnitModule module in currentModule.m_modules.Values)
         {
@@ -136,10 +131,10 @@ public class ShowroomManager : MonoBehaviour
         return moduleToSave;
     }
 
-    GameObject CoolRecursiveMethodLoad(Module moduleToBuild, GameObject parent)
+    GameObject CoolRecursiveMethodLoad(SavedModule moduleToBuild, GameObject parent)
     {
         GameObject newModuleObject = m_unitBuilder.M_BuildModule(Helpers.StringToModuleType(moduleToBuild.moduleType), FindHardpointByIndex(parent, moduleToBuild.attachedToIndex));
-        foreach (Module newModule in moduleToBuild.modules)
+        foreach (SavedModule newModule in moduleToBuild.modules)
         {
             CoolRecursiveMethodLoad(newModule, newModuleObject);
         }

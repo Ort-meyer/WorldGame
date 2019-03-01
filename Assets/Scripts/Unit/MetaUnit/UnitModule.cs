@@ -14,12 +14,12 @@ public enum ModuleType
 
 // Class to save modules    
 [System.Serializable]
-public class Module
+public class SavedModule
 {
     public string moduleType;
-    public List<Module> modules = new List<Module>();
+    public List<SavedModule> modules = new List<SavedModule>();
     public int attachedToIndex;
-    public Module() { }
+    public SavedModule() { }
 }
 
 
