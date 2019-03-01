@@ -12,7 +12,7 @@ public enum ModuleType
     LightHull, MediumHull, HeavyHull, TruckHull // Should change names to HullHeavy etc. Try and see if easy?
 };
 
-// Class to save modules
+// Class to save modules    
 [System.Serializable]
 public class Module
 {

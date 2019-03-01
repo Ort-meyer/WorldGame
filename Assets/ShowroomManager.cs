@@ -108,7 +108,7 @@ public class ShowroomManager : MonoBehaviour
         m_currentHardpoint = null;
         foreach(Module newModule in unitToLoad.modules)
         {
-            m_unitBuilder.M_BuildModule(Helpers.StringToModuleType(unitToLoad.moduleType), FindHardpointByIndex(newUnit, unitToLoad.attachedToIndex));
+            CoolRecursiveMethodLoad(newModule, newUnit);
         }
     }
 
@@ -136,12 +136,14 @@ public class ShowroomManager : MonoBehaviour
         return moduleToSave;
     }
 
-    void CoolRecursiveMethod2Load(Module moduleToBuild)
+    GameObject CoolRecursiveMethodLoad(Module moduleToBuild, GameObject parent)
     {
-        foreach (Module newModule in unitToLoad.modules)
+        GameObject newModuleObject = m_unitBuilder.M_BuildModule(Helpers.StringToModuleType(moduleToBuild.moduleType), FindHardpointByIndex(parent, moduleToBuild.attachedToIndex));
+        foreach (Module newModule in moduleToBuild.modules)
         {
-            m_unitBuilder.M_BuildModule(Helpers.StringToModuleType(unitToLoad.moduleType), FindHardpointByIndex(newUnit, unitToLoad.attachedToIndex));
+            CoolRecursiveMethodLoad(newModule, newModuleObject);
         }
+        return newModuleObject;
     }
 
     // Update is called once per frame
