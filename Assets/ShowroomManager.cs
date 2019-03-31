@@ -11,6 +11,7 @@ public class ShowroomManager : MonoBehaviour
     public Dropdown m_hullDropDown;
     public Dropdown m_moduleDropdown;
     public UnitBuilder m_unitBuilder;
+    public SaveLoadHandler m_saveLoadHandler;
     public Transform m_spawnPosition;
 
     public Button m_saveButton;
@@ -89,12 +90,12 @@ public class ShowroomManager : MonoBehaviour
     {
         SavedModule unitToSave = CoolRecursiveMethod(m_currentVehicle.GetComponent<UnitModule>());
         string jsonString = JsonUtility.ToJson(unitToSave);
-        SaveLoadHandler.SaveToFile("Test.unit", jsonString);
+        m_saveLoadHandler.SaveToFile("Test.unit", jsonString);
     }
 
     void LoadFromFile()
     {
-        string jsonString = SaveLoadHandler.LoadFromFile("Test.unit");
+        string jsonString = m_saveLoadHandler.LoadFromFile("Test.unit");
 
         SavedModule unitToLoad = JsonUtility.FromJson<SavedModule>(jsonString);
         GameObject newUnit = m_unitBuilder.M_BuildUnit((ModuleType)Enum.Parse(typeof(ModuleType), unitToLoad.moduleType), m_spawnPosition);
