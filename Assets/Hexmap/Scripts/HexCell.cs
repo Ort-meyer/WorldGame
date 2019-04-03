@@ -16,6 +16,15 @@ public static class HexDirectionExtensions
     {
         return (int)direction < 3 ? (direction + 3) : (direction - 3);
     }
+    public static HexDirection Previous(this HexDirection direction)
+    {
+        return direction == HexDirection.NE ? HexDirection.NW : (direction - 1);
+    }
+
+    public static HexDirection Next(this HexDirection direction)
+    {
+        return direction == HexDirection.NW ? HexDirection.NE : (direction + 1);
+    }
 }
 /////////////////////////////////////////////
 
@@ -46,5 +55,6 @@ public class HexCell : MonoBehaviour
     public void SetNeighbor(HexDirection direction, HexCell cell)
     {
         neighbors[(int)direction] = cell;
+        cell.neighbors[(int)direction.Opposite()] = this;
     }
 }

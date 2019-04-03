@@ -80,11 +80,11 @@ public class HexGrid : MonoBehaviour
         cell.transform.localPosition = position;
         cell.coordinates = HexCoordinates.FromOffsetCoordinates(x, z);
 
-        Text label = Instantiate<Text>(cellLabelPrefab);
-        label.rectTransform.SetParent(gridCanvas.transform, false);
-        label.rectTransform.anchoredPosition =
-            new Vector2(position.x, position.z);
-        label.text = cell.coordinates.ToStringOnSeparateLines();
+        //Text label = Instantiate<Text>(cellLabelPrefab);
+        //label.rectTransform.SetParent(gridCanvas.transform, false);
+        //label.rectTransform.anchoredPosition =
+        //    new Vector2(position.x, position.z);
+        //label.text = cell.coordinates.ToStringOnSeparateLines();
 
         cell.color = defaultColor;
         // Connect to neighbout on the left in grid
