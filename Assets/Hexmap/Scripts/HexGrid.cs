@@ -87,5 +87,32 @@ public class HexGrid : MonoBehaviour
         label.text = cell.coordinates.ToStringOnSeparateLines();
 
         cell.color = defaultColor;
+        // Connect to neighbout on the left in grid
+        if (x > 0)
+        {
+            cell.SetNeighbor(HexDirection.W, cells[i - 1]);
+        }
+        // Connect to SE and SW neighbours
+        if (z > 0)
+        {
+            if ((z & 1) == 0) // Only even rows
+            {
+                // Every even row cell has a south east neighbour
+                cell.SetNeighbor(HexDirection.SE, cells[i - width]);
+                if (x > 0) // For south west neighbours
+                {
+                    cell.SetNeighbor(HexDirection.SW, cells[i - width - 1]);
+                }
+            }
+            else // Mirrored for odd rows
+            {
+                cell.SetNeighbor(HexDirection.SW, cells[i - width]);
+                if (x < width - 1)
+                {
+                    cell.SetNeighbor(HexDirection.SE, cells[i - width + 1]);
+                }
+            }
+        }
+
     }
 }
