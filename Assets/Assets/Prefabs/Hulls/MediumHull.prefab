@@ -35,6 +35,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4775178801992186}
   - component: {fileID: 114986280207584754}
+  - component: {fileID: 135842934013251170}
   m_Layer: 0
   m_Name: Connector
   m_TagString: Untagged
@@ -1247,7 +1248,8 @@ MonoBehaviour:
   m_availableModules: 0000000003000000
   m_module: {fileID: 1765337191253614}
   m_connectedTo: {fileID: 0}
-  m_moduleTopTransform: {fileID: 0}
+  m_moduleTopObject: {fileID: 0}
+  m_hardpointIndex: 0
 --- !u!114 &114239570368619796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1310,7 +1312,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_moduleType: 12
-  m_modules: []
 --- !u!114 &114817071239912960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1337,7 +1338,8 @@ MonoBehaviour:
   m_availableModules: 0600000007000000
   m_module: {fileID: 0}
   m_connectedTo: {fileID: 0}
-  m_moduleTopTransform: {fileID: 0}
+  m_moduleTopObject: {fileID: 0}
+  m_hardpointIndex: 0
 --- !u!114 &114997150305190006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1363,4 +1365,16 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &135842934013251170
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1010306282671182}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.05
   m_Center: {x: 0, y: 0, z: 0}

@@ -106,6 +106,8 @@ GameObject:
   - component: {fileID: 114658923121371714}
   - component: {fileID: 114030041764122026}
   - component: {fileID: 114729458661667518}
+  - component: {fileID: 114286344542736280}
+  - component: {fileID: 114995898864380926}
   m_Layer: 0
   m_Name: HeavyHull
   m_TagString: Untagged
@@ -345,7 +347,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1278870774422256}
   m_LocalRotation: {x: -0, y: -0.698423, z: -0, w: 0.7156852}
-  m_LocalPosition: {x: -0.5293311, y: 0.5, z: 0.39569664}
+  m_LocalPosition: {x: -0.5293311, y: 0.799, z: 0.39569664}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4614002021959988}
@@ -683,6 +685,17 @@ MonoBehaviour:
   m_selectionHighlightPrefab: {fileID: 1108698107108286, guid: caf910057654ddf42bbb28e026dc92ac,
     type: 2}
   m_selectedHoverDistance: 3
+--- !u!114 &114286344542736280
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1278870774422256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14e18d1e38bdab64eba6609ad5960a08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114559279893105500
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -694,10 +707,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6439c712a38a0ab42a123da20e0c7e9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_hardPointIndex: 0
-  m_hardPointType: 1
-  m_availableTurrets: 030000000000000004000000
-  m_availableWeapons: []
+  attachesTo: 0
+  m_availableModules: 000000000300000004000000
+  m_module: {fileID: 0}
+  m_connectedTo: {fileID: 0}
+  m_moduleTopObject: {fileID: 0}
+  m_hardpointIndex: 0
 --- !u!114 &114658923121371714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -711,10 +726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_alignment: 0
   m_hp: 10
-  m_metaHull:
-    m_hullVariant: 0
-    m_metaTurrets: []
-    m_metaWeapons: []
+  m_unit: {fileID: 0}
 --- !u!114 &114722308102936236
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -737,6 +749,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4d9d92efef7ab4eb18d182cb00f9ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114995898864380926
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1278870774422256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d4cca8fe16a46e4f9a582de5738d861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_moduleType: 13
 --- !u!135 &135276680013852264
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -747,5 +771,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4
+  m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}

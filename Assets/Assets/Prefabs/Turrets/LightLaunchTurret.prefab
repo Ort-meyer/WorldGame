@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4205039590201060}
   - component: {fileID: 114992374433654142}
+  - component: {fileID: 135075129489608586}
   m_Layer: 0
   m_Name: Connector
   m_TagString: Untagged
@@ -120,6 +121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4130961267073482}
   - component: {fileID: 114464789055969354}
+  - component: {fileID: 114863522660439458}
   m_Layer: 0
   m_Name: LightLaunchTurret
   m_TagString: Untagged
@@ -196,7 +198,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1725462303554156}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.343, z: 0}
+  m_LocalPosition: {x: 0, y: 0.976, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4286049356433466}
@@ -540,8 +542,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6439c712a38a0ab42a123da20e0c7e9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_hardPointIndex: 0
-  m_hardPointType: 0
+  attachesTo: 1
+  m_availableModules: 
+  m_module: {fileID: 0}
+  m_connectedTo: {fileID: 0}
+  m_moduleTopObject: {fileID: 0}
+  m_hardpointIndex: 0
+--- !u!114 &114863522660439458
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1725462303554156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b9d19449600204ea699e24f76519d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_moduleType: 1
+  m_attachedToIndex: 0
 --- !u!114 &114992374433654142
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -553,8 +572,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6439c712a38a0ab42a123da20e0c7e9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_hardPointIndex: 0
-  m_hardPointType: 2
+  attachesTo: 0
+  m_availableModules: 0a000000
+  m_module: {fileID: 0}
+  m_connectedTo: {fileID: 0}
+  m_moduleTopObject: {fileID: 0}
+  m_hardpointIndex: 0
+--- !u!135 &135075129489608586
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1212613840791648}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.05
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136662608478423570
 CapsuleCollider:
   m_ObjectHideFlags: 1

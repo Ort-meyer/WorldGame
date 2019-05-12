@@ -24,9 +24,11 @@ public class ShowroomManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        m_saveLoadHandler = new SaveLoadHandler();
         List<ModuleTypeMap> modulePrefabs = new List<ModuleTypeMap>(m_unitBuilder.m_modulePrefabs);
         List<Dropdown.OptionData> options = new List<Dropdown.OptionData>();
         // Add all hulls to menu (this seems possibly silly)
+        options.Add(new Dropdown.OptionData());
         foreach (ModuleTypeMap modulePair in modulePrefabs)
         {
             string moduleName = modulePair.prefab.name;
@@ -78,6 +80,7 @@ public class ShowroomManager : MonoBehaviour
         m_currentHardpoint = hardPoint;
         m_moduleDropdown.ClearOptions();
         List<Dropdown.OptionData> options = new List<Dropdown.OptionData>();
+        options.Add(new Dropdown.OptionData());
         foreach (ModuleType moduleType in hardPoint.m_availableModules)
         {
             options.Add(new Dropdown.OptionData(moduleType.ToString()));
@@ -90,7 +93,8 @@ public class ShowroomManager : MonoBehaviour
     {
         SavedModule unitToSave = CoolRecursiveMethod(m_currentVehicle.GetComponent<UnitModule>());
         string jsonString = JsonUtility.ToJson(unitToSave);
-        m_saveLoadHandler.SaveToFile("Test.unit", jsonString);
+        string unitName = m_inputField.text;
+        m_saveLoadHandler.SaveToFile(unitName, jsonString);
     }
 
     void LoadFromFile()

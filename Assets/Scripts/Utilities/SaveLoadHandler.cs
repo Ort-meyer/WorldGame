@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public class SaveLoadHandler : MonoBehaviour
+public class SaveLoadHandler
 {
     const string m_unitSaveFolder = @"SavedUnits\";
     const string m_fileFormat = ".unit";
@@ -18,7 +18,7 @@ public class SaveLoadHandler : MonoBehaviour
     {
         // See if unit name already exists, and if we should overwrite. Make check separate method?
         string fullFileName = m_unitSaveFolder + fileName + m_fileFormat;
-        File.WriteAllText(fileName, saveString);
+        File.WriteAllText(fullFileName, saveString);
 
     }
 
