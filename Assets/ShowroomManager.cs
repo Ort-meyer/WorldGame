@@ -89,62 +89,62 @@ public class ShowroomManager : MonoBehaviour
     }
 
 
-    void SaveToFile()
-    {
-        SavedModule unitToSave = CoolRecursiveMethod(m_currentVehicle.GetComponent<UnitModule>());
-        string jsonString = JsonUtility.ToJson(unitToSave);
-        string unitName = m_inputField.text;
-        m_saveLoadHandler.SaveToFile(unitName, jsonString);
-    }
+    //void SaveToFile()
+    //{
+    //    SavedModule unitToSave = CoolRecursiveMethod(m_currentVehicle.GetComponent<UnitModule>());
+    //    string jsonString = JsonUtility.ToJson(unitToSave);
+    //    string unitName = m_inputField.text;
+    //    m_saveLoadHandler.SaveToFile(unitName, jsonString);
+    //}
 
-    void LoadFromFile()
-    {
-        string jsonString = m_saveLoadHandler.LoadFromFile("Test.unit");
+    //void LoadFromFile()
+    //{
+    //    string jsonString = m_saveLoadHandler.LoadFromFile("Test.unit");
 
-        SavedModule unitToLoad = JsonUtility.FromJson<SavedModule>(jsonString);
-        GameObject newUnit = m_unitBuilder.M_BuildUnit((ModuleType)Enum.Parse(typeof(ModuleType), unitToLoad.moduleType), m_spawnPosition);
-        Destroy(m_currentVehicle);
-        m_currentVehicle = newUnit;
-        m_currentHardpoint = null;
-        foreach(SavedModule newModule in unitToLoad.modules)
-        {
-            CoolRecursiveMethodLoad(newModule, newUnit);
-        }
-    }
+    //    SavedModule unitToLoad = JsonUtility.FromJson<SavedModule>(jsonString);
+    //    GameObject newUnit = m_unitBuilder.M_BuildUnit((ModuleType)Enum.Parse(typeof(ModuleType), unitToLoad.moduleType), m_spawnPosition);
+    //    Destroy(m_currentVehicle);
+    //    m_currentVehicle = newUnit;
+    //    m_currentHardpoint = null;
+    //    foreach(SavedModule newModule in unitToLoad.modules)
+    //    {
+    //        CoolRecursiveMethodLoad(newModule, newUnit);
+    //    }
+    //}
 
-    ModuleHardpoint FindHardpointByIndex(GameObject module, int index)
-    {
-        ModuleHardpoint correctHardpoint = null;
-        foreach(ModuleHardpoint hardpoint in module.GetComponentsInChildren<ModuleHardpoint>())
-        {
-            if (hardpoint.m_hardpointIndex == index)
-            {
-                correctHardpoint = hardpoint;
-            }
-        }
-        return correctHardpoint;
-    }
+    //ModuleHardpoint FindHardpointByIndex(GameObject module, int index)
+    //{
+    //    ModuleHardpoint correctHardpoint = null;
+    //    foreach(ModuleHardpoint hardpoint in module.GetComponentsInChildren<ModuleHardpoint>())
+    //    {
+    //        if (hardpoint.m_hardpointIndex == index)
+    //        {
+    //            correctHardpoint = hardpoint;
+    //        }
+    //    }
+    //    return correctHardpoint;
+    //}
 
-    SavedModule CoolRecursiveMethod(UnitModule currentModule)
-    {
-        SavedModule moduleToSave = new SavedModule();
-        moduleToSave.moduleType = currentModule.m_moduleType.ToString();
-        foreach(UnitModule module in currentModule.m_modules.Values)
-        {
-            moduleToSave.modules.Add(CoolRecursiveMethod(module));
-        }
-        return moduleToSave;
-    }
+    //SavedModule CoolRecursiveMethod(UnitModule currentModule)
+    //{
+    //    SavedModule moduleToSave = new SavedModule();
+    //    moduleToSave.moduleType = currentModule.m_moduleType.ToString();
+    //    foreach(UnitModule module in currentModule.m_modules.Values)
+    //    {
+    //        moduleToSave.modules.Add(CoolRecursiveMethod(module));
+    //    }
+    //    return moduleToSave;
+    //}
 
-    GameObject CoolRecursiveMethodLoad(SavedModule moduleToBuild, GameObject parent)
-    {
-        GameObject newModuleObject = m_unitBuilder.M_BuildModule(Helpers.StringToModuleType(moduleToBuild.moduleType), FindHardpointByIndex(parent, moduleToBuild.attachedToIndex));
-        foreach (SavedModule newModule in moduleToBuild.modules)
-        {
-            CoolRecursiveMethodLoad(newModule, newModuleObject);
-        }
-        return newModuleObject;
-    }
+    //GameObject CoolRecursiveMethodLoad(SavedModule moduleToBuild, GameObject parent)
+    //{
+    //    GameObject newModuleObject = m_unitBuilder.M_BuildModule(Helpers.StringToModuleType(moduleToBuild.moduleType), FindHardpointByIndex(parent, moduleToBuild.attachedToIndex));
+    //    foreach (SavedModule newModule in moduleToBuild.modules)
+    //    {
+    //        CoolRecursiveMethodLoad(newModule, newModuleObject);
+    //    }
+    //    return newModuleObject;
+    //}
 
     // Update is called once per frame
     void Update()

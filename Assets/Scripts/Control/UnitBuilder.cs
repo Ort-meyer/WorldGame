@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using MetaUnits;
+using System.IO;
 
 namespace MetaUnits
 {
@@ -69,6 +70,16 @@ public class UnitBuilder : MonoBehaviour // Singleton<UnitBuilder> TODO make sin
         return newUnit;
     }
 
+    public GameObject M_BuildUnit(SavedModule unit, Transform spawnPosition)
+    {
+        GameObject newUnit = M_BuildUnit((ModuleType)System.Enum.Parse(typeof(ModuleType), unit.moduleType), spawnPosition);
+        foreach (SavedModule newModule in unit.modules)
+        {
+            BuildSubModule(newModule, newUnit);
+        }
+        return newUnit;
+    }
+
     public GameObject M_BuildModule(ModuleType moduleType, ModuleHardpoint parentModule)
     {
         GameObject newModule = Instantiate(M_FindModulePrefab(moduleType));
@@ -90,5 +101,27 @@ public class UnitBuilder : MonoBehaviour // Singleton<UnitBuilder> TODO make sin
         }
         Debug.LogError("ModuleType mapping not found");
         return null; // Should never happen
+    }
+    GameObject BuildSubModule(SavedModule moduleToBuild, GameObject parent)
+    {
+        GameObject newModuleObject = M_BuildModule(Helpers.StringToModuleType(moduleToBuild.moduleType), FindHardpointByIndex(parent, moduleToBuild.attachedToIndex));
+        foreach (SavedModule newModule in moduleToBuild.modules)
+        {
+            BuildSubModule(newModule, newModuleObject);
+        }
+        return newModuleObject;
+    }
+
+    ModuleHardpoint FindHardpointByIndex(GameObject module, int index)
+    {
+        ModuleHardpoint correctHardpoint = null;
+        foreach (ModuleHardpoint hardpoint in module.GetComponentsInChildren<ModuleHardpoint>())
+        {
+            if (hardpoint.m_hardpointIndex == index)
+            {
+                correctHardpoint = hardpoint;
+            }
+        }
+        return correctHardpoint;
     }
 }
