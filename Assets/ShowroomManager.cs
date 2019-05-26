@@ -8,10 +8,10 @@ using System.IO;
 
 public class ShowroomManager : MonoBehaviour
 {
+    private SaveLoadHandler m_saveLoadHandler;
+    private UnitBuilder m_unitBuilder;
     public Dropdown m_hullDropDown;
     public Dropdown m_moduleDropdown;
-    public UnitBuilder m_unitBuilder;
-    public SaveLoadHandler m_saveLoadHandler;
     public Transform m_spawnPosition;
 
     public Button m_saveButton;
@@ -24,7 +24,10 @@ public class ShowroomManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        m_saveLoadHandler = new SaveLoadHandler();
+        GameObject gameUtils = GameObject.Find("GameUtils");
+        m_saveLoadHandler = gameUtils.GetComponent<SaveLoadHandler>();
+        m_unitBuilder = gameUtils.GetComponent<UnitBuilder>();
+
         List<ModuleTypeMap> modulePrefabs = new List<ModuleTypeMap>(m_unitBuilder.m_modulePrefabs);
         List<Dropdown.OptionData> options = new List<Dropdown.OptionData>();
         // Add all hulls to menu (this seems possibly silly)
@@ -45,8 +48,8 @@ public class ShowroomManager : MonoBehaviour
         m_moduleDropdown.onValueChanged.AddListener(delegate { ModuleSelected(m_moduleDropdown); });
 
         m_saveButton.onClick.AddListener(delegate { SaveToFile(); });
-        m_loadButton.onClick.AddListener(delegate { LoadFromFile(); });
-}
+        //m_loadButton.onClick.AddListener(delegate { LoadFromFile(); });
+    }
 
     void HullSelected(Dropdown change)
     {
@@ -89,13 +92,14 @@ public class ShowroomManager : MonoBehaviour
     }
 
 
-    //void SaveToFile()
-    //{
-    //    SavedModule unitToSave = CoolRecursiveMethod(m_currentVehicle.GetComponent<UnitModule>());
-    //    string jsonString = JsonUtility.ToJson(unitToSave);
-    //    string unitName = m_inputField.text;
-    //    m_saveLoadHandler.SaveToFile(unitName, jsonString);
-    //}
+    void SaveToFile()
+    {
+        m_saveLoadHandler.M_SaveUnitToFile(m_inputField.text, m_currentVehicle.GetComponent<UnitModule>());
+        //SavedModule unitToSave = CoolRecursiveMethod(m_currentVehicle.GetComponent<UnitModule>());
+        //string jsonString = JsonUtility.ToJson(unitToSave);
+        //string unitName = m_inputField.text;
+        //m_saveLoadHandler.SaveToFile(unitName, jsonString);
+    }
 
     //void LoadFromFile()
     //{

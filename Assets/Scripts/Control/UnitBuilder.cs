@@ -73,10 +73,15 @@ public class UnitBuilder : MonoBehaviour // Singleton<UnitBuilder> TODO make sin
     public GameObject M_BuildUnit(SavedModule unit, Transform spawnPosition)
     {
         GameObject newUnit = M_BuildUnit((ModuleType)System.Enum.Parse(typeof(ModuleType), unit.moduleType), spawnPosition);
-        foreach (SavedModule newModule in unit.modules)
+        int count = unit.modules.Count;
+        for (int i = 0; i < unit.modules.Count; i++)
         {
-            BuildSubModule(newModule, newUnit);
+            BuildSubModule(unit.modules[i], newUnit);
         }
+        //foreach (SavedModule newModule in unit.modules)
+        //{
+        //    BuildSubModule(newModule, newUnit);
+        //}
         return newUnit;
     }
 
@@ -105,17 +110,21 @@ public class UnitBuilder : MonoBehaviour // Singleton<UnitBuilder> TODO make sin
     GameObject BuildSubModule(SavedModule moduleToBuild, GameObject parent)
     {
         GameObject newModuleObject = M_BuildModule(Helpers.StringToModuleType(moduleToBuild.moduleType), FindHardpointByIndex(parent, moduleToBuild.attachedToIndex));
-        foreach (SavedModule newModule in moduleToBuild.modules)
+        for (int i = 0; i < moduleToBuild.modules.Count; i++)
         {
-            BuildSubModule(newModule, newModuleObject);
+            BuildSubModule(moduleToBuild.modules[i], newModuleObject);
         }
+        //foreach (SavedModule newModule in moduleToBuild.modules)
+        //{
+        //    BuildSubModule(newModule, newModuleObject);
+        //}
         return newModuleObject;
     }
 
     ModuleHardpoint FindHardpointByIndex(GameObject module, int index)
     {
         ModuleHardpoint correctHardpoint = null;
-        foreach (ModuleHardpoint hardpoint in module.GetComponentsInChildren<ModuleHardpoint>())
+        foreach (ModuleHardpoint hardpoint in module.GetComponent<UnitModule>().m_hardPoints)
         {
             if (hardpoint.m_hardpointIndex == index)
             {

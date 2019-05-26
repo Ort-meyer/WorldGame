@@ -27,6 +27,7 @@ public class UnitModule : MonoBehaviour
 {
     public ModuleType m_moduleType;
     public Dictionary<int, UnitModule> m_modules = new Dictionary<int, UnitModule>();
+    public List<ModuleHardpoint> m_hardPoints;
 
     public void M_Init(ModuleType moduleType)
     {
@@ -39,6 +40,7 @@ public class UnitModule : MonoBehaviour
             // Set index. Hope it's deterministic... (otherwise derive it off of it's localPosition?)
             hardpoint.m_hardpointIndex = index;
             index++;
+            m_hardPoints.Add(hardpoint);
         }
     }
 
