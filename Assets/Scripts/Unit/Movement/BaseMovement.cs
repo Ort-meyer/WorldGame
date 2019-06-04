@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class BaseMovement : MonoBehaviour
 {
-
+    public GameObject m_unit;
     // Use this for initialization
-    void Start()
+    public virtual void Start()
     {
-
+        m_unit = GetComponentInParent<BaseUnit>().gameObject;
     }
 
     // Update is called once per frame

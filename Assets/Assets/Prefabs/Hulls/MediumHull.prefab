@@ -126,6 +126,8 @@ GameObject:
   - component: {fileID: 114239570368619796}
   - component: {fileID: 114285871183151148}
   - component: {fileID: 114737499541281018}
+  - component: {fileID: 114902933012070350}
+  - component: {fileID: 114614106835391704}
   m_Layer: 0
   m_Name: MediumHull
   m_TagString: Untagged
@@ -825,6 +827,19 @@ MonoBehaviour:
   m_selectionHighlightPrefab: {fileID: 1108698107108286, guid: caf910057654ddf42bbb28e026dc92ac,
     type: 2}
   m_selectedHoverDistance: 3
+--- !u!114 &114614106835391704
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1623164621846056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c39ce9d9dd3a16c4aba19197e53e0021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_pathUpdateFrequency: 1
+  m_cornerIncrementDistance: 1
 --- !u!114 &114737499541281018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -849,6 +864,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09f61e336f805014e9a5a4357d26a4cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114902933012070350
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1623164621846056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d20444226e5e2fb42ac7ecb78d2ca2ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_unit: {fileID: 0}
+  m_moveSpeed: 4
+  m_rotateSpeed: 35
+  m_directionMargin: 1
 --- !u!114 &114986280207584754
 MonoBehaviour:
   m_ObjectHideFlags: 1

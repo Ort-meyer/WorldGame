@@ -19,15 +19,16 @@ public class CarMovement : BaseMovement
 
     private NavPathManager m_pathManager;
 
-    private GameObject m_parent;
+    //private GameObject m_parent;
 
     private float m_currentMoveSpeed = 0;
     private float m_currentAngle = 0;
     // Use this for initialization
-    void Start()
+    public override void Start()
     {
+        base.Start();
         m_pathManager = GetComponent<NavPathManager>();
-        m_parent = GetComponentInParent<BaseUnit>().gameObject;
+        //m_parent = GetComponentInParent<BaseUnit>().gameObject;
     }
 
     // Update is called once per frame
@@ -51,11 +52,11 @@ public class CarMovement : BaseMovement
                 Accelerate();
                 // Rotate car depending on wheel angle
                 Vector3 pivotPoint = transform.position; // Should be rear wheels, I reckon
-                m_parent.transform.RotateAround(pivotPoint, m_parent.transform.up, m_currentAngle * m_turnTime * Time.deltaTime);
+                m_unit.transform.RotateAround(pivotPoint, m_unit.transform.up, m_currentAngle * m_turnTime * Time.deltaTime);
             }
             // Move car
             Vector3 movement = transform.forward * m_currentMoveSpeed * Time.deltaTime;
-            m_parent.transform.position += movement;
+            m_unit.transform.position += movement;
         }
         else // Hard stop
         {

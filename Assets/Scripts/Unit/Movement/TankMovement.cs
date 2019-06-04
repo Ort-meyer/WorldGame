@@ -10,12 +10,13 @@ public class TankMovement : BaseMovement
 
     NavPathManager m_pathManager;
 
-    private GameObject m_parent;
+    //private GameObject m_parent;
     // Use this for initialization
-    void Start()
+    public override void Start()
     {
+        base.Start();
         m_pathManager = GetComponent<NavPathManager>();
-        m_parent = GetComponentInParent<BaseUnit>().gameObject;
+        //m_parent = GetComponentInParent<BaseUnit>().gameObject;
     }
 
     // Update is called once per frame
@@ -39,13 +40,13 @@ public class TankMovement : BaseMovement
                 {
                     rotateAngle = angle;
                 }
-                m_parent.transform.Rotate(0, rotateAngle, 0, Space.World); // What happens if the tank tilts? Should be Space.World?
+                m_unit.transform.Rotate(0, rotateAngle, 0, Space.World); // What happens if the tank tilts? Should be Space.World?
             }
 
             // If the rotation is enough, move forward
             if (Mathf.Abs(angle) < m_directionMargin)
             {
-                m_parent.transform.position += transform.forward * m_moveSpeed * Time.deltaTime;
+                m_unit.transform.position += transform.forward * m_moveSpeed * Time.deltaTime;
             }
 
         }
