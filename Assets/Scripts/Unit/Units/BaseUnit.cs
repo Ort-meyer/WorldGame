@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class BaseUnit : MonoBehaviour
 {
+    // Which player this unit belongs to
     public int m_alignment;
+    // How much HP this unit has. When it'z zero, it is destroyed
     public float m_hp;
-    //public Unit m_unit;
-    public float m_engagementDistance;
+    // Movement component
     public BaseMovement m_movement;
+    // Transform which the unit will continually move towards
+    public Transform m_followTarget;
+    // Distance to follow target which the unit will try to reach before stopping
+    public float m_followDistance;
 
     // Use this for initialization
     public virtual void Start()
@@ -19,7 +24,19 @@ public class BaseUnit : MonoBehaviour
     // Update is called once per frame
     public virtual void Update()
     {
-
+        // Moves towards a transform each frame (follow)
+        if (m_followTarget)
+        {
+            float distanceToTarget = Vector3.Magnitude(m_followTarget.transform.position - transform.position);
+            if(distanceToTarget >= m_followDistance)
+            {
+                M_MoveOrder(m_followTarget.transform.position);
+            }
+            else
+            {
+                M_StopOrder();
+            }
+        }
     }
 
     /// <summary>
@@ -40,6 +57,10 @@ public class BaseUnit : MonoBehaviour
     /// <param name="target">GameObject which should be attacked</param>
     public virtual void M_AttackOrder(List<GameObject> targets)
     {
+        // Start following closest target
+        GameObject closestTarget = Helpers.FindClosestObject(gameObject, targets);
+        m_followTarget = closestTarget.transform;
+        // Set all turrets to engage all targets
         foreach(BaseTurret turret in GetComponentsInChildren<BaseTurret>())
         {
             turret.M_SetTargets(targets);

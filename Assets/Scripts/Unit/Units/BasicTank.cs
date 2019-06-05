@@ -19,8 +19,7 @@ public class BasicTank : BaseUnit
     // Update is called once per frame
     public override void Update()
     {
-
-
+        base.Update();
     }
 
     public override void M_MoveOrder(Vector3 destination)
