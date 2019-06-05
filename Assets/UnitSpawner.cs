@@ -18,6 +18,7 @@ public class UnitSpawner : MonoBehaviour
     private SaveLoadHandler m_saveLoadHandler;
     private UnitBuilder m_unitBuilder;
     public DefaultUnit m_thisUnit;
+    public int m_alignment;
     // Use this for initialization
     void Start()
     {
@@ -26,7 +27,8 @@ public class UnitSpawner : MonoBehaviour
         m_unitBuilder = gameUtils.GetComponent<UnitBuilder>();
         string unitToLoad = m_thisUnit.ToString();
         SavedModule savedUnit = m_saveLoadHandler.M_LoadUnitFromFile(unitToLoad);
-        m_unitBuilder.M_BuildUnit(savedUnit, transform); 
+        GameObject spawnedUnit = m_unitBuilder.M_BuildUnit(savedUnit, transform);
+        spawnedUnit.GetComponent<BaseUnit>().m_alignment = m_alignment;
     }
 
     // Update is called once per frame

@@ -205,8 +205,6 @@ GameObject:
   - component: {fileID: 54190141306463766}
   - component: {fileID: 114092968565185930}
   - component: {fileID: 114492662910637116}
-  - component: {fileID: 114533982275016860}
-  - component: {fileID: 114098969207147306}
   - component: {fileID: 114300062424614718}
   - component: {fileID: 114554493403415148}
   - component: {fileID: 114724230698749194}
@@ -950,17 +948,8 @@ MonoBehaviour:
   m_alignment: 0
   m_hp: 10
   m_unit: {fileID: 0}
---- !u!114 &114098969207147306
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1560797417093462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14e18d1e38bdab64eba6609ad5960a08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_engagementDistance: 0
+  m_movement: {fileID: 0}
 --- !u!114 &114300062424614718
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -974,6 +963,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moduleType: 14
   m_hardPoints: []
+  m_weapons: []
 --- !u!114 &114492662910637116
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -989,17 +979,6 @@ MonoBehaviour:
   m_selectionHighlightPrefab: {fileID: 1108698107108286, guid: caf910057654ddf42bbb28e026dc92ac,
     type: 2}
   m_selectedHoverDistance: 3
---- !u!114 &114533982275016860
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1560797417093462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b4d9d92efef7ab4eb18d182cb00f9ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114554493403415148
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -18,11 +18,7 @@ public class AtgmUnit : BaseUnit
 
     public override void M_MoveOrder(Vector3 destination)
     {
-        BaseMovement movement = GetComponentInChildren<BaseMovement>();
-        if (movement)
-        {
-            movement.M_MoveOrder(destination);
-        }
+        base.M_MoveOrder(destination);
     }
 
     public override void M_StopOrder()
@@ -36,10 +32,10 @@ public class AtgmUnit : BaseUnit
 
     public override void M_AttackOrder(List<GameObject> targets)
     {
-        BaseTargeting targeting = GetComponent<BaseTargeting>();
-        if (targeting)
-        {
-            targeting.M_SetTargets(targets);
-        }
+        //BaseTargeting targeting = GetComponent<BaseTargeting>();
+        //if (targeting)
+        //{
+        //    targeting.M_SetTargets(targets);
+        //}
     }
 }

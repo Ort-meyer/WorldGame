@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class BaseTurret : MonoBehaviour
 {
+    // The target that the turret should be facing
     protected Transform m_target = null;
+    // The list of all targets that the turret is set to engage
+    public List<GameObject> m_targets;
+    // Top owner of the turret (the unit)
+    protected GameObject m_owner;
 
     // Use this for initialization
     protected virtual void Start()
     {
-
+        m_owner = GetComponentInParent<BaseUnit>().gameObject;
     }
 
     // Update is called once per frame
@@ -19,34 +24,17 @@ public class BaseTurret : MonoBehaviour
         {
             return;
         }
-        RotateTurret();
     }
 
-    private void RotateTurret()
+    virtual public void M_SetTargets(List<GameObject> targets)
     {
-        //m_diffAngle = Helpers.GetDiffAngle2D(transform.forward, m_target.position - transform.position);
-        //// If we're not looing at the target, turn the turret
-        //if (Mathf.Abs(m_diffAngle) > 0)
-        //{
-        //    float rotateAngle = Mathf.Sign(m_diffAngle) * m_currentRotationSpeed * Time.deltaTime;
-
-        //    // If we overshoot, set rotate to diff for perfect rotate
-        //    if (Mathf.Abs(rotateAngle) > Mathf.Abs(m_diffAngle))
-        //    {
-        //        rotateAngle = m_diffAngle;
-        //    }
-        //    transform.Rotate(0, rotateAngle, 0, Space.World); // What happens if the tank tilts? Should be Space.World?
-        //}
-    }
-
-    virtual public void M_SetTarget(Transform target)
-    {
-        m_target = target;
+        m_targets = targets;
     }
 
     virtual public void M_ClearTarget()
     {
         m_target = null;
+        m_targets.Clear();
     }
 }
 

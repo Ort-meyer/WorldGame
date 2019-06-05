@@ -27,10 +27,10 @@ public class UnitBuilder : MonoBehaviour // Singleton<UnitBuilder> TODO make sin
     //public MetaHull DEBUGmetaHull;
     //public MetaHull DEBUGmetaHull1;
     //public MetaHull DEBUGmetaHull2;
-    
 
 
-        
+
+
     public ModuleTypeMap[] m_modulePrefabs = new ModuleTypeMap[System.Enum.GetNames(typeof(ModuleType)).Length];
     //public GameObject[] m_weaponPrefabs = new GameObject[System.Enum.GetNames(typeof(WeaponVariant)).Length];
     //public GameObject[] m_turretPrefabs = new GameObject[System.Enum.GetNames(typeof(TurretVariant)).Length];
@@ -76,19 +76,20 @@ public class UnitBuilder : MonoBehaviour // Singleton<UnitBuilder> TODO make sin
         int count = unit.modules.Count;
         for (int i = 0; i < unit.modules.Count; i++)
         {
-            BuildSubModule(unit.modules[i], newUnit);
+            GameObject subModule = BuildSubModule(unit.modules[i], newUnit);
+            BaseWeapon subModuleWeapon = subModule.GetComponent<BaseWeapon>();
+            if (subModuleWeapon)
+            {
+                newUnit.GetComponent<UnitModule>().m_weapons.Add(subModuleWeapon);
+            }
         }
-        //foreach (SavedModule newModule in unit.modules)
-        //{
-        //    BuildSubModule(newModule, newUnit);
-        //}
         return newUnit;
     }
 
     public GameObject M_BuildModule(ModuleType moduleType, ModuleHardpoint parentModule)
     {
         GameObject newModule = Instantiate(M_FindModulePrefab(moduleType));
-        
+
         newModule.GetComponent<UnitSubModule>().M_Init(moduleType, parentModule);
         newModule.transform.parent = parentModule.m_moduleTopObject.transform;
 
@@ -112,12 +113,13 @@ public class UnitBuilder : MonoBehaviour // Singleton<UnitBuilder> TODO make sin
         GameObject newModuleObject = M_BuildModule(Helpers.StringToModuleType(moduleToBuild.moduleType), FindHardpointByIndex(parent, moduleToBuild.attachedToIndex));
         for (int i = 0; i < moduleToBuild.modules.Count; i++)
         {
-            BuildSubModule(moduleToBuild.modules[i], newModuleObject);
+            GameObject subModule = BuildSubModule(moduleToBuild.modules[i], newModuleObject);
+            BaseWeapon subModuleWeapon = subModule.GetComponent<BaseWeapon>();
+            if (subModuleWeapon)
+            {
+                newModuleObject.GetComponent<UnitModule>().m_weapons.Add(subModuleWeapon);
+            }
         }
-        //foreach (SavedModule newModule in moduleToBuild.modules)
-        //{
-        //    BuildSubModule(newModule, newModuleObject);
-        //}
         return newModuleObject;
     }
 

@@ -268,8 +268,6 @@ GameObject:
   - component: {fileID: 54466336602162584}
   - component: {fileID: 114765713666996268}
   - component: {fileID: 114171711648618466}
-  - component: {fileID: 114152328337409700}
-  - component: {fileID: 114069878602397626}
   - component: {fileID: 114694899203566792}
   - component: {fileID: 114153764662483166}
   - component: {fileID: 114515917704882942}
@@ -993,28 +991,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114069878602397626
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1774983774842704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14e18d1e38bdab64eba6609ad5960a08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114152328337409700
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1774983774842704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b4d9d92efef7ab4eb18d182cb00f9ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114153764662483166
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1097,6 +1073,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_moduleType: 11
   m_hardPoints: []
+  m_weapons: []
 --- !u!114 &114765713666996268
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1111,6 +1088,8 @@ MonoBehaviour:
   m_alignment: 0
   m_hp: 10
   m_unit: {fileID: 0}
+  m_engagementDistance: 0
+  m_movement: {fileID: 0}
 --- !u!114 &114806629234251316
 MonoBehaviour:
   m_ObjectHideFlags: 1

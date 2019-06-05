@@ -6,16 +6,18 @@ public class BaseUnit : MonoBehaviour
 {
     public int m_alignment;
     public float m_hp;
-    public Unit m_unit;
+    //public Unit m_unit;
+    public float m_engagementDistance;
+    public BaseMovement m_movement;
 
     // Use this for initialization
-    void Start()
+    public virtual void Start()
     {
-
+        m_movement = GetComponentInChildren<BaseMovement>();
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
 
     }
@@ -26,23 +28,32 @@ public class BaseUnit : MonoBehaviour
     /// <param name="position">Target destination to move to</param>
     public virtual void M_MoveOrder(Vector3 destination)
     {
-
+        if (m_movement)
+        {
+            m_movement.M_MoveOrder(destination);
+        }
     }
     
     /// <summary>
     /// Instructs the unit to attack the target gameobject
     /// </summary>
     /// <param name="target">GameObject which should be attacked</param>
-    public virtual void M_AttackOrder(List<GameObject> target)
+    public virtual void M_AttackOrder(List<GameObject> targets)
     {
-
+        foreach(BaseTurret turret in GetComponentsInChildren<BaseTurret>())
+        {
+            turret.M_SetTargets(targets);
+        }
     }
     /// <summary>
     /// Instructs the unit to clear all orders
     /// </summary>
     public virtual void M_StopOrder()
     {
-
+        if (m_movement)
+        {
+            m_movement.M_StopOrder();
+        }
     }
 
     public virtual void M_InflictDamage(float damage)

@@ -29,6 +29,9 @@ public class UnitModule : MonoBehaviour
     public Dictionary<int, UnitModule> m_modules = new Dictionary<int, UnitModule>();
     public List<ModuleHardpoint> m_hardPoints;
 
+    // List of all weapon gameobjects attached directly to this module
+    public List<BaseWeapon> m_weapons;
+
     public void M_Init(ModuleType moduleType)
     {
         m_moduleType = moduleType;

@@ -9,12 +9,10 @@ public class RotatingTurret : BaseTurret
     private float m_targetAngle = 0;
     private float m_currentAngle = 0;
 
-    private GameObject m_owner;
-
     // Use this for initialization
     protected override void Start()
     {
-        m_owner = GetComponentInParent<BaseUnit>().gameObject;
+        base.Start();
     }
 
     // Update is called once per frame
@@ -57,6 +55,18 @@ public class RotatingTurret : BaseTurret
                 weapon.M_ClearTarget();
                 weapon.M_HoldFire();
             }
+        }
+    }
+
+    public override void M_SetTargets(List<GameObject> targets)
+    {
+        base.M_SetTargets(targets);
+        // Set target to first in list of targets, for now
+        m_target = targets[0].transform;
+        foreach(BaseWeapon weapon in GetComponent<UnitModule>().m_weapons)
+        {
+            // All weapons engage the same target for now
+            weapon.M_SetTarget(m_target);
         }
     }
 }

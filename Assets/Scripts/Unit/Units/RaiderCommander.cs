@@ -25,9 +25,9 @@ public class RaiderCommander : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        GetComponentInChildren<BaseTurret>().M_SetTarget(m_target);
+        //GetComponentInChildren<BaseTurret>().M_SetTarget(m_target);
 
-        agent = GetComponent<NavMeshAgent>();
+        //agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame

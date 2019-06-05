@@ -49,6 +49,7 @@ public class UnitSubModule : UnitModule
                 transform.rotation = attachTo.transform.rotation;
                 hardpoint.attachesTo = attachTo; // Why? Remove?
                 attachTo.m_moduleTopObject.GetComponent<UnitModule>().M_AddToModuleDict(this.GetInstanceID(), this);
+                
             }
         }
     }
