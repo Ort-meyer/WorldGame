@@ -79,6 +79,7 @@ public class BaseUnit : MonoBehaviour
 
     public virtual void M_InflictDamage(float damage)
     {
+        damage = 0; // TODO remove. Makes stuff immortal, for debug purposes
         m_hp -=damage;
         if(m_hp <= 0)
         {

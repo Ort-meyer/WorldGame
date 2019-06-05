@@ -29,7 +29,7 @@ public class NavPathManager : MonoBehaviour
     void Update()
     {
         // Automatically increment when close to next corner (still not sure that this is best way to do it)
-        if (m_active)
+        if (m_active && m_path != null) // Shouldn't need second part of this if-case
         {
             if ((transform.position - m_path.corners[m_nextCornerIndex]).magnitude < m_cornerIncrementDistance)
             {
@@ -70,12 +70,12 @@ public class NavPathManager : MonoBehaviour
         m_destinationReached = false;
         m_destination = destination;
         UpdatePath();
-
     }
 
     public void M_ClearDestination()
     {
-        m_active = true; // This seems wrong... Will notice when implementing stop feature
+        m_active = false;
+        m_destinationReached = true;
     }
 
     public Vector3 M_GetNextCorner()

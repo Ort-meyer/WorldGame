@@ -770,9 +770,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_alignment: 0
   m_hp: 10
-  m_unit: {fileID: 0}
-  m_engagementDistance: 0
   m_movement: {fileID: 0}
+  m_followTarget: {fileID: 0}
+  m_followDistance: 30
 --- !u!114 &114219729036381668
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -484,9 +484,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_alignment: 0
   m_hp: 10
-  m_unit: {fileID: 0}
-  m_engagementDistance: 0
   m_movement: {fileID: 0}
+  m_followTarget: {fileID: 0}
+  m_followDistance: 50
 --- !u!114 &114722308102936236
 MonoBehaviour:
   m_ObjectHideFlags: 1
