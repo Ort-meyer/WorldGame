@@ -30,4 +30,24 @@ public static class Helpers
     {
         return (ModuleType)System.Enum.Parse(typeof(ModuleType), typeString);
     }
+
+    // Calculates distance from one game object to a list of others. Returns the closes game object
+    public static GameObject FindClosestObject(GameObject fromObject, List<GameObject> toObjects)
+    {
+        // Really large start distance
+        float closestDistance = 1000000;
+        Vector3 fromPos = fromObject.transform.position;
+        GameObject closestObject = null;
+        foreach(GameObject toObj in toObjects)
+        {
+            Vector3 currentToPos = toObj.transform.position;
+            float currentDistance = Vector3.Magnitude(fromPos - currentToPos);
+            if (currentDistance <= closestDistance)
+            {
+                closestObject = toObj;
+                closestDistance = currentDistance;
+            }
+        }
+        return closestObject;
+    }
 }
