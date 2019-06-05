@@ -27,6 +27,10 @@ public class BarrageLauncherWeapon : BaseWeapon
     // Update is called once per frame
     protected override void Update()
     {
+        if (m_target == null)
+        {
+            return;
+        }
         base.Update();
 
         if (m_canFire)
